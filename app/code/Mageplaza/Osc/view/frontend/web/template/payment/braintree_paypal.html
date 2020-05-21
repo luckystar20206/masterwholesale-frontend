@@ -1,0 +1,14 @@
+<!--
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="payment-method" data-bind="css: {'_active': isActive()}" id="payment-method-braintree-paypal">
+    <div class="payment-method-content">
+        <div class="actions-toolbar" data-bind="visible: !isReviewRequired()">
+            <div data-bind="attr: {id: getButtonId()}"></div>
+        </div>
+    </div>
+</div>
+

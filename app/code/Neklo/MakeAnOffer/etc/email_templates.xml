@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="neklo_makeanoffer_email_accept_template" label="[NEKLO] Make an Offer - Accept" file="accept_template.html" type="html" module="Neklo_MakeAnOffer" area="frontend"/>
+    <template id="neklo_makeanoffer_email_decline_template" label="[NEKLO] Make an Offer - Decline " file="decline_template.html" type="html" module="Neklo_MakeAnOffer" area="frontend"/>
+    <template id="neklo_makeanoffer_email_counter_template" label="[NEKLO] Make an Offer - Counter " file="counter_template.html" type="html" module="Neklo_MakeAnOffer" area="frontend"/>
+    <template id="neklo_makeanoffer_email_notify_customer_template" label="[NEKLO] Make an Offer - Notify Customer " file="notify_customer_template.html" type="html" module="Neklo_MakeAnOffer" area="frontend"/>
+    <template id="neklo_makeanoffer_email_notify_admin_template" label="[NEKLO] Make an Offer - Notify Admin " file="notify_admin_template.html" type="html" module="Neklo_MakeAnOffer" area="frontend"/>
+</config>

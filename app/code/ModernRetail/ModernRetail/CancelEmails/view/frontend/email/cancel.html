@@ -1,0 +1,60 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!--@subject {{trans "Items canceled in your %store_name order #%increment_id" store_name=$store.getFrontendName() increment_id=$order.increment_id |raw}} @-->
+<!--@vars {
+"var formattedBillingAddress|raw":"Billing Address",
+"var comment":"Order Cancelation",
+"var creditmemo.increment_id":"Credit Memo Id",
+"layout handle=\"sales_email_order_cancel_items\" order=$order":"Canceled Items Grid",
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var order.getCustomerName()":"Customer Name",
+"var order.increment_id":"Order Id",
+"var payment_html|raw":"Payment Details",
+"var formattedShippingAddress|raw":"Shipping Address",
+"var order.getShippingDescription()":"Shipping Description",
+"var order.shipping_description":"Shipping Description"
+} @-->
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "%name," name=$order.getCustomerName()}}</p>
+            <p>
+                {{trans "Some items were canceled from your order #%increment_id." increment_id=$order.increment_id |raw}}
+                {{trans 'You can check the status of your order by <a href="%account_url">logging into your account</a>.' account_url=$this.getUrl($store,'customer/account/',[_nosid:1]) |raw}}
+                {{trans 'If you have questions about your order, you can email us at <a href="mailto:%store_email">%store_email</a>' store_email=$store_email |raw}}{{depend store_phone}} {{trans 'or call us at <a href="tel:%store_phone">%store_phone</a>' store_phone=$store_phone |raw}}{{/depend}}.
+                {{depend store_hours}}
+                {{trans 'Our hours are <span class="no-link">%store_hours</span>.' store_hours=$store_hours |raw}}
+                {{/depend}}
+            </p>
+        </td>
+    </tr>
+    <tr class="email-summary">
+        <td>
+            <h1>Items were canceled</h1>
+        </td>
+    </tr>
+    <tr class="email-information">
+        <td>
+            {{depend comment}}
+            <table class="message-info">
+                <tr>
+                    <td>
+                        {{var comment|escape|nl2br}}
+                    </td>
+                </tr>
+            </table>
+            {{/depend}}
+
+
+            {{layout handle="sales_email_order_cancel_items"  order=$order}}
+
+        </td>
+    </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,62 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<div id="billing" class="checkout-billing-address" data-bind="visible: !isAddressSameAsShipping()">
+       <!-- ko if: !isAmazonAccountLoggedIn() -->
+            <div class="step-title" data-role="title">
+                <i class="fa fa-home"></i>
+                <!-- ko if: (window.checkoutConfig.oscConfig.isUsedMaterialDesign && !!Number(window.checkoutConfig.quoteData.is_virtual)) -->
+                <span class="fa-stack fa-2x">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <strong class="fa-stack-1x fa-stack-text fa-inverse">1</strong>
+                </span>
+                <!-- /ko -->
+                <span data-bind="i18n: 'Billing Address'"></span>
+            </div>
+    <!--/ko-->
+    <div id="checkout-step-billing" class="step-content" data-role="content">
+        <!-- ko if: (quoteIsVirtual) -->
+            <!-- ko foreach: getRegion('customer-email') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        <!--/ko-->
+        <!-- ko if: !isAmazonAccountLoggedIn() -->
+            <!-- ko if: (addressOptions.length > 1) -->
+                <!-- ko template: 'Magento_Checkout/billing-address/list' --><!-- /ko -->
+            <!-- /ko -->
+        <!-- ko if: isAddressFormVisible -->
+            <!-- ko template: 'Magento_Checkout/billing-address/form' --><!-- /ko -->
+        <!-- /ko -->
+
+        <div class="mp-clear"></div>
+
+            <!-- ko if: (!isCustomerLoggedIn() && quoteIsVirtual) -->
+                <!-- ko foreach: getRegion('customer-email') -->
+                    <!-- ko template: 'Mageplaza_Osc/container/address/billing/create' --><!-- /ko -->
+                <!--/ko-->
+            <!--/ko-->
+        <!--/ko-->
+
+
+        <div class="mp-clear"></div>
+    </div>
+</div>

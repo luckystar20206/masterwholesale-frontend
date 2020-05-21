@@ -1,0 +1,90 @@
+// /**
+//  * Copyright © 2018 Porto. All rights reserved.
+//  */
+
+& when (@media-common = true) {
+    .block-facebook-like .block-title a.btn-like {
+        background-color: #08c;
+        height: 34px;
+        line-height: 34px;
+        font-size: 14px;
+        width: 80px;
+        text-align: center;
+        border-radius: 5px;
+        margin-top: -8px;
+        font-weight: 400;
+        margin-right: 45px;
+    }
+    
+    .block-tweets {
+        ul {
+            margin-top: -15px;
+        
+            li {
+                padding: 15px 0;
+                border-top: 1px solid #75b11f;
+                
+                &:first-child {
+                    border-top: 0;
+                }
+            }
+        }
+        p.tweet {
+            margin-bottom: 10px;
+        }
+        p.timePosted {
+            margin-bottom: 0;
+            color: #a5d75f;
+            font-size: 11px;
+            font-style: italic;
+        }
+    }
+
+    .block-flickr-photos {
+        .block-content {
+            margin: -5px;
+        }
+        a.flickr-image {
+            width: 65px;
+            display: inline-block;
+            margin: 5px;
+        
+            &:hover {
+                opacity:.8;
+                filter: alpha(opacity=80);
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+
+    .fb-persons {
+        margin: -5px;
+
+        .fb-person {
+            display: inline-block;
+            width: 75px;
+            padding: 5px;
+            text-align: center;
+            
+            a {
+                width: 100%;
+                display: inline-block;
+                
+                &:hover img {
+                    opacity: .8;
+                    filter: alpha(opacity=80);
+                }
+            }
+
+            img{width:100%}
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+}

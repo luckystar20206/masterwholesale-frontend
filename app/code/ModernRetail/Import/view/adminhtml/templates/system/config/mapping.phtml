@@ -1,0 +1,59 @@
+<?php
+$mappingType = $block->mappingType;
+$attributes = json_decode($block->scopeConfig->getValue('mr_import/'.$mappingType.'_mapping/json_value',\Magento\Store\Model\ScopeInterface::SCOPE_STORE));
+
+?>
+
+<div style="padding:10px">
+    <div style='display:none'>
+        <?php echo $this->getElementsHtml()?>
+    </div>
+    <div class="grid" id="import-mapping-<?php echo $mappingType?>">
+        <button type="button" class="add-new-mapping"><?php echo __("Add new attribute mapping")?></button>
+        <br/>
+        <br/>
+        <table>
+            <thead>
+            <tr class="headings">
+                <th width="20px">Enabled/Disabled</th>
+                <th >TagName (from XML)</th>
+                <th>Local attribute</th>
+
+                <th width="20px">Used for configurable?</th>
+                <th width="20px">Remove</th>
+            </tr>
+            </thead>
+            <tbody class="mapping">
+            <tr style="display:none" class="example">
+                <td>
+                    <input checked="checked" class="toggler" type="checkbox"/>
+                </td>
+                <td><input class="tagName" placeholder="<?php echo __("Enter <tagName> from XML")?>" type="text"/></td>
+                <td><input class="attributeName" placeholder="<?php echo __("Enter attribute_code from Local Magento Installation")?>" type="text"/></td>
+                <td>
+                    <input class="is_configurable"  type="checkbox"/>
+                </td>
+                <td><button type="button" class="remove"><span><span><?php echo __("x")?></span></span></button></td>
+            </tr>
+            <?php if ($attributes):foreach($attributes as $tagName=>$attribute):?>
+                <tr  <?php if ($attribute['status']===false):?>style='opacity:0.2'<?php endif;?> >
+                    <td>
+                        <input <?php if ($attribute['status']===true):?> checked="checked"<?php endif;?> class="toggler" type="checkbox"/>
+                    </td>
+                    <td><input value='<?php echo $tagName?>' class="tagName" placeholder="<?php echo __("Enter <tagName> from XML")?>" type="text"/></td>
+                    <td><input value="<?php echo $attribute['attribute']?>" class="attributeName" placeholder="<?php echo __("Enter attribute_code from Local Magento Installation")?>" type="text"/></td>
+                    <td>
+                        <input class="is_configurable" <?php if ($attribute['is_configurable']==true):?>checked='true'<?php endif;?> type="checkbox"/>
+                    </td>
+                    <td><button type="button" class="remove"><span><span><?php echo __("x")?></span></span></button></td>
+                </tr
+            <?php endforeach; endif;?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    var mappping_<?php echo $mappingType?> = new MRImportMapping($("import-mapping-<?php echo $mappingType?>"),{
+        valueField:$("mr_import_<?php echo $mappingType?>_mapping_json_value")
+    });
+</script>

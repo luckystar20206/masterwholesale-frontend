@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="head.additional">
+            <block class="Smartwave\Porto\Block\Template" name="porto_custom_head" template="html/head.phtml" before="-"/>
+        </referenceContainer>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Newsletter\Block\Subscribe" name="porto_newsletter_popup" template="subscribe_popup.phtml" before="-"/>
+            <block class="Smartwave\Porto\Block\Template" name="porto_custom_notice" template="html/custom_notice.phtml" after="-"/>
+            <block class="Smartwave\Porto\Block\Template" name="porto_sidebar_sticky" template="html/sidebar_sticky.phtml" after="-"/>
+        </referenceContainer>
+        <referenceContainer name="page.wrapper">
+            <block class="Smartwave\Porto\Block\Template" name="porto_header" template="html/header.phtml" before="main.content">
+                <block class="Magento\Framework\View\Element\Html\Links" name="header.links">
+                    <arguments>
+                        <argument name="css_class" xsi:type="string">header links</argument>
+                    </arguments>
+                </block>
+                <block class="Smartwave\Porto\Block\Form\Login" name="header_customer_form_login" ifconfig="porto_settings/header/login_popup" template="Smartwave_Porto::html/login.phtml"/>
+                <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="switch/languages.phtml"/>
+                <block class="Magento\Framework\View\Element\Template" name="top.search" as="topSearch" template="Magento_Search::form.mini.phtml" />
+                <block class="Smartwave\Porto\Block\Template" name="custom_block" template="html/header_custom_block.phtml" ifconfig="porto_settings/header/static_block" after="-"/>
+            </block>
+        </referenceContainer>
+        <move element="navigation.sections" destination="porto_header"/>
+        <move element="top.search" destination="porto_header"/>
+        <move element="minicart" destination="porto_header"/>
+        <move element="currency" destination="porto_header"/>
+        <move element="logo" destination="porto_header"/>
+        <move element="skip_to_content" destination="porto_header"/>
+
+        <move element="page.top" destination="page.wrapper" after="porto_header"/>
+
+        <referenceContainer name="header.container" remove="1"/>
+        <referenceContainer name="header.panel" remove="1"/>
+        <referenceContainer name="header-wrapper" remove="1"/>
+
+        <referenceContainer name="footer-container">
+            <block class="Smartwave\Porto\Block\Template" name="footer_block" template="html/footer.phtml">
+                <block class="Magento\Store\Block\Switcher" name="footer.store_switcher" template="switch/stores.phtml"/>
+                <block class="Magento\Newsletter\Block\Subscribe" name="footer.newsletter" template="subscribe_footer.phtml"/>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="header.links">
+            <block class="Smartwave\Porto\Block\Template" name="custom_link" before="-" template="html/custom_link.phtml" />
+        </referenceBlock>
+    </body>
+</page>

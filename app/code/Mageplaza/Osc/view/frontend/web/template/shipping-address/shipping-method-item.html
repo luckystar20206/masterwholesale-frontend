@@ -1,0 +1,92 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<tr class="row" data-bind="click: $parent.selectShippingMethod, style: {cursor: 'pointer'}">
+    <td class="col col-method">
+        <!-- ko ifnot: method.error_message -->
+        <!-- ko if: $parent.rates().length == 1 -->
+        <input class="radio"
+               type="radio"
+               data-bind="attr: {
+                                                    checked: $parent.rates().length == 1,
+                                                    'value' : method.carrier_code + '_' + method.method_code,
+                                                    'id': 's_method_' + method.method_code,
+                                                    'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code
+                                                 }" />
+        <label></label>
+        <!-- /ko -->
+        <!--ko ifnot: ($parent.rates().length == 1)-->
+        <input type="radio"
+               data-bind="
+                                                value: method.carrier_code + '_' + method.method_code,
+                                                checked: $parent.isSelected,
+                                                attr: {
+                                                    'id': 's_method_' + method.carrier_code + '_' + method.method_code,
+                                                    'aria-labelledby': 'label_method_' + method.method_code + '_' + method.carrier_code + ' ' + 'label_carrier_' + method.method_code + '_' + method.carrier_code
+                                                }"
+               class="radio"/>
+        <label></label>
+        <!--/ko-->
+        <!-- /ko -->
+    </td>
+    <td class="col col-price">
+        <!-- ko foreach: $parent.getRegion('price') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+
+        <!-- TIG PostNL modification start -->
+        <!-- ko if: $parent.isEnableModulePostNL && $parent.isPostNLDeliveryMethod(method) && $parent.PostNLFee() -->
+        + <span data-bind="text: $parent.formatPrice($parent.PostNLFee())"></span>
+        <!-- /ko -->
+        <!-- TIG PostNL modification end -->
+    </td>
+
+    <td class="col col-method"
+        data-bind="text: method.method_title, attr: {'id': 'label_method_' + method.method_code + '_' + method.carrier_code}"></td>
+
+    <td class="col col-carrier"
+        data-bind="text: method.carrier_title, attr: {'id': 'label_carrier_' + method.method_code + '_' + method.carrier_code}"></td>
+</tr>
+
+<!-- ko if:  method.error_message -->
+<tr class="row row-error">
+    <td class="col col-error" colspan="4">
+        <div class="message error">
+            <div data-bind="text: method.error_message"></div>
+        </div>
+        <span class="no-display">
+                                    <input type="radio" data-bind="attr: {'value' : method.method_code, 'id': 's_method_' + method.method_code}"/>
+                                </span>
+    </td>
+</tr>
+<!-- /ko -->
+
+<!-- TIG PostNL modification start -->
+<!-- ko if: $parent.isEnableModulePostNL && $parent.canUsePostnlDeliveryOptions(method) -->
+<tr>
+    <td colspan="10" class="postnl-deliveryoptions">
+        <!-- ko foreach: $parent.getRegion('postnl-deliveryoptions') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+    </td>
+</tr>
+<!-- /ko -->
+<!-- TIG PostNL modification end -->

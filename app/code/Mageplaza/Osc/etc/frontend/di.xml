@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Register onestepcheckout link as secure url. The security will match with front name in route -->
+    <type name="Magento\Framework\Url\SecurityInfo">
+        <arguments>
+            <argument name="secureUrlList" xsi:type="array">
+                <item name="onestepcheckout_index_index" xsi:type="string">/onestepcheckout</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Change checkout url to onestepcheckout -->
+    <type name="Magento\Framework\Url">
+        <plugin name="oscRewriteUrl" type="Mageplaza\Osc\Block\Plugin\Link"/>
+    </type>
+    <!-- Add layout processor -->
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="oscAddressForm" xsi:type="object">Mageplaza\Osc\Block\Checkout\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Add config provider -->
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="osc_default_config_provider" xsi:type="object">Mageplaza\Osc\Model\DefaultConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Block\SectionConfig">
+        <arguments>
+            <argument name="clientSideSections" xsi:type="array">
+                <item name="osc-data" xsi:type="string">osc-data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Eav\Model\Validator\Attribute\Data">
+        <plugin name="mz_osc_validator" type="Mageplaza\Osc\Model\Plugin\Eav\Model\Validator\Attribute\Data"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\Processor">
+        <plugin name="oscCheckProductQty" type="Mageplaza\Osc\Model\Plugin\Quote\Processor"/>
+    </type>
+    <!-- Change url name -->
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="mposc" xsi:type="array">
+                    <item name="class" xsi:type="string">Mageplaza\Osc\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">1</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Mageplaza\CustomerAttributes\Helper\Data">
+        <plugin name="mposc_process_ca_fields" type="Mageplaza\Osc\Model\Plugin\CustomerAttributes\Helper"/>
+    </type>
+    <type name="Mageplaza\OrderAttributes\Helper\Data">
+        <plugin name="mposc_process_oa_fields" type="Mageplaza\Osc\Model\Plugin\OrderAttributes\Helper"/>
+    </type>
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="mposc_append_item_prop" type="Mageplaza\Osc\Model\Plugin\Checkout\DefaultConfigProvider" />
+    </type>
+    <type name="Magento\Sales\Model\Order\Address\Validator">
+        <plugin name="mposc_show_create_account" type="Mageplaza\Osc\Model\Plugin\Sales\Order\Address\Validator" />
+    </type>
+
+    <!-- Process OSC Custom Field on Magento EE 2.3.x -->
+    <type name="Magento\CustomerCustomAttributes\Block\Checkout\LayoutProcessor">
+        <plugin name="mposc_process_custom_field" type="Mageplaza\Osc\Model\Plugin\CustomerCustomAttributes\Checkout\LayoutProcessorPlugin" />
+    </type>
+</config>

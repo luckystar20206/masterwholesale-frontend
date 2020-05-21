@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Neklo_MakeAnOffer::makeanoffer" title="Make An Offer" module="Neklo_MakeAnOffer" sortOrder="110"
+             parent="Magento_Backend::marketing" resource="Neklo_MakeAnOffer::makeanoffer"/>
+        <add id="Neklo_MakeAnOffer::main"
+             title="Offers"
+             module="Neklo_MakeAnOffer"
+             sortOrder="10"
+             action="neklo_makeanoffer/request"
+             parent="Neklo_MakeAnOffer::makeanoffer" resource="Neklo_MakeAnOffer::main"/>
+        <add id="Neklo_MakeAnOffer::statistic"
+             title="Offers Statistic"
+             module="Neklo_MakeAnOffer"
+             sortOrder="20"
+             action="neklo_makeanoffer/statistic"
+             parent="Neklo_MakeAnOffer::makeanoffer" resource="Neklo_MakeAnOffer::statistic"/>
+    </menu>
+</config>

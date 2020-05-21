@@ -1,0 +1,9 @@
+<?php /** @var Neklo\MakeAnOffer\Block\Request\Form $block */ ?>
+<?php if ($block->canShow()) : ?>
+    <?php if ($block->getOutputType() == Neklo\MakeAnOffer\Model\Source\Display::OUTPUT_TYPE_BLOCK) : ?>
+        <span class="action primary tocart make-an-offer__button-default" id="make_an_offer_go-to"><?php echo $block->escapeHtml($block->getButtonLabel()); ?></span>
+    <?php endif; ?>
+    <?php if ($block->getOutputType() == Neklo\MakeAnOffer\Model\Source\Display::OUTPUT_TYPE_POPUP) : ?>
+        <span class="action primary tocart make-an-offer__button-default" id="make_an_offer_show-popup"><?php echo $block->escapeHtml($block->getButtonLabel()); ?></span>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,85 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Adminhtml\Field\AbstractField $block */
+?>
+
+<div id="<?= $block->escapeQuote($block->getBlockId()) ?>" class="mposc-field-container">
+    <?php if ($block->isVisible() && $block->hasFields()) : ?>
+        <div class="containment row">
+            <div class="field-wrapper available-wrapper col-m-4">
+                <ul class="sortable-list ui-sortable">
+                    <?php foreach ($block->getAvailableFields() as $field) : ?>
+                        <li class="sortable-item" id="<?= $block->escapeQuote($field->getId()) ?>"
+                            data-code="<?= $block->escapeQuote($field->getAttributeCode()) ?>">
+                            <div class="attribute-label">
+                                <span><?= $block->escapeHtml($field->getFrontendLabel()) ?></span>
+                                <div class="attribute-required">
+                                    <input type="checkbox" title="<?= $block->escapeQuote(__('Is Required?')) ?>"
+                                        <?php if ($field->getIsRequired()) {
+                                            echo ' checked';
+                                        } ?>>
+                                </div>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <div class="field-wrapper sorted-wrapper col-m-8">
+                <ul class="sortable-list ui-sortable">
+                    <?php foreach ($block->getSortedFields() as $field) : ?>
+                        <li class="sortable-item <?= $block->escapeQuote($field->getColStyle()) ?>"
+                            id="<?= $block->escapeQuote($field->getId()) ?>"
+                            data-code="<?= $block->escapeQuote($field->getAttributeCode()) ?>">
+                            <div class="attribute-label">
+                                <span><?= $block->escapeHtml($field->getFrontendLabel()) ?></span>
+                                <?php if ($field->getId()) : ?>
+                                    <div class="attribute-required">
+                                        <input type="checkbox" title="<?= $block->escapeQuote(__('Is Required?')) ?>"
+                                            <?php if ($field->getIsRequiredMp()) {
+                                                echo ' checked';
+                                            } ?>>
+                                    </div>
+                                <?php endif; ?>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        </div>
+
+        <script type="text/x-magento-init">
+        {
+            "*": {
+                "Mageplaza_Osc/js/view/field-position": {
+                    "blockId": "<?= /** @noEscape */ $block->getBlockId() ?>"
+                }
+            }
+        }
+        </script>
+    <?php else : ?>
+        <div class="messages">
+            <div class="message message-info info">
+                <span><?= /** @noEscape */ $block->getNoticeMessage() ?></span>
+            </div>
+        </div>
+    <?php endif; ?>
+</div>

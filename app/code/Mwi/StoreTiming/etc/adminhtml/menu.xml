@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Mwi. All rights reserved.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Backend/etc/menu.xsd">
+    <menu>
+        <add id="Mwi_StoreTiming::mwi_timing_index" title="Manage Store Timing" module="Mwi_StoreTiming"  sortOrder="20" dependsOnModule="Mwi_StoreTiming" action="storetiming/timing/index" resource="Mwi_StoreTiming::mwi_timing_index"/>
+<!--AddMenu-->
+    </menu>
+</config>

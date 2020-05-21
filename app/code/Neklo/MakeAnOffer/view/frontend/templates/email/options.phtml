@@ -1,0 +1,9 @@
+<?php $options = $block->getProductOptions(); ?>
+<?php if (!empty($options)) : ?>
+    <?php foreach ($options as $option) : ?>
+        <p>
+            <?php echo $block->escapeHtml($option['attribute']); ?>
+            <?php echo $block->escapeHtml($option['option']); ?>
+        </p>
+    <?php endforeach; ?>
+<?php endif; ?>

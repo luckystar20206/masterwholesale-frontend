@@ -1,0 +1,1 @@
+[vegandthecity.ch/shop](https://vegandthecity.ch/shop) (Magento 2) source code and issues tracking.

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <sw_megamenu>
+            <general>
+                <enable>1</enable>
+                <menu_type>fullwidth</menu_type>
+                <static_width>500px</static_width>
+                <max_level></max_level>
+            </general>
+            <custom_links>
+                <staticblock_before>porto_custom_menu_before</staticblock_before>
+                <staticblock_after>porto_custom_menu</staticblock_after>
+            </custom_links>
+            <cat_labels>
+                <label1>New</label1>
+                <label2>Hot!</label2>
+                <label3>Sale</label3>
+            </cat_labels>
+        </sw_megamenu>
+    </default>
+</config>

@@ -1,0 +1,122 @@
+<?php /** @var Neklo\MakeAnOffer\Block\Request\Form $block */ ?>
+<?php // @codingStandardsIgnoreFile ?>
+<?php if ($block->canShow()): ?>
+<div class="makeanoffer-main-wrapper" id="makeanoffer-main" data-mage-init='{"Neklo_MakeAnOffer/js/makeanoffercomponent":{}}' data-show-with-tax="<?= $block->escapeHtmlAttr($block->getDisplayPriceWithTax()); ?>">
+    <?php if ($block->getOutputType() == Neklo\MakeAnOffer\Model\Source\Display::OUTPUT_TYPE_BLOCK) : ?>
+        <!-- Block here -->
+        <form id="make_an_offer_content" class="make-an-offer__container" data-mage-init='{"validation":{}}'>
+            <div class="make-an-offer__content">
+                <div class="make-an-offer-popup__title"><?php echo $block->escapeHtml($block->getTitle()); ?></div>
+                <div class="make-an-offer-popup__description"><?php echo $block->escapeHtml($block->getShortDescription()); ?></div>
+                <div id="make_an_offer_container"
+                     data-makeanofferurl="<?php echo $block->escapeUrl($block->getUrl('makeanoffer/index/index')); ?>"></div>
+                <div id="make_an_offer_product_type"
+                     data-makeanofferproductype="<?php echo $block->escapeHtml($block->getProductType()); ?>"></div>
+                <div id="make_an_offer_product_id"
+                     data-makeanofferproductid="<?php echo $block->escapeHtml($block->getCurrentProduct()->getId()); ?>"></div>
+                <input id="makeanoffer-formkey" type="hidden" name="form_key"
+                       value="<?php echo $block->escapeHtml($block->getFormKey()); ?>"/>
+                <input id="make_an_offer_storeid" type="hidden" name="store_id"
+                       value="<?php echo $block->escapeHtml($block->getStoreId()); ?>"/>
+                    <div class="make-an-offer__line">
+                        <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('Email')); ?></div>
+                        <input id="makeanoffer-email" type="email" name="email" class="input-text make-an-offer__input required email"/>
+                    </div>
+
+                <?php if ($block->canDisplayAnotherStoreLink()): ?>
+                <div class="make-an-offer__line">
+                    <div class="make-an-offer__label"><?php echo $block->escapeHtml(__('Where did you see it for less?')); ?></div>
+                    <input id="makeanoffer-email-link" type="text" name="link" class="input-text make-an-offer__input url"/>
+                </div>
+                <?php endif; ?>
+
+                <div class="make-an-offer__line">
+                    <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('Your Price')); ?></div>
+                    <input id="makeanoffer-client-price" type="text" name="request_price" class="input-text make-an-offer__input required number"/>
+                </div>
+
+                <div class="make-an-offer__line">
+                    <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('qty')); ?></div>
+                    <input id="makeanoffer-qty" type="text" name="qty" class="input-text make-an-offer__input required number"/>
+                </div>
+                <?php echo $block->getChildHtml('form.additional.info'); ?>
+                <span id="make_an_offer_button" class="action primary make-an-offer__button"><?php echo $block->escapeHtml(__('Submit')); ?></span>
+            </div>
+            <div class="make-an-offer__loader">
+                <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg"
+                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px"
+                     viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+  <path fill="#000"
+        d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+        transform="rotate(20 25 25)">
+      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25"
+                        dur="0.6s" repeatCount="indefinite"></animateTransform>
+  </path>
+  </svg>
+            </div>
+        </form>
+        <div class="make-an-offer-popup__container">
+            <div class="make-an-offer-popup">
+                <div class="make-an-offer-popup__close"></div>
+                <div class="make-an-offer-popup__message"></div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php if ($block->getOutputType() == Neklo\MakeAnOffer\Model\Source\Display::OUTPUT_TYPE_POPUP) : ?>
+
+        <div class="make-an-offer-popup__container">
+            <form id="make_an_offer_content" class="make-an-offer-popup" data-mage-init='{"validation":{}}'>
+                <div class="make-an-offer-popup__close"></div>
+                <div class="make-an-offer-popup__content">
+                    <div class="make-an-offer-popup__title"><?php echo $block->escapeHtml($block->getTitle()); ?></div>
+                    <div class="make-an-offer-popup__description"><?php echo $block->escapeHtml($block->getShortDescription()); ?></div>
+                    <div id="make_an_offer_container"
+                         data-makeanofferurl="<?php echo $block->escapeUrl($block->getUrl('makeanoffer/index/index')); ?>"></div>
+                    <div id="make_an_offer_product_type"
+                         data-makeanofferproductype="<?php echo $block->escapeHtml($block->getProductType()); ?>"></div>
+                    <div id="make_an_offer_product_id"
+                         data-makeanofferproductid="<?php echo $block->escapeHtml($block->getCurrentProduct()->getId()); ?>"></div>
+                    <input id="makeanoffer-formkey" type="hidden" name="form_key"
+                           value="<?php echo $block->escapeHtml($block->getFormKey()); ?>"/>
+                    <input id="make_an_offer_storeid" type="hidden" name="store_id"
+                           value="<?php echo $block->escapeHtml($block->getStoreId()); ?>"/>
+                        <div class="make-an-offer__line">
+                            <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('Email')); ?></div>
+                            <input id="makeanoffer-email" type="email" name="email" class="input-text make-an-offer__input required email"/>
+                        </div>
+                    <div class="make-an-offer__line">
+                        <div class="make-an-offer__label"><?php echo $block->escapeHtml(__('Another store link')); ?></div>
+                        <input id="makeanoffer-email-link" type="text" name="link" class="input-text make-an-offer__input url"/>
+                    </div>
+
+                    <div class="make-an-offer__line">
+                        <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('Your Price')); ?></div>
+                        <input id="makeanoffer-client-price" type="text" name="request_price" class="input-text make-an-offer__input required number"/>
+                    </div>
+
+                    <div class="make-an-offer__line">
+                        <div class="make-an-offer__label required"><?php echo $block->escapeHtml(__('qty')); ?></div>
+                        <input id="makeanoffer-qty" type="text" name="qty" class="input-text make-an-offer__input required number"/>
+                    </div>
+                    <?php echo $block->getChildHtml('form.additional.info'); ?>
+                    <span id="make_an_offer_button" class="action primary make-an-offer-popup__button"><?php echo $block->escapeHtml(__('Submit')); ?></span>
+                </div>
+                <div class="make-an-offer-popup__message"></div>
+                <div class="make-an-offer__loader">
+                    <svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg"
+                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px"
+                         viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
+  <path fill="#000"
+        d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z"
+        transform="rotate(20 25 25)">
+      <animateTransform attributeType="xml" attributeName="transform" type="rotate" from="0 25 25" to="360 25 25"
+                        dur="0.6s" repeatCount="indefinite"></animateTransform>
+  </path>
+  </svg>
+                </div>
+            </form>
+        </div>
+
+    <?php endif; ?>
+</div>
+<?php endif; ?>

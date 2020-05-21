@@ -1,0 +1,65 @@
+<?php
+/**
+ * Copyright © 2015 Ihor Vansach (ihor@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog sidebar recent posts template
+ *
+ * @var $block \Magefan\Blog\Block\Sidebar\Recent
+ */
+?>
+
+<?php
+	$_postCollection = $block->getPostCollection();
+?>
+<div class="recent-posts">
+<?php if ($_postCollection->count()) { ?>
+    <div class="owl-carousel">
+    <?php foreach ($_postCollection as $_post) { ?>
+    <?php
+        $post_date = $_post->getData("publish_time");
+    ?>
+        <div class="item">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="post-image">
+                    <?php if($post_image = $_post->getFeaturedImage()): ?>
+                        <img src="<?php echo $post_image; ?>" alt=""/>
+                    <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-md-7">
+                    <div class="post-date">
+                        <span class="day"><?php echo date("j", strtotime($post_date)); ?></span>
+                        <span class="month"><?php echo date("M", strtotime($post_date)); ?></span>
+                    </div>
+                    <div class="postTitle">
+                        <h2><a href="<?php echo $_post->getPostUrl() ?>" ><?php echo $block->escapeHtml($_post->getTitle()) ?></a></h2>
+                    </div>
+                    <?php
+                        $content = $_post->getContent();
+                        $pageBraker = '<!-- pagebreak -->';
+                        
+                        $isMb = function_exists('mb_strpos');
+                        $p = $isMb ? strpos($content, $pageBraker) : mb_strpos($content, $pageBraker);
+
+                        if ($p) {
+                            $content = substr($content, 0, $p);
+                        }
+
+                        $short_content = $this->helper('Smartwave\Porto\Helper\Data')->filterContent($content);
+                    ?>
+                    <div class="postContent"><?php echo $short_content; ?></div>
+                    <a class="readmore" href="<?php echo $_post->getPostUrl(); ?>"><?php echo __("Read more >");?></a>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+    </div>
+<?php } ?>
+</div>

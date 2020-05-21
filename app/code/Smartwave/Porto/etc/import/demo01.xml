@@ -1,0 +1,1163 @@
+<root>
+<config>
+    <web>
+        <default>
+            <cms_home_page>porto_home_1</cms_home_page>
+            <cms_no_route>no-route-2</cms_no_route>
+        </default>
+    </web>
+    <cms>
+        <wysiwyg>
+            <enabled>hidden</enabled>
+        </wysiwyg>
+    </cms>
+    <design>
+        <header>
+            <logo_width>105</logo_width>
+            <logo_height>57</logo_height>
+            <logo_src>default/logo_black10.png</logo_src>
+        </header>
+    </design>
+    <dev>
+        <js>
+            <merge_files>1</merge_files>
+        </js>
+    </dev>
+    <layered_navigation>
+        <general>
+            <enable>0</enable>
+        </general>
+    </layered_navigation>
+    <porto_settings>
+        <general>
+            <boxed>wide</boxed>
+            <layout>full_width</layout>
+            <disable_border_radius>1</disable_border_radius>
+            <show_site_notice>0</show_site_notice>
+            <category_list_on_left>0</category_list_on_left>
+            <smartlayers>1</smartlayers>
+        </general>
+        <header>
+            <header_type>14</header_type>
+            <static_block>porto_custom_block_for_header</static_block>
+            <sticky_header>0</sticky_header>
+            <sticky_header_logo></sticky_header_logo>
+            <currency_short>1</currency_short>
+            <language_flag>0</language_flag>
+        </header>
+        <footer>
+            <footer_top>1</footer_top>
+            <footer_top_block>custom</footer_top_block>
+            <footer_top_custom>porto_footer_top_1_for_1</footer_top_custom>
+            <footer_middle>1</footer_middle>
+            <footer_ribbon>0</footer_ribbon>
+            <footer_ribbon_text>Ribbon Text</footer_ribbon_text>
+            <footer_middle_column_1>custom</footer_middle_column_1>
+            <footer_middle_column_1_custom>porto_footer_middle_1_for_1</footer_middle_column_1_custom>
+            <footer_middle_column_1_size>4</footer_middle_column_1_size>
+            <footer_middle_column_2>custom</footer_middle_column_2>
+            <footer_middle_column_2_custom>porto_footer_middle_2_for_1</footer_middle_column_2_custom>
+            <footer_middle_column_2_size>4</footer_middle_column_2_size>
+            <footer_middle_column_3>custom</footer_middle_column_3>
+            <footer_middle_column_3_custom>porto_footer_middle_3_for_1</footer_middle_column_3_custom>
+            <footer_middle_column_3_size>4</footer_middle_column_3_size>
+            <footer_middle_column_4>custom</footer_middle_column_4>
+            <footer_middle_column_4_custom></footer_middle_column_4_custom>
+            <footer_middle_column_4_size>4</footer_middle_column_4_size>
+            <footer_middle_2>0</footer_middle_2>
+            <footer_middle_2_column_1>custom</footer_middle_2_column_1>
+            <footer_middle_2_column_1_custom>porto_footer_links</footer_middle_2_column_1_custom>
+            <footer_middle_2_column_1_size>3</footer_middle_2_column_1_size>
+            <footer_middle_2_column_2>custom</footer_middle_2_column_2>
+            <footer_middle_2_column_2_custom>porto_footer_links</footer_middle_2_column_2_custom>
+            <footer_middle_2_column_2_size>3</footer_middle_2_column_2_size>
+            <footer_middle_2_column_3>custom</footer_middle_2_column_3>
+            <footer_middle_2_column_3_custom>porto_footer_links</footer_middle_2_column_3_custom>
+            <footer_middle_2_column_3_size>3</footer_middle_2_column_3_size>
+            <footer_middle_2_column_4>custom</footer_middle_2_column_4>
+            <footer_middle_2_column_4_custom>porto_footer_links</footer_middle_2_column_4_custom>
+            <footer_middle_2_column_4_size>3</footer_middle_2_column_4_size>
+            <footer_bottom>1</footer_bottom>
+            <footer_store_switcher>0</footer_store_switcher>
+            <footer_logo_src></footer_logo_src>
+            <footer_bottom_copyrights><![CDATA[© Copyright 2019 PORTO. All Rights Reserved.]]></footer_bottom_copyrights>
+            <footer_bottom_custom_1>porto_footer_bottom_custom_block_1_1</footer_bottom_custom_1>
+            <footer_bottom_custom_2></footer_bottom_custom_2>
+        </footer>
+        <category>
+            <alternative_image>1</alternative_image>
+            <aspect_ratio>0</aspect_ratio>
+            <ratio_width>300</ratio_width>
+            <ratio_height>400</ratio_height>
+            <rating_star>0</rating_star>
+            <product_price>1</product_price>
+            <actions>1</actions>
+            <addtocompare>0</addtocompare>
+            <addtowishlist>1</addtowishlist>
+            <qty_field>0</qty_field>
+            <page_layout>2columns-left</page_layout>
+            <category_description>full_width</category_description>
+            <side_custom_block>porto_category_side_custom_block</side_custom_block>
+        </category>
+        <category_grid>
+            <product_type>3</product_type>
+            <columns>4</columns>
+        </category_grid>
+        <product>
+            <product_image_size>4</product_image_size>
+            <main_custom_block>porto_product_main_custom_block</main_custom_block>
+            <side_custom_block>porto_product_side_custom_block</side_custom_block>
+            <main_custom_block2></main_custom_block2>
+            <page_layout>1column</page_layout>
+            <upsell_columns>5</upsell_columns>
+            <move_upsell>1</move_upsell>
+            <move_upsell_full>0</move_upsell_full>
+            <move_addtolinks>1</move_addtolinks>
+            <tab_full_background>0</tab_full_background>
+            <custom_block_next_tab></custom_block_next_tab>
+        </product>
+        <newsletter>
+            <delay>10000</delay>
+            <logo_src>default/logo_black.png</logo_src>
+        </newsletter>
+        <contacts>
+            <enable>1</enable>
+            <full_width>0</full_width>
+            <address>Porto2 Store</address>
+            <latitude>-34.398</latitude>
+            <longitude>150.884</longitude>
+            <zoom>18</zoom>
+            <infoblock><![CDATA[<div class="row">
+<div class="col-md-12">
+    <i class="porto-icon-phone"></i>
+    <p>0201 203 2032</p>
+    <p>0201 203 2032</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <i class="porto-icon-mobile"></i>
+    <p>201-123-3922</p>
+    <p>302-123-3928</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <i class="porto-icon-mail-alt"></i>
+    <p>porto@gmail.com</p>
+    <p>porto@portotemplate.com</p>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+    <i class="porto-icon-skype"></i>
+    <p>porto_skype</p>
+    <p>proto_template</p>
+</div>
+</div>]]></infoblock>
+            <customblock></customblock>
+        </contacts>
+        <custom_settings>
+            <custom_style><![CDATA[.navigation, .header.content, .top-container, .page-wrapper > .breadcrumbs .items, .cms-index-index .container {
+    max-width: none;
+}
+#at4-share {
+    z-index: 3 !important;
+}
+.at4m-dock.at4-ma1 a {
+    float: right !important;
+}
+.atss .at-share-btn .at-icon-wrapper, .atss a .at-icon-wrapper {
+    background-color: #000 !Important;
+}
+.atss .at-share-btn {
+    margin: 0 1px 1px 0 !important;
+}
+@media (max-width: 767px) {
+    .atss .at-share-btn {
+        max-width: 40px;
+        pointer-events: all;
+    }
+    .at-share-dock.atss {
+        box-shadow: none !important;
+        pointer-events: none;
+    }
+}
+.at4m-dock-toggle {
+    left: 0 !important;
+    right: auto !important;
+}
+.page-main {
+    padding: 40px 0;
+    max-width: none;
+}
+.page-wrapper > .breadcrumbs {
+    border-bottom: 1px solid #dfdfdf;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    margin: 0;
+}
+.breadcrumbs .items > li {
+    vertical-align: middle;
+    height: 21px;
+}
+.breadcrumbs .items > li > a, .breadcrumbs .items > li > strong {
+    font-family: "Oswald";
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+.breadcrumbs .item:not(:last-child):after {
+    content: "\f856";
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 13px;
+    margin: 0 10px;
+}
+.block-category-list .block-title, .filter-options-title, .filter .filter-current-subtitle {
+    padding: 10px 0;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #ccc;
+    font-family: "Oswald";
+    font-size: 12px;
+    color: #000;
+    letter-spacing: 1px;
+}
+.block-category-list .block-content, .filter-options-content, .filter-current .items {
+    border: 0;
+    background-color: transparent;
+    padding: 10px 0;
+}
+.filter-actions {
+    border: 0;
+    background-color: transparent;
+    border-top: 1px solid #ccc;
+}
+.filter-options-content a, .filter-options-content .count, .block-category-list .block-content .item a, .filter-content .item, .filter-value, .filter-current .action.remove, .abs-remove-button-for-blocks:before, .sidebar .product-items .action.delete:before, .table-comparison .cell.remove .action.delete:before, .block-compare .action.delete:before, .filter-current .action.remove:before, .abs-remove-button-for-blocks:hover:before, .sidebar .product-items .action.delete:hover:before, .table-comparison .cell.remove .action.delete:hover:before, .block-compare .action.delete:hover:before, .filter-current .action.remove:hover:before {
+    color: #000 !important;
+}
+.filter-options-title:after {
+    content: "\f882";
+    border: 0;
+    color: #000;
+    font-size: 12px;
+    text-align: right;
+    right: 0;
+    line-height: 26px;
+}
+.filter-options-title:hover:after {
+    background-color: transparent;
+    color: #000;
+}
+.active > .filter-options-title:after {
+    content: "\f883";
+}
+.swatch-option {
+    border-color: #eee;
+}
+.swatch-option.text {
+    font-family: "Oswald";
+    color: #000 !important;
+    font-weight: 400;
+}
+.swatch-option.image:not(.disabled):hover, .swatch-option.color:not(.disabled):hover, .swatch-option:not(.disabled):hover {
+    border-color: #000;
+}
+.sidebar-title {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: "Oswald";
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: #000;
+}
+.sidebar .sidebar-filterproducts .owl-top-narrow .owl-theme .owl-controls {
+    top: -35px;
+    right: -5px;
+}
+.sidebar-filterproducts .owl-top-narrow .owl-theme .owl-controls .owl-nav [class*=owl-] {
+    font-size: 14px;
+}
+#ln_slider_price.ui-slider-horizontal {
+    background: #555;
+}
+.toolbar {
+    margin-bottom: 15px;
+}
+.toolbar-amount {
+    font-family: "Oswald";
+    font-size: 12px;
+    color: #000;
+    text-transform: uppercase;
+    padding: 10px 0;
+    line-height: 15px;
+}
+.sorter-label {
+    font-size: 12px;
+    font-family: "Oswald";
+    text-transform: uppercase;
+    color: #000;
+}
+.toolbar select {
+    border: 2px solid #000;
+    height: 35px;
+    line-height: 31px;
+    font-family: "Oswald";
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #000;
+    text-indent: -1px;
+}
+.sorter-action {
+    line-height: 35px;
+}
+.page-products .toolbar .limiter {
+    font-family: "Oswald";
+    color: #000;
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.pages strong.page {
+    border: 0;
+    height: 35px;
+    line-height: 35px;
+    font-size: 13px;
+    padding: 0;
+    font-family: "Oswald";
+    background-color: transparent;
+    color: #000;
+    font-weight: 700;
+}
+.pages a.page {
+    border: 0;
+    height: 35px;
+    line-height: 35px;
+    padding: 0;
+    font-size: 13px;
+    font-family: "Oswald";
+    font-weight: 700;
+    color: #939393;
+}
+.pages a.page:hover {
+    border: 0;
+    background-color: transparent;
+    color: #000;
+}
+.pages .action {
+    border: 2px solid #000;
+    background-color: #000;
+    width: 35px;
+    height: 35px;
+    line-height: 31px;
+    font-family: "Oswald";
+    font-size: 13px;
+}
+.pages .action:hover {
+    border-width: 2px;
+}
+.pages .action:before {
+    color: #fff !important;
+}
+.footer .container, .cms-index-index .container {
+    max-width: 100%;
+}
+.filter-title strong {
+    border: 2px solid #000;
+    border-radius: 0;
+    color: #000;
+    font-family: "Oswald";
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+.product-info-main .product-reviews-summary, .customer-review .product-reviews-summary {
+    margin-bottom: 20px;
+}
+.product-options-bottom .price-box .price-container .price, .product-info-price .price-box .price-container .price {
+    font-weight: 400;
+}
+.product-info-main .product-info-price {
+    border: 0;
+    margin-bottom: 0;
+}
+.swatch-attribute-label {
+    font-weight: 400;
+    font-size: 14px;
+    color: #000;
+}
+.product-options-wrapper {
+    border: 0;
+    padding: 0;
+}
+.product-social-links {
+    border: 0;
+    padding: 0;
+}
+.catalog-product-view:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .product-info-main .box-tocart {
+    margin: 40px 0 45px;
+}
+.product-info-main .box-tocart .input-text.qty, .bundle-options-container .box-tocart .input-text.qty {
+    height: 60px;
+    min-width: 100px;
+    font-family: "Oswald";
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 1px;
+    color: #000;
+}
+.product-info-main .qty.field .qty-changer > a, .bundle-options-container .box-tocart .qty.field .qty-changer > a {
+    width: 28px;
+    height: 28px;
+    margin-top: 4px;
+    line-height: 24px;
+    border: 2px solid #000;
+    color: #000;
+    font-size: 11px;
+    text-align: center;
+}
+.product-info-main .qty.field .qty-changer > a:first-child, .bundle-options-container .qty.field .qty-changer > a:first-child {
+    margin-top: 0;
+}
+.product-info-main .qty.field .qty-changer > a .porto-icon-up-dir:before, .bundle-options-container .qty.field .qty-changer > a .porto-icon-up-dir:before {
+    content: '\f882';
+}
+.product-info-main .qty.field .qty-changer > a .porto-icon-down-dir:before, .bundle-options-container .qty.field .qty-changer > a .porto-icon-down-dir:before {
+    content: '\f883';
+}
+.swatch-attribute.size .swatch-option, .swatch-attribute.manufacturer .swatch-option {
+    background-color: transparent;
+}
+.catalog-product-view:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .box-tocart .action.tocart {
+    min-width: 250px;
+    height: 60px;
+    line-height: 60px;
+    border: 0;
+    font-family: "Oswald";
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+@media (max-width:1439px){
+    .catalog-product-view:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .box-tocart .action.tocart {
+        min-width: 200px;
+    }
+}
+.product-info-main .fieldset > .field.qty {
+    margin-right: 50px;
+    margin-bottom: 20px;
+}
+.product-info-main .product.overview {
+    margin-bottom: 40px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    font-weight: 300;
+}
+.block.upsell .title {
+    background: transparent;
+    border-bottom: 1px solid #dfdfdf;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.block.upsell .title strong {
+    background-color: transparent;
+    font-family: "Oswald";
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+.bundle-info .fieldset > .field.qty, .bundle-info .box-tocart .actions {
+    margin-bottom: 20px;
+    margin-right: 30px;
+}
+.moved-add-to-links {
+    margin-bottom: 20px;
+    margin-top: 8px;
+}
+.moved-add-to-links .action.mailto.friend {
+    display: none;
+}
+.moved-add-to-links .action span, .bundle-options-container .block-bundle-summary .product-addto-links .action span {
+    display: inline-block;
+    vertical-align: middle;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0 10px;
+}
+.moved-add-to-links .action.towishlist, .moved-add-to-links .action.tocompare, .bundle-options-container .block-bundle-summary .product-addto-links .action.towishlist, .bundle-options-container .block-bundle-summary .product-addto-links .action.tocompare {
+    width: auto;
+    height: auto;
+    line-height: 1.4;
+    border: 0;
+    color: #dfdfdf;
+    letter-spacing: 0;
+    display: block;
+    white-space: nowrap;
+}
+.moved-add-to-links .action.towishlist:before, .moved-add-to-links .action.tocompare:before, .bundle-options-container .block-bundle-summary .product-addto-links .action.towishlist:before, .bundle-options-container .block-bundle-summary .product-addto-links .action.tocompare:before {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    min-width: 20px;
+}
+.moved-add-to-links .action.towishlist:hover, .moved-add-to-links .action.tocompare:hover, .bundle-options-container .block-bundle-summary .product-addto-links .action.towishlist:hover, .bundle-options-container .block-bundle-summary .product-addto-links .action.tocompare:hover {
+    color: #000;
+}
+.product-info-main .box-tocart .actions {
+    margin-right: 40px;
+    margin-bottom: 20px;
+}
+.footer-middle .block .block-title {
+    margin: 40px 0 20px;
+    font-family: "Oswald";
+    letter-spacing: 1px;
+}
+.footer-middle .block .block-title strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+.footer-middle .contact-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+.footer-middle ul.contact-info li {
+    padding: 5px 0;
+    flex: 0 0 50%;
+}
+.footer-middle ul.contact-info li strong {
+    display: block;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #000;
+}
+.footer-middle ul.links li {
+    padding: 7px 0;
+}
+.footer-middle a {
+    text-decoration: none;
+}
+.footer-bottom {
+    padding: 0;
+}
+.footer .footer-bottom > .container {
+    padding: 20px 0 40px 0;
+}
+.footer-bottom address {
+    font-size: 12px;
+}
+.bundle-options-container .block-bundle-summary .price-box .price-wrapper, .bundle-options-container .block-bundle-summary .price-box .price-wrapper > .price {
+    color: #000;
+}
+.weltpixel-quickview-catalog-product-view .column.main > .custom-block, .weltpixel-quickview-catalog-product-view .addthis-smartlayers {
+    display: none;
+}
+.minicart-items .product-image-container {
+    border: 1px solid #a3a3a3;
+}
+.minicart-items .product-item:not(:first-child) {
+    border: 0;
+}
+.block-minicart .block-content > .actions > .primary .action.primary {
+    font-family: "Oswald";
+    font-weight: 400;
+    letter-spacing: 1px;
+    height: 60px;
+}
+.block-minicart .block-content > .actions > .secondary .action.viewcart {
+    border: 2px solid #000;
+    text-decoration: none;
+    font-family: "Oswald";
+    letter-spacing: 1px;
+    height: 60px;
+    line-height: 36px;
+}
+.minicart-items .product-item-pricing .label {
+    width: auto;
+}
+.minicart-items .price-container .price {
+    font-weight: 400;
+    font-size: 16px;
+}
+.minicart-items .product-item-details {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.sorter-label, .toolbar select, .limiter .label, .limiter-text {
+    font-weight: 700;
+}
+.product-item .tocart {
+    font-size: 13px;
+    letter-spacing: 0;
+}
+.weltpixel-quickview-catalog-product-view .moved-add-to-links {
+    display: none;
+}
+.product-reviews-summary .reviews-actions a {
+    color: #000;
+}
+.product.data.items > .item.title > .switch {
+    color: #000;
+    font-family: "Oswald";
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+    .modes-mode {
+        width: 35px;
+        height: 35px;
+        line-height: 31px;
+        border: 2px solid #000;
+        color: #000;
+    }
+    .modes-mode:before {
+        font-size: 16px;
+    }
+@media (min-width: 768px) {
+    .product-info-main .page-title-wrapper h1 {
+        margin-bottom: 20px;
+    }
+    .product-info-main .product-add-form {
+        padding-top: 0;
+    }
+    .product.data.items > .item.title > .switch {
+        border: 0;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 25px;
+        background-color: transparent;
+    }
+    .product.info.detailed:not(.vertical) .product.data.items > .item.title.active > .switch, .product.info.detailed:not(.vertical) .product.data.items > .item.title.active > .switch:focus, .product.info.detailed:not(.vertical) .product.data.items > .item.title.active > .switch:hover {
+        background-color: #dfdfdf;
+    }
+    .product.data.items > .item.title:not(.active) > .switch:hover {
+        background-color: #f1f1f1;
+        color: #000;
+    }
+    .product.data.items > .item.content {
+        box-shadow: none;
+        border: 0;
+        border-top: 1px solid #dfdfdf;
+        padding: 45px 0;
+        margin-top: 58px;
+    }
+    .data.switch .counter {
+        color: inherit;
+    }
+}
+@media (min-width: 1900px) {
+    .page-main, .page-wrapper > .breadcrumbs .items, body.layout-fullwidth .page-wrapper > .breadcrumbs .items, body.layout-fullwidth.catalog-category-view .page-main, body.layout-fullwidth.catalog-product-view .page-main, body.layout-fullwidth.cms-index-index .page-main, .footer .container, .footer-bottom, .checkout-cart-index .page-main, .cms-index-index .container {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .sidebar-main {
+        padding-right: 60px;
+    }
+}
+@media (max-width: 1899px) {
+    .page-main, .page-wrapper > .breadcrumbs .items, body.layout-fullwidth .page-wrapper > .breadcrumbs .items, body.layout-fullwidth.catalog-category-view .page-main, body.layout-fullwidth.catalog-product-view .page-main, body.layout-fullwidth.cms-index-index .page-main, .footer .container, .footer-bottom, .checkout-cart-index .page-main, .cms-index-index .container {
+        padding-left: 70px;
+        padding-right: 70px;
+    }
+    .sidebar-main {
+        padding-right: 40px;
+    }
+    .product-info-main .fieldset > .field.qty {
+        margin-right: 30px;
+    }
+    .product-info-main .box-tocart .actions {
+        margin-right: 25px;
+    }
+}
+@media (max-width: 1679px) {
+    .product-info-main .box-tocart .input-text.qty {
+        min-width: 60px;
+    }
+    .box-tocart .action.tocart {
+        min-width: 150px;
+    }
+}
+@media (max-width: 1439px) {
+    .page-main, .page-wrapper > .breadcrumbs .items, body.layout-fullwidth .page-wrapper > .breadcrumbs .items, body.layout-fullwidth.catalog-category-view .page-main, body.layout-fullwidth.catalog-product-view .page-main, body.layout-fullwidth.cms-index-index .page-main, .footer .container, .footer-bottom, .checkout-cart-index .page-main, .cms-index-index .container {
+        padding-left: 30px;
+        padding-right: 30px;
+        max-width: none;
+    }
+}
+@media (max-width: 1199px) {
+    .sidebar-main {
+        padding-right: 30px;
+    }
+    .products-grid.columns4 {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+}
+@media (max-width: 767px) {
+    .page-main, .page-wrapper > .breadcrumbs .items, body.layout-fullwidth .page-wrapper > .breadcrumbs .items, body.layout-fullwidth.catalog-category-view .page-main, body.layout-fullwidth.catalog-product-view .page-main, body.layout-fullwidth.cms-index-index .page-main, .footer .container, .footer-bottom, .checkout-cart-index .page-main, .cms-index-index .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .sidebar-main {
+        padding-right: 0;
+    }
+    .footer-bottom .custom-block.f-right {
+        margin-left: 0;
+    }
+}
+@media (max-width: 639px) {
+    .filter.active .filter-subtitle {
+        font-family: "Oswald";
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #000;
+        letter-spacing: 1px;
+        padding: 8px 15px;
+    }
+    .filter.active .filter-title strong {
+        top: 0;
+    }
+    .filter.active .filter-title strong:after {
+        color: #000;
+    }
+    .filter.active .filter-options {
+        padding: 0 15px;
+    }
+}
+@media (min-width: 768px) {
+    .page-layout-1column:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .product-info-main, .page-layout-2columns-left:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .product-info-main, .page-layout-2columns-right:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .product-info-main, .page-layout-3columns:not(.weltpixel-quickview-catalog-product-view):not(.weltpixel_quickview-catalog_product-view) .product-info-main {
+        width: 40.33%;
+    }
+}
+.pages a.page:visited {
+    color: #939393;
+}
+.sidebar-filterproducts + h2 {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-family: "Oswald";
+    font-size: 12px !important;
+    letter-spacing: 1px;
+    color: #000;
+    text-transform: uppercase;
+}
+.product-info-main .page-title-wrapper h1 {
+    color: #000;
+    font-size: 30px;
+    font-weight: 400;
+}
+button.action.primary {
+    font-family: "Oswald";
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.page-main > .page-title-wrapper .page-title {
+    font-size: 35px;
+    font-family: "Oswald";
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.product-info-main .swatch-attribute-options {
+    margin-top: 10px;
+}
+.product-item-name, .product.name a, .abs-product-link>a:visited, .product-item-name>a:visited, .product.name a>a:visited {
+    color: #000;
+}
+.product-info-main .stock.available, .product-info-main .stock.unavailable, .product-info-main .product.sku {
+    font-size: 14px;
+    color: #000;
+}
+@media (min-width: 768px) {
+    .weltpixel-quickview-catalog-product-view .product-info-main {
+        width: 57%;
+    }
+    .weltpixel-quickview-catalog-product-view .product.media {
+        width: 40%;
+    }
+}
+.block-category-list {
+    margin-top: -10px;
+}
+@media (min-width: 768px) {
+.page-layout-2columns-left .sidebar-main {
+    width: 20.9%;
+}
+.page-layout-2columns-left .column.main {
+    width: 79%;
+}
+}
+@media (max-width: 480px) {
+    .toolbar .limiter .label {
+        min-width: 41.8px;
+    }
+}
+.sidebar .custom-block {
+    background: none;
+}
+@media (min-width: 768px) {
+.product.info.detailed.vertical .product.data.items > .item.content {
+    padding: 0 30px;
+}
+}
+.catalog-product-view.product-type-sticky-right .product.info.detailed {
+    width: 100%;
+    margin-left: 0;
+}
+.catalog-product-view .sidebar .custom-block {
+    border: none;
+    color: #333;
+    padding-bottom: 0;
+    margin-bottom: 33px;
+    background: none;
+}
+.catalog-product-view .sidebar .custom-block-1>div i {
+    color: #333;
+    border: none;
+    font-size: 40px;
+    float: left;
+}
+.catalog-product-view .sidebar .custom-block-1>div {
+    min-height: 65px;
+    clear: both;
+    padding: 18px 0;
+    border-bottom: solid 1px #dee5e8;
+    margin-bottom: 0;
+}
+.catalog-product-view .sidebar .custom-block-1>div:last-child {
+    border-bottom-width: 0;
+}
+.block-manufacturer {
+    text-align: center;
+    padding: 10px 20px 0;
+    margin-bottom: 0;
+}
+.block-manufacturer hr {
+    border-color: #dee5e8;
+    margin-bottom: 0;
+}
+.catalog-product-view .sidebar .custom-block-1>div h3 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0.005em;
+    color: #333;
+    margin-left: 80px;
+}
+.block.related {
+    padding: 0 20px;
+}
+.block .title strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: #21293c;
+    letter-spacing: 0.01em;
+    margin-bottom: 20px !important;
+    padding-top: 0;
+    text-transform: uppercase;
+}
+.block.related .product-items .product-item-actions {
+    display: none;
+}
+.filterproduct-title {
+    background: transparent;
+    line-height: normal;
+}
+.filterproduct-title .content {
+    font-family: Oswald;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    text-transform: none;
+    background: transparent;
+    padding: 0;
+}
+.filterproduct-title + p {
+    font-size: 14px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+@media (min-width: 1200px) {
+.products-grid.columns6 {
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.products-grid.columns6 .product-item {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+}
+.footer-top {
+    text-align: left;
+    padding: 15px 0 0;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.footer-top .block .block-title {
+    margin-bottom: 5px;
+    padding-top: 35px;
+}
+.footer-top .block .block-title strong {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 18px;
+    text-transform: uppercase;
+    color: #222329;
+    font-family: Oswald;
+    letter-spacing: 0.075em;
+}
+.footer-container .validation-advice {
+    position: absolute;
+}
+.footer-top .block.newsletter {
+    width: auto;
+    max-width: 400px;
+    display: inline-block;
+}
+.footer-top .block.newsletter .control:before {
+    line-height: 48px;
+    margin-left: 20px;
+}
+.footer-top .block.newsletter .control {
+    position: relative;
+}
+.footer-top .block.newsletter .control input {
+    background-color: #f4f4f4;
+    color: #686865;
+    height: 48px;
+    border: none;
+    font-size: 14px;
+    padding-left: 40px;
+}
+.footer-top .block.newsletter .control div.mage-error {
+    position: absolute;
+    bottom: -22px;
+}
+.footer-top .block.newsletter .actions button {
+    height: 48px;
+    text-transform: uppercase;
+    padding: 0 22px;
+}
+.footer-top .block-content {
+    display: inline-block;
+    vertical-align: middle;
+}
+.footer .social-icons {float: right}
+.footer-top .social-icons a {
+    background-image: none;
+    background-color: #fff;
+    text-indent: 0;
+    color: #000;
+    border-radius: 0;
+    font-size: 18.6px;
+    width: 48px;
+    height: 48px;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 4px;
+    float: left;
+    line-height: 48px;
+    border-radius: 40px;
+    transition: all .3s;
+}
+.footer-top .social-icons a [class^="porto-icon-"] {
+    color: inherit;
+}
+.footer-top .social-icons a[title="Facebook"]:hover {
+    background-color: #3b5a9a;
+    color: #fff;
+}
+.footer-top .social-icons a[title="Twitter"]:hover {
+    background-color: #1aa9e1;
+    color: #fff;
+}
+.footer-top .social-icons a[title="Linkedin"]:hover {
+    background-color: #7c4a3a;
+    color: #fff;
+}
+@media (min-width: 1200px) {
+.footer-top .block.newsletter .control input {
+    width: 300px;
+}
+}
+@media (max-width: 575px) {
+.footer-middle ul.contact-info li {
+    flex: 0 0 100%;
+}
+}
+.footer-bottom > .container {
+    position: relative;
+}
+.footer-bottom address {
+    float: none;
+}
+@media (min-width: 768px) {
+.footer-bottom {
+    text-align: center;
+}
+.footer-bottom .custom-block {
+    float: none;
+    position: absolute;
+    right: 0;
+}
+}
+.price-box .price {
+    color: #000;
+    font-size: 18px;
+    font-family: "Open Sans";
+    font-weight: 600;
+}
+.price-box .special-price .price {
+    color: #f00;
+}
+.box-gotoproduct #product-gotoproduct-button {
+    font-family: Oswald;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.products-grid .product-item-details .product-item-actions .tocart {
+    text-transform: uppercase;
+    font-size: 12.53px;
+    font-family: 'Oswald';
+    font-weight: 400;
+    letter-spacing: 0.025em;
+    color: #6f6e6c;
+    line-height: 30px;
+    background-color: #f4f4f4;
+    border-color: #f4f4f4;
+}
+.product-item .tocart:before {
+    content: '\e87f';
+    font-size: 17px;
+    vertical-align: middle;
+}
+.product-social-links .action.towishlist:before, .product-addto-links .action.towishlist:before, .block-bundle-summary .action.towishlist:before, .product-item .action.towishlist:before, .table-comparison .action.towishlist:before {
+    content: '\e889';
+}]]></custom_style>
+            <custom_style_2><![CDATA[]]></custom_style_2>
+        </custom_settings>
+    </porto_settings>
+    <porto_design>
+        <general>
+            <theme_color>000000</theme_color>
+        </general>
+        <font>
+            <custom>0</custom>
+            <font_size></font_size>
+            <font_family></font_family>
+            <custom_font_family></custom_font_family>
+            <google_font_family></google_font_family>
+            <char_latin_ext></char_latin_ext>
+            <char_subset></char_subset>
+        </font>
+        <colors>
+            <custom>1</custom>
+            <text_color></text_color>
+            <link_color></link_color>
+            <link_hover_color></link_hover_color>
+            <button_bg_color></button_bg_color>
+            <button_text_color></button_text_color>
+            <button_hover_bg_color></button_hover_bg_color>
+            <button_hover_text_color></button_hover_text_color>
+            <addtowishlist_color>302E2A</addtowishlist_color>
+            <addtowishlist_hover_color>302E2A</addtowishlist_hover_color>
+            <addtocompare_color>302E2A</addtocompare_color>
+            <addtocompare_hover_color>302E2A</addtocompare_hover_color>
+            <breadcrumbs_bg_color>FFFFFF</breadcrumbs_bg_color>
+            <breadcrumbs_color>000000</breadcrumbs_color>
+            <breadcrumbs_links_color>000000</breadcrumbs_links_color>
+            <breadcrumbs_links_hover_color>000000</breadcrumbs_links_hover_color>
+            <sale_bg_color></sale_bg_color>
+            <sale_font_color></sale_font_color>
+            <new_bg_color></new_bg_color>
+            <new_font_color></new_font_color>
+            <price_slider_bg_color>000</price_slider_bg_color>
+            <price_slider_handle_color>000</price_slider_handle_color>
+        </colors>
+        <header>
+            <custom>1</custom>
+            <header_bgcolor></header_bgcolor>
+            <header_bg_image></header_bg_image>
+            <header_bordercolor></header_bordercolor>
+            <header_textcolor></header_textcolor>
+            <header_linkcolor></header_linkcolor>
+            <header_top_links_bgcolor></header_top_links_bgcolor>
+            <header_top_links_color>FFFFFF</header_top_links_color>
+            <header_menu_bgcolor></header_menu_bgcolor>
+            <header_menu_color>CCCCCC</header_menu_color>
+            <header_menu_hover_bgcolor></header_menu_hover_bgcolor>
+            <header_menu_hover_color>FFFFFF</header_menu_hover_color>
+            <header_menu_classicmenu_bgcolor></header_menu_classicmenu_bgcolor>
+            <header_menu_classicmenu_bordercolor></header_menu_classicmenu_bordercolor>
+            <header_menu_classicmenu_color>000000</header_menu_classicmenu_color>
+            <header_menu_classicmenu_hover_bgcolor>000000</header_menu_classicmenu_hover_bgcolor>
+            <header_menu_classicmenu_hover_color>FFFFFF</header_menu_classicmenu_hover_color>
+            <header_menu_megamenu_bgcolor></header_menu_megamenu_bgcolor>
+            <header_menu_megamenu_bordercolor></header_menu_megamenu_bordercolor>
+            <header_menu_megamenu_color>000000</header_menu_megamenu_color>
+            <header_menu_megamenu_hover_color></header_menu_megamenu_hover_color>
+            <header_search_bgcolor></header_search_bgcolor>
+            <header_search_text_color></header_search_text_color>
+            <header_search_bordercolor></header_search_bordercolor>
+            <header_minicart_bgcolor></header_minicart_bgcolor>
+            <header_minicart_color></header_minicart_color>
+            <header_minicart_icon_color></header_minicart_icon_color>
+        </header>
+        <footer>
+            <custom>1</custom>
+            <footer_top_bgcolor></footer_top_bgcolor>
+            <footer_top_color></footer_top_color>
+            <footer_top_link_color></footer_top_link_color>
+            <footer_top_link_hover_color></footer_top_link_hover_color>
+            <footer_middle_bgcolor>FFFFFF</footer_middle_bgcolor>
+            <footer_middle_color>90969A</footer_middle_color>
+            <footer_middle_link_color>90969A</footer_middle_link_color>
+            <footer_middle_link_hover_color>555555</footer_middle_link_hover_color>
+            <footer_middle_title_color>000000</footer_middle_title_color>
+            <footer_middle_links_icon_color>90969A</footer_middle_links_icon_color>
+            <footer_middle_ribbon_bgcolor></footer_middle_ribbon_bgcolor>
+            <footer_middle_ribbon_shadow_color>222222</footer_middle_ribbon_shadow_color>
+            <footer_middle_ribbon_color></footer_middle_ribbon_color>
+            <footer_middle_2_bgcolor></footer_middle_2_bgcolor>
+            <footer_middle_2_color></footer_middle_2_color>
+            <footer_middle_2_link_color></footer_middle_2_link_color>
+            <footer_middle_2_link_hover_color></footer_middle_2_link_hover_color>
+            <footer_middle_2_title_color></footer_middle_2_title_color>
+            <footer_middle_2_links_icon_color></footer_middle_2_links_icon_color>
+            <footer_bottom_bgcolor>FFFFFF</footer_bottom_bgcolor>
+            <footer_bottom_color>90969A</footer_bottom_color>
+            <footer_bottom_link_color>90969A</footer_bottom_link_color>
+            <footer_bottom_link_hover_color>555555</footer_bottom_link_hover_color>
+        </footer>
+        <page>
+            <custom>0</custom>
+            <page_bgcolor></page_bgcolor>
+            <page_bg_image></page_bg_image>
+            <page_custom_style><![CDATA[]]></page_custom_style>
+        </page>
+        <main>
+            <custom>0</custom>
+            <main_bgcolor></main_bgcolor>
+            <main_bg_image></main_bg_image>
+            <main_custom_style><![CDATA[]]></main_custom_style>
+        </main>
+    </porto_design>
+    <mpsearch>
+        <general>
+            <enabled>0</enabled>
+        </general>
+    </mpsearch>
+</config>
+</root>

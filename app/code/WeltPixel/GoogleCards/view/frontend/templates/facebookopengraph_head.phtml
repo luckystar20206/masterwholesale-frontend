@@ -1,0 +1,24 @@
+<?php
+$_product = $this->getProduct();
+$stock = 'outofstock';
+if ($_product->isAvailable()) :
+$stock = 'instock';
+endif;
+
+$fbAppId = trim($block->getAppId());
+?>
+<!--  facebook open graph -->
+<?php if ($fbAppId) : ?>
+<meta property="fb:app_id" content="<?php echo $fbAppId; ?>" />
+<?php endif; ?>
+<meta property="og:site_name" content="<?php /* @escapeNotVerified */ echo $block->getSiteName(); ?>" />
+<meta property="og:type" content="og:product" />
+<meta property="og:title" content="<?php /* @escapeNotVerified */ echo $block->stripTags($_product->getName()); ?>" />
+<meta property="og:image" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getImage($_product, 'product_base_image')->getImageUrl()); ?>" />
+<meta property="og:description" content="<?php /* @escapeNotVerified */ echo $block->escapeQuote($block->stripTags($block->getDescription($_product))); ?>" />
+<meta property="og:url" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getCurrentUrl($_product)); ?>" />
+<meta property="product:price:amount" content="<?php  echo $this->getPrice();  ?>" />
+<meta property="product:price:currency" content="<?php echo $block->getCurrencyCode()  ?>" />
+<meta property="product:availability" content="<?php echo $stock; ?>" />
+<meta property="product:retailer_item_id" content="<?php echo $block->getRetailerId($_product); ?>"/>
+<!--  facebook open graph -->

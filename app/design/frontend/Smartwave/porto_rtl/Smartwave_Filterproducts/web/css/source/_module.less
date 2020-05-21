@@ -1,0 +1,133 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+& when (@media-common = true) {
+    .filterproducts.products {
+        margin: 0;
+    }
+    .filterproduct-title {
+        background: url(../images/slider-bar.png) right no-repeat;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 42px;
+        margin: 0;
+        color: #313131;
+        text-transform: uppercase;
+        text-align: right;
+        
+        .content {
+            background-color: #fff;
+            padding-left: 20px;
+            display: inline;
+        }
+    }
+    h3.fullwidth-filter-title {
+        font-size: 28px;
+        color: #000;
+        line-height: 1.2;
+    }
+    p.fullwidth-filter-description {
+        font-size: 14px;
+        color: #666;
+        line-height: 1.4;
+    }
+    .owl-top-narrow .owl-theme .owl-controls {
+        position: absolute;
+        left: 0;
+        top: -37px;
+        margin: 0;
+        
+        .owl-nav [class*=owl-] {
+            font-size: 18px;
+            margin: 0;
+            padding: 0;
+        }
+    }
+    .owl-middle-narrow .owl-theme, .owl-middle-narrow.owl-theme {
+        .owl-controls {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 100%;
+            margin-top: -37px;
+            visibility: hidden;
+            opacity: 0;
+            transition: all 0.2s;
+            pointer-events: none;
+
+            .owl-dots .owl-dot {
+                pointer-events: all;
+            }
+        }
+        &:hover .owl-controls {
+            opacity: 1;
+            visibility: visible;
+        }
+        .owl-controls .owl-nav [class*=owl-] {
+            position: absolute;
+            font-size: 40px;
+            pointer-events: all;
+        }
+        .owl-prev {
+            right: 0;
+        }
+        .owl-next {
+            left: 0;
+        }
+    }
+    .owl-top-narrow .recent-posts .owl-item .item {
+        padding-top: 10px;
+    }
+    .owl-border-radius-7 .owl-stage-outer {
+        border-radius: 7px;
+    }
+    .owl-bottom-absolute-narrow.owl-theme .owl-controls {
+        position: absolute;
+        right: 0;
+        width: 100%;
+        bottom: 15px;
+    }
+    .small-list.products-grid {
+        .product-item {
+            float: none;
+            padding: 0;
+            width: auto;
+            margin-bottom: 15px;
+            
+            &-info {
+                .product-item-photo {
+                    float: right;
+                    width: 33.33%;
+                    padding: 0;
+                }
+                .product-item-details {
+                    float: right;
+                    padding: 5px 0;
+                    padding-right: 10px;
+                    width: 66.66%;
+                    text-align: right;
+                }
+                &:after {
+                    content: "";
+                    display: table;
+                    clear: both;
+                }
+            }
+            .product-item-name {
+                font-size: 12px;
+            }
+            .product-reviews-summary {
+                background-image: none;
+            }
+            .price-container .price {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    
+}

@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <section id="modernretail_import" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Integrator Settings</label>
+            <tab>modernretail</tab>
+            <resource>Magento_Catalog::config_modernretail</resource>
+
+
+            <!--
+            <group id="credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>API Credentials</label>
+
+                <field id="login" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Login</label>
+                </field>
+
+                <field id="password" translate="label comment" type="obscure" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+
+
+
+
+            </group>
+            -->
+
+            <group id="settings" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Settings</label>
+
+
+                <field id="protect_mode" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Protect mode</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Deny any changes from unauthorized requests to integrator. All WRITE requests should be signed and matched with API-credentials </comment>
+                </field>
+
+                <field id="skip_exist_configurable" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Dont update any configurable attribute data if configurable product already exist</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>New products will attach to configurable anyway</comment>
+                </field>
+                
+                  <field id="skip_exist_simple" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Dont update any simple attribute data if simple product already exist</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="attributes" translate="label comment" type="multiselect" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Exclude attributes for rewrite</label>
+                    <source_model>ModernRetail\Import\Model\System\Config\Source\Attributes</source_model>
+                    <comment>Those attributes will not rewrited during import, if product already exist</comment>
+                </field>
+
+                <field id="limit" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Products Limit</label>
+                </field>
+
+                <field id="cleanup_days" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Remove files older than {{X}} days</label>
+                </field>
+                
+                
+                 <field id="flush_cache" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Flush cache after New Products import</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Magento by default flushing cache after any entity save. You can disable it to keep cache valid</comment>
+                </field>
+
+				<!-- 
+                <field id="can_use_system_calls" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Can use system calls</label>
+                    <comment>Allow/Disallow using "system" or "exec". (depends of PHP-settings)</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+               -->
+
+                <field id="use_categories" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Allow create and assign categories during import</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="categories_include_in_menu" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>"Include in menu" for new categories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+					    <field id="modernretail_import/settings/use_categories">1</field> 
+					</depends>
+                </field>
+                
+                <field id="categories_status" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>"Status" for new categories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+					    <field id="modernretail_import/settings/use_categories">1</field>
+					</depends>
+                </field>
+
+
+                <field id="use_virtual_products" translate="label comment" type="select" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Use 'Virtual' Products Instead 'Simple'</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+
+
+
+                <field id="new_products_status" translate="label comment" type="select" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Status for new imported products</label>
+                    <source_model>ModernRetail\Import\Model\System\Config\Source\NewProductStatus</source_model>
+                </field>
+
+                <field id="default_attribute_set" translate="label comment" type="select" sortOrder="8" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Default Attribute Set</label>
+                    <source_model>ModernRetail\Import\Model\System\Config\Source\AttributeSets</source_model>
+                </field>
+            </group>
+
+
+
+
+
+            <group id="simple_mapping" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Simple Products Mapping</label>
+                <frontend_model>ModernRetail\Import\Block\System\Config\Fieldset\SimpleMapping</frontend_model>
+
+                <field id="json_value" translate="label comment" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Json Value</label>
+                </field>
+            </group>
+
+            <group id="configurable_mapping" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Configurable Products Mapping</label>
+                <frontend_model>ModernRetail\Import\Block\System\Config\Fieldset\ConfigurableMapping</frontend_model>
+
+                <field id="json_value" translate="label comment" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Json Value</label>
+                </field>
+            </group>
+
+
+            <group id="update_mapping" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Update Products Mapping</label>
+                <frontend_model>ModernRetail\Import\Block\System\Config\Fieldset\UpdateMapping</frontend_model>
+
+                <field id="json_value" translate="label comment" type="textarea" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Json Value</label>
+                </field>
+            </group>
+            
+            
+        
+        </section>
+    </system>
+</config>

@@ -1,0 +1,20 @@
+<?php
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $page_layout = $porto_helper->getConfig('porto_settings/category/page_layout');
+?>
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+    <?php if($page_layout != "page-layout-2columns-left"): ?>
+        if($("body").hasClass("page-layout-2columns-left")) {
+            $("body").removeClass("page-layout-2columns-left").addClass("<?php echo $page_layout; ?>");
+            <?php if($page_layout == "page-layout-1column"): ?>
+            $(".columns > .sidebar").remove();
+            <?php endif; ?>
+        }
+    <?php endif; ?>
+    });
+});
+</script>

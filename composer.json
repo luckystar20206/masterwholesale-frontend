@@ -1,0 +1,121 @@
+{
+    "name": "magento/project-community-edition",
+    "description": "eCommerce Platform for Growth (Community Edition)",
+    "type": "project",
+    "version": "2.2.5",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "composer/composer": "@alpha",
+        "mirasvit/module-email": "*",
+        "mirasvit/module-cache-warmer": "*",
+        "mirasvit/module-search-ultimate": "*",
+        "amasty/base": "^1.5",
+        "amasty/shopby": "^2.11",
+        "amasty/module-faq-product-questions": "^2.3",
+        "amasty/stockstatus": "^1.2",
+        "amasty/shiprules": "^2.3",
+        "cybersource/global-payment-management": "^3.0",
+        "amasty/module-single-step-checkout": "^2.2",
+        "auctane/api": "^2.0",
+        "magento/product-community-edition": "2.3.2",
+        "shipperhq/module-shipper": "^20.35",
+        "cybersource/module-3dsecure": "3.1.4",
+        "cybersource/module-account-updater": "3.1.0",
+        "cybersource/module-address": "3.1.1",
+        "cybersource/module-applepay": "3.1.0",
+        "cybersource/module-atp": "3.1.0",
+        "cybersource/module-bank-transfer": "3.1.0",
+        "cybersource/module-core": "3.1.1",
+        "cybersource/module-echeck": "3.1.0",
+        "cybersource/module-klarna": "3.1.1",
+        "cybersource/module-paypal": "3.1.1",
+        "cybersource/module-secure-acceptance": "3.1.4",
+        "cybersource/module-tax": "3.1.2",
+        "cybersource/module-visa-checkout": "3.1.0",
+        "olegkoval/magento2-regenerate-url-rewrites": "^1.5",
+        "fishpig/magento2-wordpress-integration": "*",
+        "livechat/module-magento-livechat": "^2.3",
+        "shipperhq/module-address-autocomplete": "^20.3",
+        "fooman/printorderpdf-m2": "^3.1" 
+   },
+    "require-dev": {
+        "allure-framework/allure-phpunit": "~1.2.0",
+        "friendsofphp/php-cs-fixer": "~2.13.0",
+        "lusitanian/oauth": "~0.8.10",
+        "magento/magento-coding-standard": "~1.0.0",
+        "magento/magento2-functional-testing-framework": "~2.3.14",
+        "pdepend/pdepend": "2.5.2",
+        "phpmd/phpmd": "@stable",
+        "phpunit/phpunit": "~6.5.0",
+        "sebastian/phpcpd": "~3.0.0",
+        "squizlabs/php_codesniffer": "3.3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Magento\\Framework\\": "lib/internal/Magento/Framework/",
+            "Magento\\Setup\\": "setup/src/Magento/Setup/",
+            "Magento\\": "app/code/Magento/",
+            "Zend\\Mvc\\Controller\\": "setup/src/Zend/Mvc/Controller/"
+        },
+        "psr-0": {
+            "": [
+                "app/code/"
+            ]
+        },
+        "files": [
+            "app/etc/NonComposerComponentRegistration.php"
+        ],
+        "exclude-from-classmap": [
+            "**/dev/**",
+            "**/update/**",
+            "**/Test/**"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Magento\\Sniffs\\": "dev/tests/static/framework/Magento/Sniffs/",
+            "Magento\\Tools\\": "dev/tools/Magento/Tools/",
+            "Magento\\Tools\\Sanity\\": "dev/build/publication/sanity/Magento/Tools/Sanity/",
+            "Magento\\TestFramework\\Inspection\\": "dev/tests/static/framework/Magento/TestFramework/Inspection/",
+            "Magento\\TestFramework\\Utility\\": "dev/tests/static/framework/Magento/TestFramework/Utility/"
+        }
+    },
+    "minimum-stability": "stable",
+    "repositories": {
+        "0": {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        "mirasvit-tes2": {
+            "type": "composer",
+            "url": "https://21021:B1E97H2KPV@packages.mirasvit.com/"
+        },
+        "mirasvit-fpc2": {
+            "type": "composer",
+            "url": "https://16671:EXS6JY30MA@packages.mirasvit.com/"
+        },
+        "mirasvit-ssu2": {
+            "type": "composer",
+            "url": "https://14549:D139FO6XNH@packages.mirasvit.com/"
+        },
+        "amasty": {
+            "type": "composer",
+            "url": "https://composer.amasty.com/community/"
+        },
+        "compact-code-fix-product-breadcrumbs": {
+            "type": "git",
+            "url": "git@github.com:CompactCodeEU/FixProductBreadcrumbs.git"
+        }
+    },
+    "extra": {
+        "magento-force": "override"
+    },
+   "config": {
+    "platform": {
+            "php": "7.1.31"
+        }
+   }
+}

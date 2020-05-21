@@ -1,0 +1,492 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="weltpixel_google_cards" translate="label" type="text" sortOrder="190" showInDefault="1"
+                 showInWebsite="1" showInStore="1">
+            <label>Rich Snippets &amp; Cards</label>
+            <tab>weltpixel</tab>
+            <resource>WeltPixel_GoogleCards::GoogleCardsSettings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="description" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Description</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="price" translate="label comment" type="select" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Price</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Price</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>In case price is listed with Tax and without Tax select which price should be used.
+                    </comment>
+                </field>
+
+                <field id="brand" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Brand</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Brand</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="sku" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>SKU</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Brand</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+
+                <field id="condition_pro" translate="label comment" type="label" sortOrder="45" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Item Condition</label>
+                    <comment>
+                        <![CDATA[Select attribute used for product condition ( Attribute should have the following options: DamagedCondition / UsedCondition / NewCondition / RefurbishedCondition according to <a href="https://schema.org/OfferItemCondition" target="_blank">schema.org</a>) <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="mpn_pro" translate="comment" type="label" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>MPN</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="gtin_pro" translate="comment" type="label" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>GTIN</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="reviews_format_pro" translate="comment label" type="label" sortOrder="70" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Review Markup Format</label>
+                    <comment>
+                        <![CDATA[<p>Agregate Ratings only. Aggregate ratings: An aggregate evaluation of an item by many people. Reviews: item review details (Author, message, review name, date, rating).</p><a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable also Reviews functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="reviews_count_pro" translate="label comment" type="label" sortOrder="77" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Number of reviews</label>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="reviews_format" >2</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[
+                        Numbers of reviews to be displayed. <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality. ]]>
+                    </comment>
+                </field>
+                <field id="breadcrumbs_pro" translate="comment" type="label" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Breadcrumb</label>
+                    <comment>
+                        <![CDATA[
+                        A breadcrumb trail on a page indicates the page's position in the site hierarchy. A user
+                        can navigate all the way up in the site hierarchy, one level at a time, by starting from the
+                        last breadcrumb in the breadcrumb trail. <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="rich_snippet_search" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sitelinks Searchbox</label>
+                <comment>Google Search can expose a search box scoped to your website when it appears as a search
+                    result. This search box is powered by Google Search. However, if you wish to power this search box
+                    with your own search engine, or if you want search results also to include an associated mobile app,
+                    you can do so using structured data embedded on your website.
+                </comment>
+                <field id="enable_search_pro" translate="comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Searchbox</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]></comment>
+                </field>
+            </group>
+            <group id="rich_snippet_logo" translate="label" type="text" sortOrder="40" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Rich Snippets &amp; Cards - Logo</label>
+                <comment>Specify the image Google Search uses for your organization's logo in Search results and in the
+                    Knowledge Graph. Google Search uses the markup in the use case example to recognize the image to use
+                    as the organization’s logo. This ensures that, when possible, the image appears in search results
+                    about the company. Markup like this is a strong signal to Google Search algorithms to show this
+                    image in Knowledge Graph displays.
+                </comment>
+                <field id="enable_logo_pro" translate="comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Rich Snippet for Logo and Corporate</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]></comment>
+                </field>
+                <field id="mage_logo_pro" translate="comment" type="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Use Store Logo</label>
+                    <depends>
+                        <field id="enable_logo_pro">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[
+                        If 'Yes' - the Logo snippet will use the store default logo. The image must be in .jpg, .png, or. gif format <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                </field>
+                <field id="google_logo_pro" translate="comment" type="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Upload custom logo</label>
+                    <depends>
+                        <field id="mage_logo_pro">0</field>
+                        <field id="enable_logo_pro">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="rich_snippet_contact" translate="label" type="text" sortOrder="50" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Rich Snippets &amp; Cards - Corporate Contact</label>
+                <comment>Use corporate contact markup on your official website to add your company's contact information
+                    to the Google Knowledge panel in some searches, for example when a user enters your company’s name
+                    into the Search bar.
+                </comment>
+                <field id="enable_contact_pro" translate="comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Rich Snippet for Corporate Contact</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                </field>
+                <field id="contact_telephone_pro" translate="label" type="label" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Telephone</label>
+                    <comment>
+                        <![CDATA[
+                        An internationalized version of the phone number, starting with the "+" symbol and country
+                        code (+1 in the US and Canada).
+                        Examples: "+1-800-555-1212", "+44-2078225951" <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_contact_pro">1</field>
+                    </depends>
+                </field>
+                <field id="contact_type_pro" translate="label" type="label" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Type</label>
+                    <comment>
+                        <![CDATA[
+                        One of the following values, not case sensitive. (Additional contact types may be supported
+                        later.)
+                        Examples: "customer support", "technical support", "billing support", "bill payment", "sales",
+                        "reservations", "credit card support", "emergency", "baggage tracking", "roadside assistance",
+                        "package tracking" <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_contact_pro">1</field>
+                    </depends>
+                </field>
+                <field id="contact_area_pro" translate="label" type="label" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Area Served</label>
+                    <comment><![CDATA[
+                        The geographical region served by the number, specified as a AdministrativeArea. Countries
+                        may be specified concisely using just their standard ISO-3166 two-letter code, as in the
+                        examples below. If omitted, the number is assumed to be global.
+                        Examples: "US", "GB", ["US","CA","MX"]  <br/>
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_contact_pro">1</field>
+                    </depends>
+                </field>
+                <field id="contact_option_pro" translate="label" type="label" sortOrder="50" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Option</label>
+                    <comment><![CDATA[
+                        Details about the phone number. Currently only these are supported: "TollFree" and
+                        "HearingImpairedSupported"
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_contact_pro">1</field>
+                    </depends>
+                </field>
+                <field id="contact_language_pro" translate="label" type="label" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Contact Language</label>
+                    <comment><![CDATA[
+                        Details about the language spoken. Languages may be specified by their common English name.
+                        If omitted, the language defaults to English.
+                        Examples: "English", "Spanish", ["French","English"]
+                        <a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_contact_pro">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="rich_snippet_social_profile" translate="label" type="text" sortOrder="60" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Rich Snippets &amp; Cards - Social Profile(s)</label>
+                <comment>Use markup on your official website to add your social profile information to a Google
+                    Knowledge panel. Knowledge panels prominently display your social profile information in some Google
+                    Search results.
+                </comment>
+                <field id="enable_social_profile_pro" translate="comment" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Enable Rich Snippet for Corporate Contact</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]></comment>
+                </field>
+                <field id="facebook_url_pro" translate="label" type="label" sortOrder="10" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Facebook Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="twitter_url_pro" translate="label" type="label" sortOrder="20" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Twitter Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="instagram_url_pro" translate="label" type="label" sortOrder="30" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Instagram Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="google_plus_url_pro" translate="label" type="label" sortOrder="40" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Google+ Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="youtube_url_pro" translate="label" type="label" sortOrder="50" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Youtube Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="linkedin_url_pro" translate="label" type="label" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>LinkedIn Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="pinterest_url_pro" translate="label" type="label" sortOrder="60" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Pinterest Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="myspace_url_pro" translate="label" type="label" sortOrder="70" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Myspace Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="soundcloud_url_pro" translate="label" type="label" sortOrder="80" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>SoundCloud Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+                <field id="tumblr_url_pro" translate="label" type="label" sortOrder="80" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Tumblr Url</label>
+                    <comment>
+                        <![CDATA[<a style="font-size: 14px" target="_blank" href="https://www.weltpixel.com/magento2-google-rich-cards-free-extension.html">Upgrade to Pro version</a> to enable this functionality.]]>
+                    </comment>
+                    <depends>
+                        <field id="enable_social_profile_pro">1</field>
+                    </depends>
+                </field>
+
+            </group>
+
+            <group id="twitter_cards" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1"
+                   showInStore="1">
+                <label>Twitter Cards Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="card_type" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Card Type</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\CardType</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="description" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Description</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="price" translate="label comment" type="select" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Price</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Price</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>In case price is listed with Tax and without Tax select which price should be used.
+                    </comment>
+                </field>
+                <field id="site" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Twitter Site</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="creator" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Twitter Creator</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="facebook_opengraph" translate="label" type="text" sortOrder="80" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Facebook Open Graph Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="description" translate="label" type="select" sortOrder="20" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Description</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Description</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="price" translate="label comment" type="select" sortOrder="25" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Price</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Price</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>In case price is listed with Tax and without Tax select which price should be used.
+                    </comment>
+                </field>
+                <field id="site_name" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Site Name</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="app_id" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>App Id</label>
+                    <comment>fb:app_id</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="retailer_id" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Retailer's ID for the item</label>
+                    <source_model>WeltPixel\GoogleCards\Model\Config\Source\Id</source_model>
+                    <comment>product:retailer_item_id</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="pinterest_rich_pins" translate="label" type="text" sortOrder="90" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Pinterest Rich Pins Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>it uses same tags as Facebook Open graph, make sure Facebook Open Graph is enabled as
+                        well
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

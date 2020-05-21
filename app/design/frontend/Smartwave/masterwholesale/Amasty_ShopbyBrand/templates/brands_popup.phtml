@@ -1,0 +1,172 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_ShopbyBrand
+ */
+?>
+<?php
+/**
+ * @var \Amasty\ShopbyBrand\Block\BrandsPopup $block
+ */
+
+$parentClass = $block->isShowPopup() ? 'parent' : '';
+$ultimoClasses = $block->isUltimoTheme() ? ' nav-item level0 level-top nav-item--parent' : '';
+$liClass = $parentClass . $ultimoClasses;
+?>
+<?php if ($block->isShouldWrap()) :?>
+<li class="level0 <?= /** @noEscape */ $liClass ?> ambrands-menu-item"
+    data-ambrands-js="brands-menu-link">
+<?php endif;?>
+    <?php if ($block->isShowPopup()) : ?>
+        <?php
+        $items = $block->getIndex();
+        $brandLetters = $block->getAllLetters();
+        $isShowCount = $block->getData('show_count');
+        $isShowImages = $block->getData('show_images');
+        $imgWidth = $block->getImageWidth();
+        $imgHeight = $block->getImageHeight();
+        $isShowFilter = $block->getData('show_filter');
+        $filterDisplayAll = $block->getData('filter_display_all');
+        ?>
+        <a href="<?= $block->escapeUrl($block->getAllBrandsUrl()) ?>" class="level-top ambrands-link">
+            <?php if (!$block->isPortoTheme() && !$block->isUltimoTheme()) : ?>
+                <span class="ui-menu-icon ui-icon ui-icon-carat-1-e ambrands-arrow"></span>
+            <?php endif ?>
+            <?= $block->escapeHtml($block->getLabel()) ?>
+            <?php if ($block->isUltimoTheme()) : ?>
+                <span class="caret"></span>
+            <?php endif; ?>
+        </a>
+        <div class="ambrands-list-popup" data-ambrands-js="brands-popup">
+            <?php if (!$block->isAllBrandsPage()) : ?>
+                <style>
+                    .ambrands-list-popup .bare-list img {
+                        max-width: <?= $block->escapeHtml($imgWidth);?>px;
+                        max-height: <?= $block->escapeHtml($imgHeight);?>px;
+                    }
+
+                    .ambrands-list-popup .brand-item .am-image-wrapper {
+                        height: <?= $block->escapeHtml($imgWidth);?>px;
+                    }
+
+                    .ambrands-list-popup .brand-item {
+                        max-width: <?= $block->escapeHtml($imgWidth);?>px;
+                        min-width: <?= $block->escapeHtml($imgWidth);?>px;
+                        min-height: <?= $block->escapeHtml($imgWidth+30);?>px;
+                    }
+
+                    .ambrands-list-popup .brand-item .no-img {
+                        width: <?= $block->escapeHtml($imgWidth);?>px;
+                        line-height: <?= $block->escapeHtml($imgWidth);?>px;
+                        font-size: <?= $block->escapeHtml($imgWidth*0.65);?>px;
+                    }
+                </style>
+            <?php endif; ?>
+
+            <div class="ambrands-list-container">
+                <?php if ($items) : ?>
+                    <?php if ($isShowFilter) : ?>
+                        <div class="ambrands-popup-filter">
+                            <a href="<?= $block->escapeUrl($block->getAllBrandsUrl()); ?>"
+                               class="ambrands-letter -letter-all -active"
+                               title="<?= $block->escapeHtml(__('All Brands')) ?>">
+                                <?= $block->escapeHtml(__('All Brands')) ?>
+                            </a>
+                            <?php if ($filterDisplayAll) : ?>
+                                <?php foreach (array_merge(range('A', 'Z'), ['#']) as $letter) : ?>
+                                    <a href="javascript:void(0)" data-ambrands-js="popup-filter-letter"
+                                       class="ambrands-letter<?= /** @noEscape */ (!(in_array($letter, $brandLetters)))
+                                           ? ' -disabled'
+                                           : $block->escapeHtml(' letter-' . $letter) ?>">
+                                        <?= $block->escapeHtml($letter) ?></a>
+                                <?php endforeach; ?>
+                            <?php else : ?>
+                                <?php foreach ($brandLetters as $letter) : ?>
+                                    <a href="javascript:void(0)"
+                                       class="ambrands-letter letter-<?= $block->escapeHtml($letter) ?>"
+                                       data-ambrands-js="popup-filter-letter">
+                                        <?= $block->escapeHtml($letter) ?>
+                                    </a>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </div>
+                    <?php endif; ?>
+                    <div class="ambrands-popup-items<?= $isShowFilter ? '' : ' am-brands-fullwidth' ?>">
+                        <?php foreach ($items as $letters) : ?>
+                            <div class="brand-images">
+                                <?php foreach ($letters as $letter => $options) : ?>
+                                    <dl class="brands-letter letter-<?= $block->escapeHtml($letter) ?>"
+                                        data-ambrands-js="popup-brand-letter">
+                                        <dt class="letter">
+                                            <span class="title"><?= $block->escapeHtml($letter) ?></span>
+                                        </dt>
+                                        <dd>
+                                            <div class="bare-list">
+                                                <?php foreach ($options as $option) : ?>
+                                                    <div class="brand-item">
+                                                        <a href="<?= $block->escapeUrl($option['url']) ?>"
+                                                           class="item"
+                                                           title="<?= $block->escapeHtml($option['label']) ?>">
+                                                            <?php if ($option['img'] && $isShowImages) : ?>
+                                                                <div class="am-image-wrapper">
+                                                                   <img src="<?= $block->escapeUrl($option['img']) ?>"
+                                                                        title="<?= $block->escapeHtml($option['alt'])?>"
+                                                                        alt="<?= $block->escapeHtml($option['alt']) ?>"
+                                                                   />
+                                                                </div>
+                                                            <?php else : ?>
+                                                                <div class="am-image-wrapper">
+                                                                    <p class="no-img">
+                                                                        <?= $block->escapeHtml($letter) ?>
+                                                                    </p>
+                                                                </div>
+                                                            <?php endif ?>
+                                                            <p class="label">
+                                                                <?= $block->escapeHtml($option['label']) ?>
+                                                            </p>
+                                                            <?php if ($isShowCount) : ?>
+                                                                <p class="count">
+                                                                    <?= $block->escapeHtml($option['cnt']) ?>
+                                                                </p>
+                                                            <?php endif; ?>
+                                                        </a>
+                                                    </div>
+                                                <?php endforeach ?>
+                                            </div>
+                                        </dd>
+                                    </dl>
+                                <?php endforeach ?>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                <?php else : ?>
+                    <?= $block->escapeHtml(
+                        __(
+                            'Please select brand attribute in Stores -> Configuration -> Amasty Extensions -> Improved Layered Navigation:
+                    Brands.'
+                        )
+                    ) ?>
+                <?php endif ?>
+            </div>
+            <script>
+                require([
+                    'jquery',
+                    'Amasty_ShopbyBrand/js/brand-filter',
+                    'domReady!'
+                ], function ($) {
+                    $('[data-ambrands-js="popup-filter-letter"]').on('click', function (e) {
+                        e.preventDefault();
+                        $(this).applyBrandFilter('[data-ambrands-js="popup-brand-letter"]');
+                    });
+                });
+            </script>
+        </div>
+    <?php else : ?>
+        <a href="<?= $block->escapeUrl($block->getAllBrandsUrl()) ?>" class="level-top ambrands-link">
+            <span><?= $block->escapeHtml($block->getLabel()) ?></span>
+        </a>
+    <?php endif; ?>
+<?php if ($block->isShouldWrap()) :?>
+</li>
+<?php endif; ?>

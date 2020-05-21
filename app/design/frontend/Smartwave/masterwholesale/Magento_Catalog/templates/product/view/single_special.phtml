@@ -1,0 +1,34 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$productCollection = $objectManager->create('Magento\Catalog\Model\ResourceModel\Product\CollectionFactory');
+$product = $productCollection->create()
+                    ->addAttributeToSelect('*')
+                    ->addFieldToFilter('single_special', 1)
+                    ->getFirstItem();
+
+
+$imageHelper = $objectManager->create('Magento\Catalog\Helper\Image');
+$width = 250;
+$height = 250;
+$imageUrl = $imageHelper->init($product, 'product_page_image_small')
+->constrainOnly(FALSE)
+->keepAspectRatio(TRUE)
+->keepFrame(FALSE)
+->resize($width, $height)
+->getUrl();
+
+$priceHelper = $objectManager->create('Magento\Framework\Pricing\Helper\Data');
+
+$formattedPrice = $priceHelper->currency($product->getFinalPrice(), true, false);
+?>
+
+<h2>Weekly Special</h2>
+<div class="block singlespecial">
+<div class="content">
+  <div class="product-description"><a style="text-decoration: none" href="<?php echo $product->getProductUrl() ?>"><?php echo $product->getName() ?></a></div><a style="text-decoration: none" href="<?php echo $product->getProductUrl() ?>">
+  <br>
+  <img src="<?php echo $imageUrl;?>" border="0"></a>
+    <p></p><?php echo $product->getShortDescription() ?><p></p>
+    <div class="ss-price">On Sale For: <span class="price"><?php echo $formattedPrice ?></span></div>
+</div>
+</div>

@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright Â© 2018 Porto. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="2columns-right" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.additional">
+            <block class="Smartwave\Porto\Block\Template" name="product_view_custom_block" before="-" template="Magento_Catalog::product/view/custom_block.phtml"/>
+        </referenceContainer>
+        <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
+        <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
+        <move element="catalog.product.related" destination="sidebar.additional" after="product_view_custom_block"/>
+        <!--<referenceBlock name="catalog.product.related" remove="true"/>-->
+        <move element="product.info.overview" destination="product.info.main" after="product.info.review"/>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Catalog\Block\Product\View" name="product_custom" template="Magento_Catalog::product/view/product_custom.phtml" before="-"/>
+            <block class="Smartwave\Porto\Block\Template" name="product_view_config" after="-" template="Magento_Catalog::product/view/config.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="columns.top">
+            <block class="Magento\Catalog\Block\Product\View" name="prev_next_products" template="Magento_Catalog::product/view/prev_next.phtml" before="-"/>
+        </referenceContainer>
+        <move element="prev_next_products" destination="product.info.main" before="-"/>
+        <move element="page.main.title" destination="product.info.main" before="-"/>
+        <referenceContainer name="product.info.social">
+            <block class="Smartwave\Porto\Block\Template" name="product_view_addthis_links" after="-" template="Magento_Catalog::product/view/addthis.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Smartwave\Porto\Block\RickSnippet" name="rich_snippet" template="Magento_Catalog::product/view/rich_snippet.phtml" before="-"/>
+            <block class="Smartwave\Porto\Block\Template" name="product_view_main_custom_block" ifconfig="porto_settings/product/main_custom_block" before="product.info.main" template="Magento_Catalog::product/view/main_custom_block.phtml"/>
+            <block class="Smartwave\Porto\Block\Template" name="product_view_main_custom_block2" after="-" template="Magento_Catalog::product/view/main_custom_block2.phtml"/>
+            <block class="Smartwave\Porto\Block\Template" name="product.clearer" after="product.info.media" template="Magento_Catalog::product/view/clearer.phtml"/>
+        </referenceContainer>
+        <move element="product_view_main_custom_block2" destination="product.info.main" after="product.info.overview"/>
+        <move element="product.info.main" destination="content" after="product.info.media"/>
+        <referenceContainer name="columns">
+            <block class="Smartwave\Porto\Block\Template" name="side_popup" after="-" template="Magento_Catalog::product/view/side_popup.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

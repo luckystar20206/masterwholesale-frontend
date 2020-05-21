@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_Simpledetailconfigurable
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="product_tabs">
+            <block class="Bss\Simpledetailconfigurable\Block\Adminhtml\Product\PreselectTab" name="sdcp.preselect" template="Bss_Simpledetailconfigurable::preselect.phtml">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">SDCP Preselect</argument>
+                    <argument name="group_code" xsi:type="string">basic</argument>
+                </arguments>
+            </block>
+
+            <action method="addTabAfter">
+                <argument name="name" xsi:type="string">sdcp-preselect</argument>
+                <argument name="block" xsi:type="string">sdcp.preselect</argument>
+                <argument name="after" xsi:type="string">product-details</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

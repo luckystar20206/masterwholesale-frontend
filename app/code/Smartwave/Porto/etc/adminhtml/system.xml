@@ -1,0 +1,1742 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="smartwave_porto" translate="label" sortOrder="50">
+            <label>Porto 3.2.0</label>
+        </tab>
+        <section id="porto_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Porto - Settings Panel</label>
+            <tab>smartwave_porto</tab>
+            <resource>Smartwave_Porto::config</resource>
+            <group id="general" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="boxed" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Boxed / Wide</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\General\Boxed</source_model>
+                </field>
+                <field id="boxed_bg_color" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out of Box Background Color for Boxed Version</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="boxed">boxed</field>
+                    </depends>
+                </field>
+                <field id="boxed_bg_img" translate="label" type="image" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out of Box Background Image for Boxed Version</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Boxed</backend_model>
+                    <base_url type="media" scope_info="1">porto/boxed_bg</base_url>
+                    <depends>
+                        <field id="boxed">boxed</field>
+                    </depends>
+                </field>
+                <field id="boxed_custom_style" translate="label comment" type="textarea" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style for Boxed Version</label>
+                    <comment><![CDATA[Type in your custom styles , e.g.:<br/>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp;background-repeat: no-repeat;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-size: cover;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-attachment: fixed;</em>
+                            ]]></comment>
+                    <depends>
+                        <field id="boxed">boxed</field>
+                    </depends>
+                </field>
+                <field id="layout" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Maximum Page Width</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\General\Layout</source_model>
+                </field>
+                <field id="disable_border_radius" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Border Radius</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="show_site_notice" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Site Notice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Show Notice custom block above of the header.]]></comment>
+                </field>
+                <field id="custom_notice_block" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Notice Block ID</label>
+                    <depends>
+                        <field id="show_site_notice">1</field>
+                    </depends>
+                </field>
+                <field id="category_list_on_left" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Category List on Left</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="layout">full_width</field>
+                    </depends>
+                </field>
+                <field id="smartlayers" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Share Buttons at the Right Side</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sidebar_sticky" translate="label comment" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Sidebar by Sticky</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="optimization" translate="label" sortOrder="105" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Speed Optimization Setting</label>
+                <field id="bootstrap" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Load Original Bootstrap</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="animate" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Load Original animate.css</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="lazyload" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable Lazyload for Product Images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="header" translate="label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Header</label>
+                <field id="header_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Type</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Header\Type</source_model>
+                </field>
+                <field id="new_skin" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>New Skin</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="static_block" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block ID</label>
+                </field>
+                <field id="toggle_text" translate="label comment" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Toggle Text for Type 8</label>
+                    <depends>
+                        <field id="header_type">8</field>
+                    </depends>
+                </field>
+                <field id="static_block_8" translate="label comment" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block ID for Type 8</label>
+                    <depends>
+                        <field id="header_type">8</field>
+                    </depends>
+                </field>
+                <field id="toggle_text_25" translate="label comment" type="text" sortOrder="27" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Toggle Text for Type 25</label>
+                    <depends>
+                        <field id="header_type">25</field>
+                    </depends>
+                </field>
+                <field id="static_block_25" translate="label comment" type="text" sortOrder="28" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block ID for Type 25</label>
+                    <depends>
+                        <field id="header_type">25</field>
+                    </depends>
+                </field>
+                <field id="sticky_header" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sticky Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="sticky_header_logo" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Logo Image in Sticky Header</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                    </depends>
+                </field>
+                <field id="sticky_header_logo_src" translate="label" type="image" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Stickylogo</backend_model>
+                    <base_url type="media" scope_info="1">porto/sticky_logo</base_url>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                        <field id="sticky_header_logo">1</field>
+                    </depends>
+                </field>
+                <field id="mobile_sticky_header" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sticky Header on Mobile</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="sticky_header">1</field>
+                    </depends>
+                </field>
+                <field id="currency_short" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Only Short Currency Code in Currency Switcher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="language_flag" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Flag Images in Language Switcher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="compare_link" translate="label comment" type="select" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Compare Link in TopLinks</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="login_popup" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Login Popup</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="footer" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Footer</label>
+                <field id="footer_newsletter_title" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Block Title</label>
+                </field>
+                <field id="footer_newsletter_text" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Newsletter Block Text</label>
+                </field>
+                <!-- Footer - Top Area -->
+                <field id="footer_top_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Top</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="footer_top" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Top</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_top_block" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Top</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Top\Block</source_model>
+                    <depends>
+                        <field id="footer_top">1</field>
+                    </depends>
+                </field>
+                <field id="footer_top_custom" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_top">1</field>
+                        <field id="footer_top_block">custom</field>
+                    </depends>
+                </field>
+                <!-- Footer - Top Area -->
+                <!-- Footer - Middle Area -->
+                <field id="footer_middle_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Middle</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="footer_middle" translate="label comment" type="select" sortOrder="201" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Middle</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_ribbon" translate="label comment" type="select" sortOrder="205" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Ribbon</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_ribbon_text" translate="label comment" type="text" sortOrder="206" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ribbon Text</label>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                        <field id="footer_ribbon">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_1" translate="label comment" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 1</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_1_custom" translate="label comment" type="text" sortOrder="213" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                        <field id="footer_middle_column_1">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_1_size" translate="label comment" type="select" sortOrder="216" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 1 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_2" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 2</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_2_custom" translate="label comment" type="text" sortOrder="223" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                        <field id="footer_middle_column_2">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_2_size" translate="label comment" type="select" sortOrder="226" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 2 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_3" translate="label comment" type="select" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 3</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_3_custom" translate="label comment" type="text" sortOrder="233" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                        <field id="footer_middle_column_3">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_3_size" translate="label comment" type="select" sortOrder="236" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 3 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_4" translate="label comment" type="select" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 4</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_4_custom" translate="label comment" type="text" sortOrder="243" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                        <field id="footer_middle_column_4">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_column_4_size" translate="label comment" type="select" sortOrder="246" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 4 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle">1</field>
+                    </depends>
+                </field>
+                <!-- Footer - Middle Area -->
+                <!-- Footer - Middle 2nd Row Area -->
+                <field id="footer_middle_2_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Middle 2nd Row</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="footer_middle_2" translate="label comment" type="select" sortOrder="301" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Middle 2nd Row</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_middle_2_column_1" translate="label comment" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 1</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_1_custom" translate="label comment" type="text" sortOrder="313" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                        <field id="footer_middle_2_column_1">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_1_size" translate="label comment" type="select" sortOrder="316" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 1 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_2" translate="label comment" type="select" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 2</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_2_custom" translate="label comment" type="text" sortOrder="323" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                        <field id="footer_middle_2_column_2">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_2_size" translate="label comment" type="select" sortOrder="326" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 2 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_3" translate="label comment" type="select" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 3</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_3_custom" translate="label comment" type="text" sortOrder="333" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                        <field id="footer_middle_2_column_3">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_3_size" translate="label comment" type="select" sortOrder="336" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 3 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_4" translate="label comment" type="select" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 4</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Block</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_4_custom" translate="label comment" type="text" sortOrder="343" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id</label>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                        <field id="footer_middle_2_column_4">custom</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_column_4_size" translate="label comment" type="select" sortOrder="346" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Column 4 Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Footer\Middle\Size</source_model>
+                    <depends>
+                        <field id="footer_middle_2">1</field>
+                    </depends>
+                </field>
+                <!-- Footer - Middle 2nd Row Area -->
+                <!-- Footer - Bottom Area -->
+                <field id="footer_bottom_heading" translate="label comment" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Bottom</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="footer_bottom" translate="label comment" type="select" sortOrder="401" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Footer Bottom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_store_switcher" translate="label comment" type="select" sortOrder="405" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Store Switcher</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_logo_src" translate="label" type="image" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Logo</backend_model>
+                    <base_url type="media" scope_info="1">porto/footer_logo</base_url>
+                    <depends>
+                        <field id="footer_bottom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_copyrights" translate="label comment" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Copyright Text</label>
+                    <depends>
+                        <field id="footer_bottom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_custom_1" translate="label comment" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id(before copyright text)</label>
+                    <depends>
+                        <field id="footer_bottom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_custom_2" translate="label comment" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id(after copyright text)</label>
+                    <depends>
+                        <field id="footer_bottom">1</field>
+                    </depends>
+                </field>
+                <!-- Footer - Bottom Area -->
+            </group>
+            <group id="category" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category View</label>
+                <field id="alternative_image" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Alternative Product Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Show thumbnail image when mouse over in the product image area.</comment>
+                </field>
+                <field id="aspect_ratio" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Keep Image Aspect Ratio</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ratio_width" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Width</label>
+                </field>
+                <field id="ratio_height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Height</label>
+                    <depends>
+                        <field id="aspect_ratio">0</field>
+                    </depends>
+                </field>
+                <field id="rating_star" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Rating Stars</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="product_price" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Product Price</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="actions" translate="label comment" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Action Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="addtocompare" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Add to Compare Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="actions">1</field>
+                    </depends>
+                </field>
+                <field id="addtowishlist" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Add to Wishlist Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="actions">1</field>
+                    </depends>
+                </field>
+                <field id="qty_field" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Qty field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="page_layout" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Layout</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Page\Layout</source_model>
+                </field>
+                <field id="category_description" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category Description Position</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Category\Description</source_model>
+                </field>
+                <field id="side_custom_block" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Block Id for Sidebar</label>
+                </field>
+            </group>
+            <group id="category_grid" translate="label" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category View (Grid Mode)</label>
+                <field id="product_type" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products Grid Type</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Category\Type</source_model>
+                </field>
+                <field id="columns" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products Grid Columns</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Category\Columns</source_model>
+                </field>
+                <field id="xs_one_column" translate="label comment" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>One Column of Products Grid on Phone Devices</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <!-- <field id="flex_grid" translate="label comment" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Flex Grid</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="move_actions" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Actions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, all of the action links that "Add to Cart" button, "Add to Compare" link and "Add to Wishlist" link will be moved into the product image area.</comment>
+                </field>
+                <field id="move_title" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Product Title</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, title move below rating star.</comment>
+                </field> -->
+                <field id="infinite_scroller" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Infinite Scroller</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="product" translate="label" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product View</label>
+                <field id="aspect_ratio" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Keep Image Aspect Ratio</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="ratio_width" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Width</label>
+                </field>
+                <field id="ratio_height" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Height</label>
+                    <depends>
+                        <field id="aspect_ratio">0</field>
+                    </depends>
+                </field>
+                <field id="product_image_size" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Image Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Product\Imagesize</source_model>
+                </field>
+                <field id="product_page_type" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Page Type</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Product\Pagetype</source_model>
+                </field>
+                <field id="vertical_thumbnail" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Vertical Thumbnail Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="main_custom_block" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id for Main Custom Block</label>
+                </field>
+                <field id="main_custom_block2" translate="label comment" type="text" sortOrder="105" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id for Main Custom Block 2</label>
+                </field>
+                <field id="side_custom_block" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block Id for Sidebar Custom Block</label>
+                </field>
+                <field id="prev_next" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Prev/Next Product Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="prev_text" translate="label comment" type="text" sortOrder="113" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Previous Link Text</label>
+                </field>
+                <field id="next_text" translate="label comment" type="text" sortOrder="114" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Next Link Text</label>
+                </field>
+                <field id="page_layout" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Page Layout</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Page\Layout</source_model>
+                </field>
+                <field id="upsell_columns" translate="label comment" type="select" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Upsell Products Grid Columns</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Category\Columns</source_model>
+                </field>
+                <field id="move_upsell" translate="label comment" type="select" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Upsell Products below the product image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="move_addtolinks" translate="label comment" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Add To Links after Add to Cart Button</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_social" translate="label comment" type="textarea" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Social Icons</label>
+                </field>
+                <field id="enable_addtocart_sticky" translate="label comment" type="select" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Addtocart Sticky</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tab_style" translate="label comment" type="select" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Tabs Style</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Product\Tabstyle</source_model>
+                </field>
+
+                <field id="tab_full_background" translate="label comment" type="select" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Tabs Background Full Width</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_block_next_tab" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show custom block to next to the tab</label>
+                </field>
+                <field id="move_tab" translate="label comment" type="select" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Product Tabs at the Right of Product Image</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="move_upsell_full" translate="label comment" type="select" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Move Upsel Product Full Width Background</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="custom_tabs_heading" translate="label comment" sortOrder="370" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Tabs</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="custom_cms_tabs" translate="label" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Static Block Tabs</label>
+                    <frontend_model>Smartwave\Porto\Block\Adminhtml\Form\Field\Customcmstabs</frontend_model>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Customcmstabs</backend_model>
+                </field>
+                <field id="custom_attr_tabs" translate="label" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Custom Attribute Tabs</label>
+                    <frontend_model>Smartwave\Porto\Block\Adminhtml\Form\Field\Customattrtabs</frontend_model>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Customattrtabs</backend_model>
+                </field>
+            </group>
+            <group id="richsnippets" translate="label" sortOrder="155" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Google Rich Snippets</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+            <group id="product_label" translate="label" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Label</label>
+                <field id="new_label" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "New" Label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="new_label_text" translate="label comment" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Text</label>
+                    <depends>
+                        <field id="new_label">1</field>
+                    </depends>
+                </field>
+                <field id="sale_label" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Sale" Label</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sale_label_percent" translate="label comment" type="select" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show "Sale" Label with Discount Percent</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="sale_label">1</field>
+                    </depends>
+                </field>
+                <field id="sale_label_text" translate="label comment" type="text" sortOrder="25" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Text</label>
+                    <depends>
+                        <field id="sale_label">1</field>
+                        <field id="sale_label_percent">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="newsletter" translate="label" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Newsletter Popup</label>
+                <field id="enable" translate="label comment" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Newsletter\Enable</source_model>
+                </field>
+                <field id="delay" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delay(miliseconds)</label>
+                </field>
+                <field id="logo_src" translate="label" type="image" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Logo Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG, SVG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Newsletterlogo</backend_model>
+                    <base_url type="media" scope_info="1">porto/newsletter/logo</base_url>
+                </field>
+                <field id="content" translate="label comment" type="textarea" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Content Text</label>
+                </field>
+                <field id="width" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Width</label>
+                </field>
+                <field id="height" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Height</label>
+                </field>
+                <field id="bg_color" translate="label comment" type="text" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Backgroud Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+                <field id="bg_image" translate="label" type="image" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Popup Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Newsletterbg</backend_model>
+                    <base_url type="media" scope_info="1">porto/newsletter/background</base_url>
+                </field>
+                <field id="custom_style" translate="label comment" type="textarea" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style</label>
+                </field>
+            </group>
+            <group id="contacts" translate="label" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Contact Us</label>
+                <field id="google_map_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Map</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="enable" translate="label comment" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Google Map</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="text" sortOrder="112" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Google Map API key</label>
+                    <comment><![CDATA[You can get an API key from <a href="https://developers.google.com/maps/documentation/javascript/get-api-key">https://developers.google.com/maps/documentation/javascript/get-api-key</a><br/>
+                    eg: AIzaSyCkw3Q5Y7y2prqgTXSvF50Nr09-j7_carc</br>
+                    This is an example key for localhost.
+                    ]]></comment>
+                </field>
+                <field id="full_width" translate="label comment" type="select" sortOrder="115" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Full Width</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="address" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Address</label>
+                </field>
+                <field id="latitude" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Latitude</label>
+                </field>
+                <field id="longitude" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Longitude</label>
+                </field>
+                <field id="zoom" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Zoom</label>
+                </field>
+                <field id="contact_info_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Contact Info</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="infoblock" translate="label comment" type="textarea" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label></label>
+                </field>
+                <field id="customblock" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Block before Contacts Form</label>
+                    <comment>Input the Static Block Id, this static block will be shown below of the google map and above of the contacts form.</comment>
+                </field>
+            </group>
+            <group id="custom_settings" translate="label" sortOrder="550" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Customization Settings</label>
+                <field id="custom_style" translate="label comment" type="textarea" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style 1</label>
+                    <comment><![CDATA[Type in your custom styles , e.g.:<br/>
+                            <em>.page { padding: 0; margin: 0; }<br/>
+                            .main { font-size: 14px; font-weight:400; }
+                            </em>
+                            ]]></comment>
+                </field>
+                <field id="custom_style_2" translate="label comment" type="textarea" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style 2</label>
+                    <comment><![CDATA[This field is useful with multi store. So you can add your global custom styles into this field.]]></comment>
+                </field>
+            </group>
+            <group id="install" translate="label" sortOrder="800" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Installation</label>
+                <field id="demo_version" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Demo Version</label>
+                    <comment>Select the demo version, then import static blocks and cms pages.</comment>
+                    <source_model>Smartwave\Porto\Model\Config\Settings\Installation\Demoversion</source_model>
+                </field>
+                <field id="import_blocks_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Import Static Blocks</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="import_blocks" translate="button_label" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Import Static Blocks</button_label>
+                    <attribute type="action_url">porto_admin/system_config_cms/import</attribute>
+                    <attribute type="import_type">blocks</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Cms</frontend_model>
+                </field>
+                <field id="overwrite_blocks" translate="label comment" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Overwrite Existing Blocks</label>
+                    <comment>If the identifiers of the static blocks are already exist, you can set to "Yes" then save the configuration, then click the "Import Static Blocks" button.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="import_pages_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Import CMS Pages</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="import_pages" translate="button_label" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Import CMS Pages</button_label>
+                    <attribute type="action_url">porto_admin/system_config_cms/import</attribute>
+                    <attribute type="import_type">pages</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Cms</frontend_model>
+                </field>
+                <field id="overwrite_pages" translate="label comment" type="select" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Overwrite Existing Pages</label>
+                    <comment>If the identifiers of the cms pages are already exist, you can set to "Yes" then save the configuration, then click the "Import Static Blocks" button.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="import_demo_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Import demos</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                </field>
+                <field id="import_demo1" translate="button_label" sortOrder="301" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <button_label>Import Demo</button_label>
+                    <attribute type="action_url">porto_admin/system_config_demo/import</attribute>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Button\Import\Demo</frontend_model>
+                </field>
+            </group>
+        </section>
+        <section id="porto_design" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Porto - Design Panel</label>
+            <tab>smartwave_porto</tab>
+            <resource>Smartwave_Porto::config</resource>
+            <group id="general" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="theme_color" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Theme Colors</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                </field>
+            </group>
+            <group id="font" translate="label" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Font</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="font_size" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Basic Font Size</label>
+                    <source_model>Smartwave\Porto\Model\Config\Design\Font\Size</source_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="font_family" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Basic Font Family</label>
+                    <source_model>Smartwave\Porto\Model\Config\Design\Font\Family</source_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="custom_font_family" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font Family - Custom</label>
+                    <depends>
+                        <field id="custom">1</field>
+                        <field id="font_family">custom</field>
+                    </depends>
+                </field>
+                <field id="google_font_family" translate="label comment" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font Family - Google Fonts</label>
+                    <source_model>Smartwave\Porto\Model\Config\Design\Font\Googlefonts</source_model>
+                    <depends>
+                        <field id="custom">1</field>
+                        <field id="font_family">google</field>
+                    </depends>
+                </field>
+                <field id="char_latin_ext" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Character Set: Latin Extended</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="custom">1</field>
+                        <field id="font_family">google</field>
+                    </depends>
+                </field>
+                <field id="char_subset" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Character Subset</label>
+                    <depends>
+                        <field id="custom">1</field>
+                        <field id="font_family">google</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="colors" translate="label" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Colors</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="basic_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Basic Colors</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="text_color" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="link_color" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="link_hover_color" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Link Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="button_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Buttons</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="button_bg_color" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="button_text_color" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Text Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="button_hover_bg_color" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Hover Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="button_hover_text_color" translate="label comment" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Button Hover Text Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="addtolinks_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Addto Links</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="addtowishlist_color" translate="label comment" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Wishlist Link Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="addtowishlist_hover_color" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Wishlist Link Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="addtocompare_color" translate="label comment" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Compare Link Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="addtocompare_hover_color" translate="label comment" type="text" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add to Compare Link Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="breadcrumbs_heading" translate="label comment" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Breadcrumbs</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="breadcrumbs_bg_color" translate="label comment" type="text" sortOrder="610" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="breadcrumbs_color" translate="label comment" type="text" sortOrder="620" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="breadcrumbs_links_color" translate="label comment" type="text" sortOrder="630" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="breadcrumbs_links_hover_color" translate="label comment" type="text" sortOrder="640" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="product_label_heading" translate="label comment" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Product Labels</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="sale_bg_color" translate="label comment" type="text" sortOrder="710" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="sale_font_color" translate="label comment" type="text" sortOrder="720" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"Sale" Label Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="new_bg_color" translate="label comment" type="text" sortOrder="730" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="new_font_color" translate="label comment" type="text" sortOrder="740" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>"New" Label Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="price_slider_heading" translate="label comment" sortOrder="800" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Price Slider in LayeredNavigation</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="price_slider_bg_color" translate="label comment" type="text" sortOrder="810" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="price_slider_handle_color" translate="label comment" type="text" sortOrder="820" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Handle Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="header" translate="label" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Header</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="header_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_bgcolor" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_bg_image" translate="label" type="image" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Header</backend_model>
+                    <base_url type="media" scope_info="1">porto/header_bg</base_url>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_bordercolor" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Border Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_textcolor" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Text Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_linkcolor" translate="label comment" type="text" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_toplinks_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Top</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_top_links_bgcolor" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Links Block Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_top_links_color" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Top Links Block Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Menu</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_bgcolor" translate="label comment" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_color" translate="label comment" type="text" sortOrder="311" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_hover_bgcolor" translate="label comment" type="text" sortOrder="312" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hover Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_hover_color" translate="label comment" type="text" sortOrder="313" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Hover Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classic_heading" translate="label comment" sortOrder="319" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Menu(Classic)</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classicmenu_bgcolor" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classicmenu_bordercolor" translate="label comment" type="text" sortOrder="321" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Border Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classicmenu_color" translate="label comment" type="text" sortOrder="322" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Item Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classicmenu_hover_bgcolor" translate="label comment" type="text" sortOrder="323" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Item Hover Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_classicmenu_hover_color" translate="label comment" type="text" sortOrder="324" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Item Hover Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_megamenu_heading" translate="label comment" sortOrder="329" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Menu(Megamenu)</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_megamenu_bgcolor" translate="label comment" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_megamenu_bordercolor" translate="label comment" type="text" sortOrder="331" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Border Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_megamenu_color" translate="label comment" type="text" sortOrder="332" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Item Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_megamenu_hover_color" translate="label comment" type="text" sortOrder="333" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Dropdown Item Hover Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_category_labels_heading" translate="label comment" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Menu(Category Labels)</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label1_bg_color" translate="label comment" type="text" sortOrder="341" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label1 Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label1_font_color" translate="label comment" type="text" sortOrder="342" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label1 Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label2_bg_color" translate="label comment" type="text" sortOrder="343" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label2 Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label2_font_color" translate="label comment" type="text" sortOrder="344" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label2 Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label3_bg_color" translate="label comment" type="text" sortOrder="345" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label3 Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_menu_label3_font_color" translate="label comment" type="text" sortOrder="346" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label3 Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_search_heading" translate="label comment" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Searchbox</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_search_bgcolor" translate="label comment" type="text" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_search_text_color" translate="label comment" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Search Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_search_bordercolor" translate="label comment" type="text" sortOrder="450" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Border Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_minicart_heading" translate="label comment" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Header - Mini Cart</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_minicart_bgcolor" translate="label comment" type="text" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_minicart_color" translate="label comment" type="text" sortOrder="520" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="header_minicart_icon_color" translate="label comment" type="text" sortOrder="530" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="footer" translate="label" sortOrder="500" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Footer</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="footer_top_heading" translate="label comment" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Top</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_top_bgcolor" translate="label comment" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_top_color" translate="label comment" type="text" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_top_link_color" translate="label comment" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_top_link_hover_color" translate="label comment" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_heading" translate="label comment" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Middle</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_bgcolor" translate="label comment" type="text" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_color" translate="label comment" type="text" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_link_color" translate="label comment" type="text" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_link_hover_color" translate="label comment" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_title_color" translate="label comment" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Block Title Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_links_icon_color" translate="label comment" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Icon Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_ribbon_bgcolor" translate="label comment" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ribbon Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_ribbon_shadow_color" translate="label comment" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ribbon Shadow Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_ribbon_color" translate="label comment" type="text" sortOrder="290" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Ribbon Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_heading" translate="label comment" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Middle 2nd Row</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_bgcolor" translate="label comment" type="text" sortOrder="310" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_color" translate="label comment" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_link_color" translate="label comment" type="text" sortOrder="330" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_link_hover_color" translate="label comment" type="text" sortOrder="340" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_title_color" translate="label comment" type="text" sortOrder="350" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Block Title Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_middle_2_links_icon_color" translate="label comment" type="text" sortOrder="360" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Icon Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_heading" translate="label comment" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Footer - Bottom</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field\Heading</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_bgcolor" translate="label comment" type="text" sortOrder="410" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_color" translate="label comment" type="text" sortOrder="420" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Text Font Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_link_color" translate="label comment" type="text" sortOrder="430" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="footer_bottom_link_hover_color" translate="label comment" type="text" sortOrder="440" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Links Hover Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="page" translate="label" sortOrder="600" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Page Wrapper</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="page_bgcolor" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="page_bg_image" translate="label" type="image" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Page</backend_model>
+                    <base_url type="media" scope_info="1">porto/page_bg</base_url>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="page_custom_style" translate="label comment" type="textarea" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style</label>
+                    <comment><![CDATA[Type in your custom styles , e.g.:<br/>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp;background-repeat: no-repeat;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-size: cover;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-attachment: fixed;</em>
+                            ]]></comment>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="main" translate="label" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Main Content</label>
+                <field id="custom" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="main_bgcolor" translate="label comment" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Color</label>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Design\Color\Validatetransparent</backend_model>
+                    <frontend_model>Smartwave\Porto\Block\System\Config\Form\Field\Color</frontend_model>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="main_bg_image" translate="label" type="image" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Background Image</label>
+                    <comment>Allowed file types:PNG, GIF, JPG, JPEG.</comment>
+                    <backend_model>Smartwave\Porto\Model\Config\Backend\Image\Main</backend_model>
+                    <base_url type="media" scope_info="1">porto/main_bg</base_url>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+                <field id="main_custom_style" translate="label comment" type="textarea" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Style</label>
+                    <comment><![CDATA[Type in your custom styles , e.g.:<br/>
+                            <em>&nbsp;&nbsp;&nbsp;&nbsp;background-repeat: no-repeat;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-size: cover;<br/>&nbsp;&nbsp;&nbsp;&nbsp;background-attachment: fixed;</em>
+                            ]]></comment>
+                    <depends>
+                        <field id="custom">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+        <section id="porto_license" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Activate Theme</label>
+            <tab>smartwave_porto</tab>
+            <resource>Smartwave_Porto::config</resource>
+            <group id="general" translate="label" sortOrder="100" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General</label>
+                <field id="purchase_code" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Purchase Code</label>
+                </field>
+                <field id="purchase_code_confirm" translate="label comment" type="hidden" sortOrder="20" showInDefault="0" showInWebsite="0" showInStore="0">
+                    <label>Purchase Code Confirm</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

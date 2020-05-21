@@ -1,0 +1,117 @@
+<style>
+    .mr_import .left {
+        float: left;}
+
+    .mr_import #versions {
+        padding:10px;
+        margin-bottom:10px;
+        font-size:12px;
+        line-height:18px;
+
+        background: #d3eade;
+    }
+    .mr_import #versions.version-upgrade-1 {
+        background: #fcdede;
+    }
+</style>
+<div class="mr_import">
+
+    <div class="left" id="import-settings">
+
+        <div id="versions" class="version-upgrade-<?php echo $block->versionHelper->isNeedUpgrade()?>">
+            <?php if($block->versionHelper->isNeedUpgrade()):?>
+                Your version <strong>(<?php echo $block->versionHelper->getCurrentVersion()?>)</strong> is outdated. <br/> Latest available version is - <strong><?php echo $block->versionHelper->getLatestVersion()?></strong>
+                <br>
+                Be patient, Modern Retail will take care about upgrade your site.
+            <?php else:?>
+                You used latest available version of Modern Retail Integrator  - <strong><?php echo $block->versionHelper->getCurrentVersion()?></strong>
+            <?php endif;?>
+        </div>
+
+        <div class="mr-import-select-file box">
+
+            <h4><?php echo __("Select package") ?></h4>
+            <div class="fieldset">
+                <select id="bucket-selector">
+                    <option value="null"><?php echo __("--Please Select--") ?></option>
+                    <?php foreach($this->getBuckets() as $file):?>
+                        <option <?php if ($this->getBucket()==$file) echo "selected";?>  value="<?php echo $file?>"><?php echo $file;?></option>
+                    <?php endforeach;?>
+                </select>
+
+                <br/>
+                <br/>
+                <h4><?php echo __("Select one from existing files") ?></h4>
+                <div class="fieldset">
+                    <?php if($this->getBucket()):?>
+                        <select id="import-file" style="width:300px">
+                            <?php foreach($this->getFiles() as $key=>$file):?>
+                                <option  value="<?php echo $key?>"><?php echo $file;?></option>
+                            <?php endforeach;?>
+                        </select>
+                        <br/>
+                        <br/>
+                        <p>
+                            <input checked="checked" type="checkbox" name="need_reindex" value="1" id="need_reindex"/>
+                            <label for="need_reindex"><?php echo __("Run reindex after import success") ?></label>
+                        </p>
+
+
+                        <button class="action-default primary add" onclick='importer.importFile($("import-file").value)'><span><span><span><?php echo __("Import from this file") ?></span></span></span></button>
+
+
+                    <?php else:?>
+                        <p> --- Please select package before --- </p>
+                    <?php endif;?>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mr-import-upload-file">
+<!--            <h3>--><?php //echo __("or you can upload new file") ?><!--</h3>-->
+            <?php echo $this->getChildHtml("mr_import_form") ?>
+        </div>
+
+
+        <div class="box">
+            <div class="comment">
+                <?php echo __("Download CSV report for simple products <strong>entity_id , sku</strong>") ?>
+            </div>
+            <button class="action-default primary add" onclick='importer.downloadReport()'><span><span><?php echo __("Download report") ?></span></span></button>
+        </div>
+
+    </div>
+
+    <div class="box" style="margin-left:500px" >
+        <div id="mr_console-container">
+            <div id="mr_console">
+                IMPORT IS NOT STARTED
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+
+
+    var importer = null; 
+    require(['mr_import/importer'], function(MRImporter) {
+        $("bucket-selector").observe("change",function(){
+            if (this.value=="null"){
+                document.location='<?php echo $this->mageHelper->getUrl("*/*/*")?>';
+            }else {
+                document.location='<?php echo $this->mageHelper->getUrl("*/*/*")?>bucket/'+this.value;
+            }
+        });
+
+         importer = new MRImporter({
+            bucket:"<?php echo $this->getBucket()?>",
+            actionUrl:"<?php echo $this->mageHelper->getUrl("*/*/call")?>",
+        });
+    });
+
+
+
+</script>

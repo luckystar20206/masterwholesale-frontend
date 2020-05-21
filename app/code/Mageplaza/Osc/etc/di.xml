@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mageplaza\Osc\Api\CheckoutManagementInterface" type="Mageplaza\Osc\Model\CheckoutManagement"/>
+    <preference for="Mageplaza\Osc\Api\GuestCheckoutManagementInterface" type="Mageplaza\Osc\Model\GuestCheckoutManagement"/>
+    <type name="Magento\Customer\Model\Address">
+        <plugin name="setShouldIgnoreValidation" type="Mageplaza\Osc\Model\Plugin\Customer\Address"/>
+    </type>
+    <type name="Magento\Quote\Model\Cart\TotalsConverter">
+        <plugin name="addGiftWrapInitialAmount" type="Mageplaza\Osc\Model\Plugin\Quote\GiftWrap"/>
+    </type>
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="mz_osc_newaccount" type="Mageplaza\Osc\Model\Plugin\Customer\AccountManagement"/>
+    </type>
+    <type name="Magento\Checkout\Model\TotalsInformationManagement">
+        <plugin name="saveShipingMethodOnCalculate" type="Mageplaza\Osc\Model\Plugin\Checkout\TotalsInformationManagement"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="getItemById_Osc" type="Mageplaza\Osc\Model\Plugin\Quote"/>
+    </type>
+    <type name="Magento\Checkout\Helper\Data">
+        <plugin name="osc_allow_guest_checkout" type="Mageplaza\Osc\Model\Plugin\Checkout\Data"/>
+    </type>
+    <type name="Magento\Eav\Model\Attribute\Data\AbstractData">
+        <plugin name="mposc_bypass_validate" type="Mageplaza\Osc\Model\Plugin\Eav\Model\Attribute\AbstractData"/>
+    </type>
+    <type name="Magento\Customer\Model\Attribute\Data\Postcode">
+        <plugin name="mposc_bypass_validate_postcode" type="Mageplaza\Osc\Model\Plugin\Eav\Model\Attribute\Postcode"/>
+    </type>
+    <type name="Magento\Quote\Model\QuoteValidator">
+        <plugin name="mposc_set_should_ignore_validation_quote" type="Mageplaza\Osc\Model\Plugin\Quote\QuoteValidator"/>
+    </type>
+    <type name="Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option">
+        <plugin name="mposc_append_item_option" type="Mageplaza\Osc\Model\Plugin\Catalog\Product\View\Type\Bundle\OptionPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Block\Product\View\Options\AbstractOptions">
+        <plugin name="mposc_append_item_layout" type="Mageplaza\Osc\Model\Plugin\Catalog\Product\View\Options\AbstractOptions"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="mposc_convert_quote_address_to_customer_address" type="Mageplaza\Osc\Model\Plugin\Customer\Address\ConvertQuoteAddressToCustomerAddress"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Address\ToOrderAddress">
+        <plugin name="mposc_convert_quote_address_to_order_address" type="Mageplaza\Osc\Model\Plugin\Customer\Address\ConvertQuoteAddressToOrderAddress"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\CustomAttributeList">
+        <plugin name="mposc_add_custom_field_to_address" type="Mageplaza\Osc\Model\Plugin\Quote\Address\CustomAttributeList"/>
+    </type>
+    <type name="Magento\Customer\Model\Address\CustomAttributeList">
+        <plugin name="mposc_add_custom_field_to_customer" type="Mageplaza\Osc\Model\Plugin\Customer\Address\CustomAttributeList"/>
+    </type>
+</config>

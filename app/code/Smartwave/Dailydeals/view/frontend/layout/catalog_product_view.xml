@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Smartwave_Dailydeals::css/custom_dailydeal_list_page.css" />
+        <css src="Smartwave_Dailydeals::css/style.css" />  
+    </head>
+    <referenceContainer name="content">
+        <!--<referenceContainer name="product.info.main" htmlTag="div" htmlClass="product-info-main" before="-">
+            <referenceBlock class="Magento\Catalog\Block\Product\View" name="product.info" template="product/view/form.phtml" after="alert.urls">
+                <referenceContainer name="product.info.form.content" as="product_info_form_content">
+                    <referenceBlock name="product.info.addtocart">
+                        <action method="setTemplate">
+                            <argument name="template" xsi:type="string">Smartwave_Dailydeals::product/view/addtocart.phtml</argument>
+                        </action>
+                   </referenceBlock>
+                </referenceContainer>
+                 <referenceBlock class="Magento\Framework\View\Element\Template" name="product.info.form.options" as="options_container">
+                 	 <referenceBlock class="Magento\Catalog\Block\Product\View" name="product.info.options.wrapper.bottom" as="product_options_wrapper_bottom" template="product/view/options/wrapper/bottom.phtml">
+                        <referenceBlock name="product.info.addtocart.additional">
+                            <action method="setTemplate">
+                                <argument name="template" xsi:type="string">Smartwave_Dailydeals::product/view/addtocart.phtml</argument>
+                            </action>
+                        </referenceBlock>
+                     </referenceBlock>
+                </referenceBlock>
+            </referenceBlock>
+        </referenceContainer>-->
+    </referenceContainer>
+</page>

@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+    <virtualType name="SwDailydealsGirdFilterPool" type="Magento\Framework\View\Element\UiComponent\DataProvider\FilterPool">
+        <arguments>
+            <argument name="appliers" xsi:type="array">
+                <item name="regular" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\RegularFilter</item>
+                <item name="fulltext" xsi:type="object">Magento\Framework\View\Element\UiComponent\DataProvider\FulltextFilter</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="SwDailydealsDailydealGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Smartwave\Dailydeals\Model\ResourceModel\Dailydeal\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">SwDailydealsGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Smartwave\Dailydeals\Model\ResourceModel\Dailydeal\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">sw_dailydeals_dailydeal</argument>
+            <argument name="eventPrefix" xsi:type="string">sw_dailydeals_dailydeal_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">dailydeal_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Smartwave\Dailydeals\Model\ResourceModel\Dailydeal</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="sw_dailydeals_dailydeal_listing_data_source" xsi:type="string">Smartwave\Dailydeals\Model\ResourceModel\Dailydeal\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="\Magento\Catalog\Pricing\Render\FinalPriceBox">
+        <plugin name="Sw_Dailydeals_change_template" type="Smartwave\Dailydeals\Plugin\FinalPricePlugin" />
+    </type>
+</config>

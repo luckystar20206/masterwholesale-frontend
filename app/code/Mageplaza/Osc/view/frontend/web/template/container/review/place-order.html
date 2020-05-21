@@ -1,0 +1,78 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<div class="checkout-agreements-block mp-12">
+    <form id="co-place-order-agreement" class="form" novalidate="novalidate">
+        <!-- ko foreach: getRegion('checkout-agreements') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </form>
+</div>
+<!-- ko ifnot: visibleBraintreeButton() -->
+<div class="actions-toolbar">
+    <div class="place-order-primary">
+        <button class="action primary checkout"
+                type="button"
+                data-bind="
+                click: placeOrder,
+                attr: {'title': $t('Place Order')},
+                css: {disabled: !isPlaceOrderActionAllowed()}
+                ">
+            <span data-bind="i18n: 'Place Order'"></span>
+        </button>
+    </div>
+</div>
+<!-- /ko -->
+<!-- ko if: visibleBraintreeButton() -->
+<div class="actions-toolbar">
+    <!-- ko if: isBraintreeNewVersion() -->
+    <div class="payment-method-item braintree-paypal-account" data-bind="visible: braintreePaypalModel.isReviewRequired()">
+        <span class="payment-method-type">PayPal</span>
+        <span class="payment-method-description" data-bind="text: braintreePaypalModel.customerEmail()"></span>
+    </div>
+    <div class="place-order-primary">
+        <button class="action primary checkout"
+                type="button"
+                data-bind="
+                visible: braintreePaypalModel.isReviewRequired(),
+                click: brainTreePaypalPlaceOrder,
+                attr: {'title': $t('Place Order')},
+                enable: (getBraintreePaypalComponent().isActive())
+                ">
+            <span data-bind="i18n: 'Place Order'"></span>
+        </button>
+        <button class="action primary checkout"
+                type="button"
+                data-bind="
+                visible: !braintreePaypalModel.isReviewRequired(),
+                click: brainTreePayWithPayPal,
+                attr: {'title': $t(getBraintreePaypalComponent().getButtonTitle())},
+                enable: (getBraintreePaypalComponent().isActive())
+                ">
+            <span data-bind="i18n: getBraintreePaypalComponent().getButtonTitle()"></span>
+        </button>
+    </div>
+    <!-- /ko -->
+</div>
+<!-- /ko -->
+
+<div class="osc-trust-seal" data-bind="html: window.checkoutConfig.oscConfig.sealBlock"></div>

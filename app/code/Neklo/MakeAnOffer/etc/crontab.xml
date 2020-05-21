@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="default">
+        <job name="neklo_get_expired_coupon_cron" instance="Neklo\MakeAnOffer\Cron\Coupon" method="execute">
+            <schedule>0 2 * * *</schedule>
+        </job>
+        <job name="neklo_delete_declined_requests" instance="Neklo\MakeAnOffer\Cron\Delete" method="execute">
+            <schedule>0 3 * * *</schedule>
+        </job>
+    </group>
+</config>

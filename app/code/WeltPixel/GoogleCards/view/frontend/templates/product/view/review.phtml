@@ -1,0 +1,21 @@
+<?php
+// @codingStandardsIgnoreFile
+?>
+<?php /** @var $block \Magento\Catalog\Block\Product\AbstractProduct */ ?>
+<?= $block->getReviewsSummaryHtml($block->getProduct(), 'short', true) ?>
+<script>
+    requirejs(['jquery' ],
+        function   ($) {
+            $(document).ready(function() {
+                if ($('.reviews-actions .action.view').length) {
+                    var submitReviewUrl = $('.reviews-actions .action.view').attr('href').replace("#reviews", "#review-form");
+                    var submitReviewLabel = "<?php echo __('Add Your Review'); ?>";
+                    $('<a/>', {
+                        class: "action add",
+                        href: submitReviewUrl,
+                        text: submitReviewLabel
+                    }).insertAfter('.reviews-actions .action.view');
+                }
+            });
+        });
+</script>

@@ -1,0 +1,52 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_Simpledetailconfigurable
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+// @codingStandardsIgnoreFile
+?>
+<?php
+    $catalogHelper = $this->helper('Magento\Catalog\Helper\Output');
+    $moduleHelper = $this->helper('Bss\Simpledetailconfigurable\Helper\ModuleConfig');
+    $product = $block->getProduct();
+    $additional = $block->getAdditionalData()
+?>
+<?php if ($additional || ($moduleHelper->isModuleEnable() && $moduleHelper->isShowAdditionalInfo())): ?>
+    <div class="additional-attributes-wrapper table-wrapper">
+        <table class="data table additional-attributes" id="product-attribute-specs-table">
+            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('More Information') ?></caption>
+            <tbody>
+            <?php foreach ($additional as $data): ?>
+                <tr>
+                    <th class="col label" scope="row"><?php echo $block->escapeHtml(__($data['label'])) ?></th>
+                    <td class="col data" data-th="<?php echo $block->escapeHtml(__($data['label'])) ?>">
+                        <?php echo $catalogHelper->productAttribute($product, $data['value'], $data['code']) ?>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endif;?>

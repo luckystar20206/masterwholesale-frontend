@@ -1,0 +1,60 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_Simpledetailconfigurable
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php /** @var $block \Bss\Simpledetailconfigurable\Block\ConfigurableControl */ ?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "bss_configurable_control": {
+                "jsonConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig(); ?>,
+                "jsonSwatchConfig": <?php /* @escapeNotVerified */echo $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>",
+                "onlyMainImg": <?php /* @escapeNotVerified */ echo $block->getVar(
+                    'change_only_base_image',
+                    'Magento_Swatches'
+                ) ?: 'false'; ?>,
+                "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar(
+                    'gallery_switch_strategy',
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>",
+                "jsonChildProduct": <?php echo $block->getJsonChildProductData(); ?>,
+                "jsonModuleConfig": <?php echo $block->getJsonModuleConfig(); ?>,
+                <?php if (version_compare($block->getMagentoVersion(), '2.2.5', '>=')) : ?>
+                "sdcp_classes": {
+                    "fullDesc": {
+                        "label": "#tab-label-description",
+                        "blockContent": "#description"
+                    }
+                },
+                <?php endif; ?>
+                "magento21x": <?= version_compare($block->getMagentoVersion(), '2.2.0', '<') ? 1 : 0 ?>,
+                "ajaxUrl": "<?php echo $block->getUrl('bss_sdcp/ajax/detail'); ?>"
+            }
+        }
+    }
+</script>

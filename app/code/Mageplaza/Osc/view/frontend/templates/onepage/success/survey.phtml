@@ -1,0 +1,63 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Survey $block */
+
+if ($block->isEnableSurvey() && !empty($block->getSurveyQuestion()) && count($block->getAllSurveyAnswer()) > 0) : ?>
+    <div id="survey">
+        <div id="survey-message"></div>
+        <div class="survey-content">
+            <strong><?= $block->escapeHtml(__('Question')) ?>: </strong><span> <?= $block->escapeHtml($block->getSurveyQuestion()) ?></span>
+            <div class="list-answer">
+                <?php foreach ($block->getAllSurveyAnswer() as $option) : ?>
+                    <div class="survey-answer">
+                        <div class="checkbox-survey">
+                            <input type="checkbox" value="<?= $block->escapeQuote($option['id']) ?>">
+                        </div>
+                        <div class="option-value">
+                            <span><?= $block->escapeHtml($option['value']) ?></span>
+                        </div>
+                    </div>
+                <?php endforeach;
+                if ($block->isAllowCustomerAddOtherOption()) : ?>
+                    <div class="option-survey-new">
+                        <input type="text" id="new-answer" placeholder="<?= $block->escapeQuote(__('Add an option...')) ?>" maxlength="50">
+                    </div>
+                <?php endif ?>
+            </div>
+            <div class="actions-toolbar" id="submit-answers">
+                <div class="primary">
+                    <a class="action primary continue"
+                       href="javascript:void(0)"><span><?= $block->escapeHtml(__('Submit Answers')) ?></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/x-magento-init">
+        {
+            "#survey": {
+                "Mageplaza_Osc/js/view/survey":{
+                    "url": "<?= $block->escapeJsQuote($block->getUrl('onestepcheckout/survey/save/')) ?>"
+                }
+            }
+        }
+    </script>
+<?php endif; ?>

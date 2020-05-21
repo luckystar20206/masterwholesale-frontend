@@ -1,0 +1,72 @@
+<?php if ($block->canShowBlock()): ?>
+    <div class="block filter" id="layered-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+        <?php $filtered = count($block->getLayer()->getState()->getFilters()) ?>
+        <div class="block-title filter-title" data-count="<?php /* @escapeNotVerified */ echo $filtered; ?>">
+            <strong data-role="title"><?php /* @escapeNotVerified */ echo __('Shop By') ?></strong>
+        </div>
+        <div class="block-content filter-content">
+            <?php echo $block->getChildHtml('state') ?>
+
+            <?php if ($block->getLayer()->getState()->getFilters()): ?>
+                <div class="block-actions filter-actions">
+                    <a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+                </div>
+            <?php endif; ?>
+            <?php $wrapOptions = false; $activeKey = 0; $activeArray = []; ?>
+            <?php foreach ($block->getFilters() as $key => $filter): ?>
+                <?php if ($filter->getItemsCount()): ?>
+                    <?php if (!$wrapOptions): ?>
+                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?php /* @escapeNotVerified */ echo __('Shopping Options') ?></strong>
+                        <div class="filter-options" id="narrow-by-list" data-role="content">
+                    <?php  $wrapOptions = true; endif; ?>
+                    <div data-role="collapsible" class="filter-options-item">
+                        <div data-role="title" class="filter-options-title"><?php /* @escapeNotVerified */ echo __($filter->getName()) ?></div>
+                        <div data-role="content" class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></div>
+                    </div>
+                    <?php
+                        if($block->getRequest()->getParam($filter->getRequestVar())){
+                            $activeArray[] = $activeKey;
+                        }
+                        $activeKey++;
+                    ?>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if ($wrapOptions): ?>
+                </div>
+				<script type="text/x-magento-init">
+					{
+						"#narrow-by-list": {
+							"accordion": {
+								"openedState": "active",
+								"collapsible": true,
+								"active": <?php echo sizeof($activeArray) ? $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($activeArray) : 'false' ?>,
+								"multipleCollapsible": true
+							},
+							"Mageplaza_LayeredNavigation/js/layer": {}
+						}
+					}
+				</script>
+            <?php endif; ?>
+            <div id="ln_overlay" class="ln_overlay">
+                <img src="<?php /* @escapeNotVerified */ echo $block->getViewFileUrl('images/loader-1.gif'); ?>" alt="Loading...">
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+<style type="text/css">
+    .ln_overlay{
+        background-color: #FFFFFF;
+        height: 100%;
+        left: 0;
+        opacity: 0.5;
+        filter: alpha(opacity = 50);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 555;
+        display:none;
+    }
+    .ln_overlay img {
+        top: 30%;left: 45%;display: block;position: absolute;
+    }
+</style>

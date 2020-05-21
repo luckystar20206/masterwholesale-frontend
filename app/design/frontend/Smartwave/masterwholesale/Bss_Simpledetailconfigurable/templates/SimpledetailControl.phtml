@@ -1,0 +1,137 @@
+<?php
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_Simpledetailconfigurable
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+?>
+<?php /** @var $block \Bss\Simpledetailconfigurable\Block\ConfigurableControl */ ?>
+<?php
+ $product = $block->getProduct();
+ $product_options_type = $product->getResource()->getAttribute('product_options_type')->getFrontend()->getValue($product);;
+ $jsonChildProduct = $block->getJsonConfig();
+ $childProducts =    json_decode($jsonChildProduct);
+ $objectManager =  \Magento\Framework\App\ObjectManager::getInstance();
+ if ($product_options_type == 'radio') {
+ ?>
+<div class="option">
+    <?php foreach ($childProducts->attributes as $key => $attribute) {   ?>
+    <dl class="last">
+            <dt><label class="required"><em>*</em><?php echo $attribute->label ?></label></dt>
+        <div id="optionlist">
+        <div class="input-box">
+            <?php foreach ($attribute->options as $key => $option) {
+                $stockRegistry = $objectManager->create('\Magento\CatalogInventory\Model\StockRegistry');
+                $childStock = $stockRegistry->getStockItem($option->products[0]);
+              ?>
+                <dd class="last attr-<?php echo $attribute->code ?> <?php echo $attribute->code ?>-36x36us2000002">
+                    <label class="label-radio-configurable" id="<?php echo $childProducts->optionPrices->{$option->products[0]}->finalPrice->amount ?>">
+                        <input type="radio" name="super_attribute[<?php echo $attribute->id ?>]" id="attribute<?php echo $attribute->id ?>" data-validate="{'validate-one-required-by-name':true}" class="validate-custom-configurable" option-id ="<?php echo $option->id ?>" data-code="<?php echo $attribute->code ?>" value="<?php echo $option->id ?>">
+                        <?php echo $option->label ?> &nbsp;&nbsp;<strong class="config-price">$<?php echo number_format((float)$childProducts->optionPrices->{$option->products[0]}->finalPrice->amount, 2, '.', ''); ?></strong>
+                           <div class="child-configurabledetail">
+                           <?php
+                              $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                              $childProduct = $objectManager->get('Magento\Catalog\Model\Product')->load($option->products[0]);
+                           ?>
+                              <span class="child-sku"><strong>SKU:</strong> <?php echo $childProduct->getSku(); ?></span>
+                           <?php if($childProduct->getMpn()): ?>
+                              <span class="child-mpn"><strong>Part #:</strong> <?php echo $childProduct->getMpn(); ?></span>
+                           <?php endif; ?>
+                             <?php if($childStock->getQty() < 1 && $childStock->getBackorders()): ?>
+                               <?php
+                                 $status = '';
+                                 $date_available = $childProduct->getdata('date_available');
+                                 $today = date('Y-m-d 00:00:00');
+
+                                 if($date_available != NULL && $date_available > $today){ //future backorder date
+                                     $date_available = date('m/d',strtotime($childProduct->getdata('date_available')));
+                                     $status = '<span class="child-avail">On backorder until '.$date_available.'. Will ship when item is available again</avail>';
+                                 } elseif($childProduct->getdata('stock_status') == 37357){  //stocked item with 0 stock and no backorder date
+                                     $status = '<span class="child-avail">On order.  This item will ship when back in stock</span>';
+                                 } else { //factory direct, no future backorder date so just show stock_status
+                                     $status = '<span class="child-avail"></span>';
+                                 }
+                              ?>
+                            <?= $status ?>
+                            <?php else: ?>
+                            <span class="child-avail"><?php echo $childStock->getQty(); ?> available in-store</span>
+                            <?php endif; ?>
+                    </label>
+                  </div>
+                </dd>
+                <?php } ?>
+             </div>
+        </div>
+        <p class="fclear"></p>
+        </dl>
+        <?php } ?>
+</div>
+<div class="swatch-opt" data-role="swatch-options" style="visibility: hidden;"></div>
+<?php }else{ ?>
+<div class="swatch-opt" data-role="swatch-options"></div>
+<?php } ?>
+<script type="text/javascript">
+    require(['jquery', 'jquery/ui'], function($){
+      jQuery(document).ready( function() {
+        jQuery(".swatch-select input:radio[disabled=false]:first").trigger('click');
+        jQuery(".swatch-select").ready(function() {
+
+            jQuery('.validate-custom-configurable').click(function() {
+                var code_Attr = jQuery(this).attr('data-code');
+                jQuery('.'+code_Attr).val(this.value).trigger('change');
+            });
+        });
+      });
+    });
+</script>
+<script type="text/x-magento-init">
+    {
+        "[data-role=swatch-options]": {
+            "bss_configurable_control": {
+                "jsonConfig": <?php /* @escapeNotVerified */ echo $block->getJsonConfig(); ?>,
+                "jsonSwatchConfig": <?php /* @escapeNotVerified */echo $block->getJsonSwatchConfig(); ?>,
+                "mediaCallback": "<?php /* @escapeNotVerified */ echo $block->getMediaCallback() ?>",
+                "onlyMainImg": <?php /* @escapeNotVerified */ echo $block->getVar(
+                    'change_only_base_image',
+                    'Magento_Swatches'
+                ) ?: 'false'; ?>,
+                "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar(
+                    'gallery_switch_strategy',
+                    'Magento_ConfigurableProduct') ?: 'replace'; ?>",
+                "jsonChildProduct": <?php echo $block->getJsonChildProductData(); ?>,
+                "jsonModuleConfig": <?php echo $block->getJsonModuleConfig(); ?>,
+                <?php if (version_compare($block->getMagentoVersion(), '2.2.5', '>=')) : ?>
+                "sdcp_classes": {
+                    "fullDesc": {
+                        "label": "#tab-label-description",
+                        "blockContent": "#description"
+                    }
+                },
+                <?php endif; ?>
+                "magento21x": <?= version_compare($block->getMagentoVersion(), '2.2.0', '<') ? 1 : 0 ?>,
+                "ajaxUrl": "<?php echo $block->getUrl('bss_sdcp/ajax/detail'); ?>"
+            }
+        }
+    }
+</script>

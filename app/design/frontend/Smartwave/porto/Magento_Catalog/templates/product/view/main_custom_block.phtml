@@ -1,0 +1,10 @@
+<?php
+    $product_view = $this->getConfig('porto_settings/product');
+    $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+    if($block) {
+        $block->setBlockId($product_view['main_custom_block']);
+    }
+    if($block && isset($product_view['main_custom_block']) && $product_view['main_custom_block'] !=''){
+        echo '<div class="custom-block">'.$block->toHtml().'</div>';
+    }
+?>

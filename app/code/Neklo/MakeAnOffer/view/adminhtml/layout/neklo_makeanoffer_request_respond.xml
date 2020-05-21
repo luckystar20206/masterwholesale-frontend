@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Neklo_MakeAnOffer::css/respond.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Neklo\MakeAnOffer\Block\Adminhtml\Request\Respond" name="request.respond"
+                   template="Neklo_MakeAnOffer::request/respondform.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

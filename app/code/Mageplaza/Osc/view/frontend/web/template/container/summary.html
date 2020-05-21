@@ -1,0 +1,42 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<div class="order-summary hoverable">
+	<div class="step-title" data-role="title">
+		<i class="fa fa-check-square"></i>
+		<!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+			<i class="fa fa-check-circle"></i>
+		<!-- /ko -->
+		<span data-bind="i18n: 'Order Summary'"></span>
+	</div>
+	<div class="opc-block-summary step-content" data-bind="blockLoader: isLoading">
+		<!-- ko foreach: elems() -->
+			<!-- ko template: getTemplate() --><!-- /ko -->
+		<!-- /ko -->
+
+		<p class="col-wide forgot-item" data-bind="style:{textAlign: 'right'}, visible: false">
+			<span>
+				<!-- ko i18n: 'Forgot an item?'--><!-- /ko -->
+				<a data-bind="attr: {href: window.checkout.shoppingCartUrl}, i18n: 'Edit your cart'"></a>
+			</span>
+		</p>
+	</div>
+</div>

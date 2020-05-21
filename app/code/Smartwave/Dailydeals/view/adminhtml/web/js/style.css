@@ -1,0 +1,16 @@
+.chosen-container-single .chosen-single {
+    background: #fff;
+    border-radius: 0;
+    box-shadow: none;
+    height: 33px;
+    line-height: 31px;
+}
+.chosen-container-active.chosen-with-drop .chosen-single {
+    background: #fff;
+}
+.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position: -18px 7px;
+}
+.chosen-container-single .chosen-single div b {
+    background-position: 0px 6px;
+}

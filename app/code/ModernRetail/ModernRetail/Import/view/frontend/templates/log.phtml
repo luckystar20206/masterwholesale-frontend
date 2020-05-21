@@ -1,0 +1,97 @@
+<style>
+    h1{
+        text-align: center;
+    }
+
+    table tr {
+        border:1px solid white;
+    }
+    .complete{
+        background: rgba(0, 174, 0, 0.41);
+
+    }
+    .failed, .error{
+        background: rgba(255, 0, 0, 0.29);
+
+    }
+    .col-integration{
+        font-weight:bold;
+    }
+    nowrap {
+        white-space: nowrap;
+    }
+    a {
+        color:black;
+        text-decoration: underline;
+    }
+</style>
+
+<?php
+
+$daysForSummary = max(@$_GET['days'],1);
+$days = [1,5,10,100];?>
+
+<?php $data = $block->summary->getData(@$_GET['days'])?>
+
+
+
+
+<table>
+    <tr>
+        <td>
+            <form method="GET">
+                <br/>
+                <label>Select data for last:
+                    <select name="days" onchange="this.form.submit()" style="width: 200px">
+                        <?php foreach($days as $day):?>
+                            <option <?php if($day == $daysForSummary) echo 'selected';?> value="<?php echo $day?>"><?php echo $day?> day(s)</option>
+                        <?php endforeach;?>
+                    </select>
+                </label>
+            </form>
+        </td>
+        <td>
+            <form target="_blank" method="POST" id="form" enctype="multipart/form-data">
+                <input id="action" hidden value="<?php echo $data['url']?>mrimport/remote/execute" type="text" style="width:500px" /> <br/>
+                <input type="file" name="mr_import_file"/><br/>
+                <input type="submit" onclick="document.getElementById('form').action = document.getElementById('action').value; setTimeout(function() { document.location.reload()},500)">
+            </form>
+
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+<table>
+    <thead>
+    <tr>
+        <th>File</th>
+        <th>Date</th>
+        <th>Type</th>
+        <th>Status</th>
+        <th width="100%">Message</th>
+        <th>Log</th>
+        <th>Resend</th>
+
+    </tr>
+    </thead>
+<tbody>
+<?php foreach($data['history'] as $log):?>
+<tr class="<?php echo $log['status']?>">
+    <td><nowrap><?php echo $log['date']?></nowrap></td>
+    <td><?php echo $log['type']?></td>
+    <td><a target="_blank" href="<?php echo $data['url']."pub/mr_import/data/".$log['path_to_file']?>"><?php echo $log['file_name']?></a></td>
+    <td><?php echo $log['status']?></td>
+    <td><?php echo nl2br(substr($log['message'],0,255))?></td>
+    <td><nowrap><a href="<?php echo $data['url']."pub/mr_import/data/".$log['path_to_file'].".log"?>" target="_blank"><?php echo $log['path_to_file']?>.log</a></nowrap></td>
+    <td>
+        <a href="#">Resend</a>
+    </td>
+</tr>
+<?php endforeach;?>
+</tbody>
+</table>

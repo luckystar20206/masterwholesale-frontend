@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_osc">
+        <observer name="osc_config_observer" instance="Mageplaza\Osc\Observer\OscConfigObserver"/>
+    </event>
+    <event name="mporderattributes_attribute_save">
+        <observer name="osc_add_order_attribute" instance="Mageplaza\Osc\Observer\AfterAttributeCreate"/>
+    </event>
+    <event name="mporderattributes_attribute_delete">
+        <observer name="osc_remove_order_attribute" instance="Mageplaza\Osc\Observer\AfterAttributeDelete"/>
+    </event>
+    <event name="mageplaza_customer_address_attribute_save">
+        <observer name="osc_add_customer_attribute" instance="Mageplaza\Osc\Observer\AfterAttributeCreate"/>
+    </event>
+    <event name="mageplaza_customer_address_attribute_delete">
+        <observer name="osc_remove_customer_attribute" instance="Mageplaza\Osc\Observer\AfterAttributeDelete"/>
+    </event>
+</config>

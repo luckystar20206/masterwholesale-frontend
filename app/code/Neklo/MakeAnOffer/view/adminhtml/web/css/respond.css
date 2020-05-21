@@ -1,0 +1,49 @@
+.admin__fieldset > .admin__field {
+    margin: 5px 0;
+}
+
+.admin__field-label {
+    text-align: left;
+}
+
+.admin__fieldset > .admin__field.admin__field_buttons {
+    margin-top: 20px;
+}
+
+.admin__button {
+    background-color: gray;
+    color: #fff;
+    border: 1px solid transparent;
+    font-size: 14px;
+    padding: 10px 25px;
+    margin-right: 10px;
+}
+
+.admin__button:last-child {
+    margin-right: 0;
+}
+
+.admin__button_accept {
+    background-color: green;
+}
+
+.admin__button_accept:hover {
+    background-color: #006f00;
+}
+
+.admin__button_decline {
+    background-color: red;
+}
+
+.admin__button_decline:hover {
+    background-color: #e00;
+}
+
+.admin__button_back {
+    background-color: #787878;
+}
+
+.admin__button_back:hover {
+    background-color: #6f6f6f;
+    color: #fff;
+}

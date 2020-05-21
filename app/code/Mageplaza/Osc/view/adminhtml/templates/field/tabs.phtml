@@ -1,0 +1,61 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Adminhtml\Field\Tabs $block */
+
+use Mageplaza\Osc\Block\Adminhtml\Field;
+
+?>
+
+<div id="position-save-messages" class="messages"></div>
+
+<div id="mposc-field-tabs" class="row">
+    <a class="button action-default col-m-3" href="#<?= $block->escapeQuote(Field\Address::BLOCK_ID) ?>">
+        <i class="fa fa-home"></i>
+        <span><?= $block->escapeHtml(__('Address Information')) ?></span>
+    </a>
+    <a class="button action-default col-m-3" href="#<?= $block->escapeQuote(Field\Shipping::BLOCK_ID) ?>">
+        <i class="fa fa-truck"></i>
+        <span><?= $block->escapeHtml(__('Shipping Method')) ?></span>
+    </a>
+    <a class="button action-default col-m-3" href="#<?= $block->escapeQuote(Field\Payment::BLOCK_ID) ?>">
+        <i class="far fa-credit-card"></i>
+        <span><?= $block->escapeHtml(__('Payment Method')) ?></span>
+    </a>
+    <a class="button action-default col-m-3" href="#<?= $block->escapeQuote(Field\Order::BLOCK_ID) ?>">
+        <i class="fa fa-check-square"></i>
+        <span><?= $block->escapeHtml(__('Order Summary')) ?></span>
+    </a>
+</div>
+
+<div id="field-position-sortable">
+    <?= $block->getChildHtml() ?>
+</div>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Mageplaza_Osc/js/view/field-tabs": {
+            "url": "<?= $block->escapeUrl($block->getAjaxUrl()) ?>"
+        }
+    }
+}
+</script>

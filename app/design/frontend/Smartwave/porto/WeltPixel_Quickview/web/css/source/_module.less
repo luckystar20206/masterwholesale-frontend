@@ -1,0 +1,71 @@
+.weltpixel-quickview-catalog-product-view {
+  .box-tocart .action.tocart { width: 100%; }
+  .page-wrapper .page-main {margin: 20px 0;}
+  .reviews-actions .add {display: none;}
+}
+.box-gotoproduct #product-gotoproduct-button {width: 100%; padding: 7px 20px; font-size: 14px; text-align: center; min-width: 150px; }
+.product-item .weltpixel-quickview {display: none}
+.products-grid .product-item .product-item-info { position: relative; }
+.products-grid .product-item .product-item-details { position: static !important; }
+.side-list .product-item .weltpixel-quickview {
+    display: none !important;
+}
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+
+  .weltpixel-quickview-catalog-product-view {
+    &.catalog-product-view .breadcrumbs,
+    &.catalog-product-view .columns,
+    &.catalog-product-view .page.messages,
+    &.catalog-product-view .page-title-wrapper {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .products-grid .product-item {
+    position: relative;
+      .product-item-inner {margin: 9px -9px 0 -10px;}
+      .product-item-details {position: relative;}
+      .product-item-info {
+        .weltpixel-quickview.weltpixel_quickview_button_v1 span {padding: 18px; display: block;}
+        &:hover {
+          .weltpixel-quickview.weltpixel_quickview_button_v1 {
+            display: block;
+            position: absolute;
+            top: -66px;
+            z-index: 9;
+            width: 100%;
+            text-align: center;
+            color: #555;
+            background: rgba(255,255,255,0.7);
+            font-size: 14px;
+            text-decoration: none;
+          }
+          .weltpixel-quickview.weltpixel_quickview_button_v2 {
+            display: block;
+            z-index: 9;
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            background-color: #08c;
+            color: #fff;
+            padding: 10px;
+            z-index: 9;
+            border-radius: 0 5px;
+            transition: 0.1s all;
+            font-size: 12px;
+            line-height: 1.4;
+            &:hover {
+                opacity: 0.9;
+            }
+            .porto-icon-eye {
+                margin-right: 3px;
+            }
+          }
+        }
+      }
+  }
+}

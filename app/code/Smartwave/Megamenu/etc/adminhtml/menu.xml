@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Smartwave_Megamenu::megamenu" title="Mega Menu" module="Smartwave_Megamenu" sortOrder="505" parent="Smartwave_Core::sw_all" resource="Smartwave_Core::all"/>
+        <add id="Smartwave_Megamenu::configration" title="Configuration" module="Smartwave_Megamenu" sortOrder="10" parent="Smartwave_Megamenu::megamenu" action="adminhtml/system_config/edit/section/sw_megamenu" resource="Smartwave_Megamenu::config_megamenu"/>
+    </menu>
+</config>

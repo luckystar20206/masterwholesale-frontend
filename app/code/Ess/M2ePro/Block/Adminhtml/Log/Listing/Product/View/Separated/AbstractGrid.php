@@ -1,0 +1,40 @@
+<?php
+
+/*
+ * @author     M2E Pro Developers Team
+ * @copyright  M2E LTD
+ * @license    Commercial use is forbidden
+ */
+
+namespace Ess\M2ePro\Block\Adminhtml\Log\Listing\Product\View\Separated;
+
+use Ess\M2ePro\Block\Adminhtml\Log\Listing\View;
+
+/**
+ * Class AbstractGrid
+ * @package Ess\M2ePro\Block\Adminhtml\Log\Listing\Product\View\Separated
+ */
+abstract class AbstractGrid extends \Ess\M2ePro\Block\Adminhtml\Log\Listing\Product\AbstractGrid
+{
+    //########################################
+
+    protected function getViewMode()
+    {
+        return View\Switcher::VIEW_MODE_SEPARATED;
+    }
+
+    // ---------------------------------------
+
+    protected function _prepareCollection()
+    {
+        $collection = $this->activeRecordFactory->getObject('Listing\Log')->getCollection();
+
+        $this->applyFilters($collection);
+
+        $this->setCollection($collection);
+
+        return parent::_prepareCollection();
+    }
+
+    //########################################
+}

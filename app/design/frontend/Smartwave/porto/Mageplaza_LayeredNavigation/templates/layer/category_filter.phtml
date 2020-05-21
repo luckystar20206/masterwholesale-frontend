@@ -1,0 +1,39 @@
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$category = $objectManager->get('Magento\Framework\Registry')->registry('current_category'); //Get Current Category
+?>
+<?php if($category): ?>
+<?php 
+$subcats = $category->getChildrenCategories();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+    if(count($subcats)>0){
+?>
+<div class="block-category-list">
+    <div class="block-title">
+        <strong><?php echo $category->getName() ?></strong>
+    </div>
+    <div class="block-content">
+        <ol class="items">
+        <?php
+        foreach($subcats as $subcat){ 
+        ?>
+            <li class="item">
+                <a href="<?php echo $subcat->getUrl() ?>"><?php echo $subcat->getName() ?></a>
+            </li>
+        <?php
+            }
+        ?>
+        </ol>
+    </div>
+    <script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $("#layered-filter-block").before($(".block.block-category-list"));
+    });
+    </script>
+</div>
+<?php
+    }
+?>
+<?php endif; ?>

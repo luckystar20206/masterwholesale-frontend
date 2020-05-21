@@ -1,0 +1,36 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Checkout\CompatibleConfig $block */
+
+if ($block->isEnableModulePostNL()) : ?>
+    <script type="text/javascript">
+        require.config({
+            config: {
+                mixins: {
+                    'Mageplaza_Osc/js/view/shipping': {
+                        'Mageplaza_Osc/js/view/shipping-postnl': true
+                    }
+                }
+            }
+        })
+    </script>
+<?php endif; ?>

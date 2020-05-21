@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Smartwave_Dailydeals::dailydeals" title="Dailydeals" module="Smartwave_Dailydeals" sortOrder="605" parent="Smartwave_Core::sw_all" resource="Smartwave_Core::all"/>
+        <add id="Smartwave_Dailydeals::configration" title="Configuration" module="Smartwave_Dailydeals" sortOrder="10" parent="Smartwave_Dailydeals::dailydeals" action="adminhtml/system_config/edit/section/sw_dailydeal" resource="Smartwave_Dailydeals::config_dailydeals"/>
+        <add id="Smartwave_Dailydeals::dailydeal" title="Dailydeals" module="Smartwave_Dailydeals" sortOrder="20" action="sw_dailydeals/dailydeal" resource="Smartwave_Dailydeals::dailydeal" parent="Smartwave_Dailydeals::dailydeals"/>
+    </menu>
+</config>

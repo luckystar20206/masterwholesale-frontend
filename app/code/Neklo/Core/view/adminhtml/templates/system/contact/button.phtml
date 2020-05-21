@@ -1,0 +1,42 @@
+<?php /** @var $block \Neklo\Core\Block\System\Contact\Send\Button */ ?>
+<?php echo $block->getButtonHtml(); ?>
+<div class="neklo_core_message contact"></div>
+<script>
+    require([
+        "jquery",
+        "neklocore/contact",
+        "underscore",
+    ], function ($, NekloCoreContact, __) {
+
+        new NekloCoreContact({
+            'sendUrl': '<?php echo $block->getUrl('neklo_core/contact/send'); ?>',
+
+            'successMessage': [
+                '<?php echo $block->escapeJsQuote(__("Thank you for your request.")); ?>',
+                '<?php echo $block->escapeJsQuote(__("We'll respond as soon as possible.")); ?>',
+                '<?php echo $block->escapeJsQuote(__("We'll send copy of your request to your email.")); ?>'
+            ],
+            'errorMessage': [
+                '<?php echo $block->escapeJsQuote(__('Oops! Something went wrong!')); ?>'
+            ],
+
+            'successMessageClass': 'success',
+            'errorMessageClass': 'error',
+
+            'formContainerId': '<?php echo $block->getContainerId(); ?>',
+            'formElementSelectorList': {
+                'name': ['required-entry'],
+                'email': ['required-entry', 'validate-email'],
+                'subject': ['required-entry'],
+                'reason': ['required-entry'],
+                'other_reason': ['required-entry'],
+                'message': ['required-entry']
+            },
+
+            'sendButtonId': 'neklo_core_contact_send',
+            'loadingMaskId': 'loading-mask',
+            'messageContainerSelector': '.neklo_core_message.contact'
+        });
+
+    });
+</script>

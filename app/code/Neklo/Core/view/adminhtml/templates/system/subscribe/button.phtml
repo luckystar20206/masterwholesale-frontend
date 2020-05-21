@@ -1,0 +1,33 @@
+<?php /** @var $block \Neklo\Core\Block\System\Newsletter\Subscribe\Button */ ?>
+<?php echo $block->getButtonHtml(); ?>
+<div class="neklo_core_message subscribe"></div>
+
+<script>
+    require([
+        "jquery",
+        "neklocore/subscribe",
+        "underscore"
+    ], function ($, NekloCoreSubscribe, __) {
+
+        new NekloCoreSubscribe({
+            'subscribeUrl': '<?php echo $block->getUrl('neklo_core/newsletter/subscribe'); ?>',
+
+            'successMessage': '<?php echo $block->escapeJsQuote(__('Successfully subscribed')); ?>',
+            'errorMessage': '<?php echo $block->escapeJsQuote(__('Oops! Something went wrong!')); ?>',
+
+            'successMessageClass': 'success',
+            'errorMessageClass': 'error',
+
+            'formContainerId': '<?php echo $block->getContainerId(); ?>',
+            'formElementSelectorList': {
+                'name': ['required-entry'],
+                'email': ['required-entry', 'validate-email']
+            },
+
+            'subscribeButtonId': 'neklo_core_subscribe',
+            'loadingMaskId': 'loading-mask',
+            'messageContainerSelector': '.neklo_core_message.subscribe'
+        });
+
+    });
+</script>

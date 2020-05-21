@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!--<event name="catalog_product_prepare_save">-->
+        <!--<observer name="modernretail_attributes_copy_observer" instance="ModernRetail\CopyAttributes\Observer\PrepareProductSave"  />-->
+    <!--</event>-->
+
+    <event name="catalog_product_save_before">
+        <observer name="modernretail_catalog_product_save_before" instance="ModernRetail\CopyAttributes\Observer\ProductSaveBefore"  />
+        <observer name="modernretail_cataloginventory_stock_item_save_before" instance="ModernRetail\CopyAttributes\Observer\BeforeInventorySave"  />
+    </event>
+
+
+
+    <event name="catalog_product_save_after">
+        <observer name="modernretail_cataloginventory_stock_item_save_after" instance="ModernRetail\CopyAttributes\Observer\AfterInventorySave"  />
+    </event>
+
+
+    <event name="modernretail_import_product">
+        <observer name="modernretail_cataloginventory_after_integrator_save_product" instance="ModernRetail\CopyAttributes\Observer\AfterIntegratorSaveProduct"  />
+    </event>
+
+</config>

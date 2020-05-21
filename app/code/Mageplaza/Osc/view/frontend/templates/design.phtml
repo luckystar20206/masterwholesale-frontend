@@ -1,0 +1,1038 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Design $block */
+$design = $block->getDesignConfiguration();
+$headingBackground = '#' . trim($design['heading_background'], '#');
+$headingText = '#' . trim($design['heading_text'], '#');
+$placeOrder = '#' . trim($design['place_order_button'], '#');
+?>
+<?php if ($block->isEnableGoogleApi() && $block->getGoogleApiKey()) : ?>
+    <script type="text/javascript"
+            src="//maps.googleapis.com/maps/api/js?key=<?= $block->getGoogleApiKey() ?>&libraries=places"></script>
+<?php endif; ?>
+
+<style type="text/css">
+    /*===================================================================
+    |                            CONFIGUARATION STYLE                    |
+    ====================================================================*/
+    <?php if (in_array($design['page_layout'], ['2columns', '2columns-floating'])) { ?>
+    .col-mp.osc-addition-content-wrapper, .col-mp.osc-place-order-wrapper {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    <?php } ?>
+    <?php switch ($design['page_design']) :
+        ?><?php case 'flat':
+    ?>
+    .checkout-container a.button-action,
+    .popup-authentication button.action,
+    .popup-gift-message-item button.action,
+    .checkout-container button:not(.primary):not(.action-show):not(.action-close):not(.edit-address-link):not(.ui-datepicker-trigger) {
+        background-color: <?= $headingBackground ?> !important;
+        border-color: <?= $headingBackground ?> !important;
+        box-shadow: none !important;
+        color: #FFFFFF !important;
+    }
+
+    .gift-message-item-content .fa-gift {
+        color: <?= $headingBackground ?> !important;
+    }
+
+    .step-title {
+        background-color: <?= $headingBackground ?>;
+        padding: 12px 10px 12px 12px !important;
+        font-weight: bold !important;
+        font-size: 16px !important;
+        color: <?= $headingText ?> !important;
+        text-transform: uppercase;
+        line-height: 1.1;
+    }
+
+    .step-title .fa {
+        display: inline-block !important;
+        font-size: 24px;
+        margin-right: 12px;
+        vertical-align: text-bottom;
+    }
+
+    .one-step-checkout-container .osc-geolocation {
+        color: <?= $headingBackground ?>;
+    }
+    <?php
+                  break; ?>
+        <?php case 'material':
+            ?>
+
+    .field.street .field:first-child .label {
+        width: 100%;
+        height: 100%;
+        clip: unset;
+    }
+
+    /*  Get material color from config */
+            <?php $color = $design['material_color'] ?>
+
+            <?php switch ($design['page_layout']) {
+                ?><?php case '1column':
+    ?>
+    .opc-wrapper .form-login, .opc-wrapper .form-shipping-address {
+        max-width: 100% !important;
+    }
+
+    #checkoutSteps .row-mp > .hoverable {
+        padding-bottom: 25px;
+        margin-top: 25px
+    }
+
+    #opc-sidebar .order-summary.hoverable {
+        margin-top: 25px !important;
+    }
+
+    .checkout-agreements-block {
+        margin-bottom: 20px !important;
+    }
+
+    .osc-place-order-block .payment-option-inner .control {
+        width: 100% !important;
+    }
+
+    <?php if ($block->isVirtual()) { ?>
+    div[data-bind="scope: 'checkout.steps.shipping-step'"] {
+        display: none
+    }
+
+    @media only screen and (max-width: 1024px) {
+        div[data-bind="scope: 'checkout.sidebar'"] {
+            margin-top: 0px !important;
+        }
+    }
+    <?php }?>
+    <?php
+                          break; ?>
+
+                <?php case '2columns':
+                    ?>
+                    <?php case '2columns-floating':
+                        ?>
+    .opc-wrapper .form-login, .opc-wrapper .form-shipping-address {
+        max-width: 100% !important;
+    }
+
+    .checkout-agreements-block {
+        margin-bottom: 20px !important;
+    }
+
+    .osc-place-order-block .payment-option-inner .control {
+        width: 100% !important;
+    }
+
+    @media (min-width: 768px), print {
+        div[data-bind="scope: 'checkout.steps.billing-step'"] {
+            margin-top: 0 !important;
+        }
+
+        .one-step-checkout-container > .mp-6 {
+            width: 46% !important;
+            margin: 0px 14px;
+        }
+
+        div[data-bind="scope: 'checkout.sidebar'"], div[data-bind="scope: 'checkout.steps.shipping-step'"] {
+            margin-top: 35px;
+        }
+    }
+
+                        <?php if ($block->isVirtual()) : ?>
+    @media only screen and (max-width: 766px) {
+        div[data-bind="scope: 'checkout.steps.shipping-step'"] {
+            margin-top: 0px !important;
+        }
+    }
+                        <?php endif ?>
+                        <?php
+                          break; ?>
+
+                <?php case '3columns':
+                    ?>
+                    <?php if ($block->isVirtual()) : ?>
+        div[data-bind="scope: 'checkout.steps.billing-step'"] {
+            margin-top: 0px !important;
+        }
+                    <?php endif ?>
+                    <?php
+                          break; ?>
+
+                <?php case '3columns-colspan':
+                    ?>
+        @media (min-width: 1024px), print {
+            div[data-bind="scope: 'checkout.sidebar'"] {
+                margin-top: 30px;
+            }
+
+            .hoverable.only-colspan {
+                width: 45%;
+                margin-left: 15px;
+            }
+        }
+
+        @media only screen and (max-width: 766px) {
+            .hoverable.only-colspan {
+                margin-top: 25px
+            }
+        }
+
+        .checkout-agreements-block {
+            margin-bottom: 20px !important;
+        }
+
+                    <?php if ($block->isVirtual()) : ?>
+        @media (min-width: 1024px), print {
+            .hoverable.only-colspan {
+                width: 100% !important;;
+                margin-left: initial;
+            }
+        }
+
+        @media only screen and (max-width: 766px) {
+            div[data-bind="scope: 'checkout.steps.shipping-step'"] {
+                margin-top: 0px !important;
+            }
+        }
+                    <?php endif ?>
+                    <?php
+                          break; ?>
+
+            <?php } ?>
+
+    /* icon */
+    .fa-stack.fa-2x > i, .fa.fa-gift.fa-2x, .fa.fa-check-circle {
+        color: <?= $color ?>
+    }
+
+    .fa.fa-check-circle {
+        display: initial;
+        margin-left: 10px;
+        font-size: 1.3em;
+    }
+
+    .fa-stack.fa-2x {
+        font-size: 0.7em;
+    }
+
+    .fa-stack.fa-2x > i {
+        display: block;
+    }
+
+    /* popup*/
+    .popup-authentication .block-authentication .messages {
+        margin-bottom: 25px !important;
+    }
+
+    /* address */
+    ._keyfocus *:focus, input:not([disabled]):focus, textarea:not([disabled]):focus, select:not([disabled]):focus {
+        box-shadow: none;
+    }
+
+    .required-entry {
+        color: #e02b27;
+        font-size: 1.2rem
+    }
+
+    fieldset.street.required legend.label {
+        display: none
+    }
+
+    .field .control.input-field .label {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        -webkit-transition: 0.2s ease;
+        transition: 0.2s ease;
+        pointer-events: none;
+    }
+
+    .input-field input:focus ~ label, .input-field input.active ~ label {
+        color: #9d9d9d;
+        -webkit-transform: transform: translate(-9%, -55%) scale(0.85);
+        transform: translate(-9%, -55%) scale(0.85);
+        top: 5px;
+        top: -9px !important;
+        left: 0 !important;
+    }
+
+    .input-field input:valid ~ label {
+        color: #9d9d9d;
+        -webkit-transform: transform: translate(-9%, -55%) scale(0.85);
+        transform: translate(-9%, -55%) scale(0.85);
+        top: 5px;
+        top: -9px !important;
+        left: 0 !important;
+    }
+
+    .field._error .control input, .field._error .control select, .field._error .control textarea {
+        border-color: #ccc;
+    }
+
+    div[name='shippingAddress.country_id'] .label, div[name='shippingAddress.region_id'] .label, div[name='billingAddress.country_id'] .label, div[name='billingAddress.region_id'] .label {
+        top: -15px !important;
+        transform: translate(-6%, -28%) scale(0.85);
+        margin-left: 10px;
+        left: 0 !important;
+        color: #9d9d9d;
+    }
+
+    div[name='shippingAddress.country_id'], div[name='shippingAddress.city'], div[name='shippingAddress.postcode'], div[name='shippingAddress.region'], div[name='shippingAddress.region_id'], div[name='shippingAddress.company'], div[name='shippingAddress.telephone'], div[name='billingAddress.country_id'], div[name='billingAddress.city'], div[name='billingAddress.postcode'], div[name='billingAddress.region'], div[name='billingAddress.region_id'], div[name='billingAddress.company'], div[name='billingAddress.telephone'] {
+        margin-top: 10px !important;
+    }
+
+    .modal-content #opc-new-shipping-address {
+        margin-top: 25px
+    }
+
+    .one-step-checkout-wrapper select, .modal-popup select {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        margin-top: 5px;
+    }
+
+    #checkout-step-billing > .field.field-select-billing {
+        margin-bottom: 35px;
+    }
+
+    .row-mp > div[data-bind="scope: 'checkout.steps.billing-step'"] {
+        margin-top: 25px;
+    }
+
+    fieldset#billing-new-address-form > .choice.field {
+        clear: both
+    }
+
+    #create-account-form {
+        padding-top: 20px;
+    }
+
+    /*payment */
+    #payment .step-title {
+        border-bottom: 1px solid #ccc;
+    }
+
+    /* summary */
+    div[data-bind="scope: 'checkout.sidebar'"] {
+        padding: 0;
+    }
+
+    .mp-4 .opc-block-summary {
+        padding: 0 0px !important;
+    }
+
+    .opc-block-summary .table-totals {
+        border: none;
+        border-top: none !important;
+    }
+
+    #checkout-review-table {
+        border: none
+    }
+
+    .field .control.input-field {
+        position: relative;
+    }
+
+    .gift-options-content textarea {
+        border-bottom: 1px solid #ccc !important;
+        border: none;
+    }
+
+    .osc-place-order-block .payment-option-inner .control {
+        width: 58%;
+        float: left;
+        margin-right: 5px;
+    }
+
+    .order-summary.hoverable {
+        margin-top: -9px;
+        padding-top: 1px;
+    }
+
+    .order-summary.hoverable .step-title {
+        padding-top: 0px;
+    }
+
+    .opc-block-summary .table-totals, table#checkout-review-table {
+        background: #f0f0f0;
+    }
+
+    tr.grand.totals, tr.grand.totals .mark {
+        background: #e1e1e1 !important;
+    }
+
+    .mark {
+        background: #f0f0f0;
+    }
+
+    .order-summary.hoverable .opc-block-summary.step-content {
+        padding: 0;
+    }
+
+    .order-summary.hoverable .opc-block-summary.step-content .block.items-in-cart {
+        padding: 0 10px;
+    }
+
+    #checkout-review-table thead th {
+        text-align: center;
+    }
+
+    .qty-wrapper .qty-wrap .input-text.update {
+        border: 1px solid;
+        height: 22px;
+    }
+
+    .osc-place-order-block {
+        border: none;
+        padding: 0 !important;
+    }
+
+    .osc-place-order-block .choice {
+        padding: 0
+    }
+
+    .checkout-agreements-block {
+        margin-bottom: 20px !important;
+    }
+
+    .product-item-name-block a:hover {
+        text-decoration: underline;
+    }
+
+    /* Check width devices */
+    @media only screen and (max-width: 1024px) {
+        #checkout-step-shipping_method > .co-shipping-method-form {
+            margin: 0;
+            padding: 0
+        }
+
+        .osc-place-order-block .payment-option-inner .control {
+            width: 100%;
+            float: left;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            border-bottom: none;
+        }
+
+        #create-account-form .osc-password, #create-account-form .confirmation {
+            padding: 0 6px
+        }
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+        .mp-sm-6 {
+            width: 46% !important;
+            margin: 0px 14px;
+        }
+
+        div[data-bind="scope: 'checkout.sidebar'"] {
+            margin-top: 30px;
+            float: right;
+        }
+    }
+
+    @media only screen and (max-width: 766px) {
+        div[data-bind="scope: 'checkout.sidebar'"], div[data-bind="scope: 'checkout.steps.shipping-step'"], div[data-bind="scope: 'checkout.steps.billing-step'"] {
+            margin-top: 25px;
+        }
+
+        form#co-shipping-method-form {
+            padding: 0;
+            margin: 0;
+        }
+
+        .one-step-checkout-wrapper .step-title {
+            font-size: 2.6rem;
+        }
+
+        .opc-wrapper .form-login, .opc-wrapper .form-shipping-address, .opc-wrapper .methods-shipping {
+            background: none !important;
+        }
+
+        #payment .step-title {
+            border-bottom: none;
+        }
+
+        input[type="text"], input[type="password"] {
+            border-bottom: none;
+        }
+
+        form#create-account-form .confirmation {
+            margin-top: 20px
+        }
+    }
+
+    /* hoverable box  */
+    .opc-wrapper .step-title, #opc-sidebar .order-summary.hoverable .step-title {
+        padding-top: 10px;
+    }
+
+    @media (min-width: 1020px) {
+        .mp-4 {
+            width: 30.3333333333% !important;
+            margin: 0px 13px !important;
+        }
+
+        #maincontent {
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    }
+
+    .one-step-checkout-wrapper .hoverable:hover {
+        transition: box-shadow .25s;
+        box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+    }
+
+    .one-step-checkout-wrapper .hoverable {
+        transition: box-shadow .25s;
+        box-shadow: 0;
+    }
+
+    .one-step-checkout-wrapper .hoverable {
+        transition: box-shadow .25s;
+        box-shadow: 0;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.10), 0 1px 5px rgba(0, 0, 0, 0.30);
+        transition: all .3s ease-in-out;
+    }
+
+    #opc-sidebar .order-summary.hoverable, #opc-sidebar .order-summary.hoverable .step-title {
+        margin-top: 0px;
+        background: #f0f0f0;
+    }
+
+    /* input type text,password */
+    input[type="text"], input[type="password"], input[type="email"] {
+        display: block;
+        width: 100%;
+        color: #555;
+        height: 38px;
+        padding: 7px 0;
+        font-size: 16px;
+        line-height: 1.42857143;
+        margin-bottom: 7px;
+        border: 0;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(<?= $color ?>), to(<?= $color ?>)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+        background-image: -webkit-linear-gradient(<?= $color ?>, <?= $color ?>), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
+        background-image: -o-linear-gradient(<?= $color ?>, <?= $color ?>), -o-linear-gradient(#D2D2D2, #D2D2D2);
+        background-image: linear-gradient(<?= $color ?>, <?= $color ?>), linear-gradient(#D2D2D2, #D2D2D2);
+        -webkit-background-size: 0 2px, 100% 1px;
+        background-size: 0 2px, 100% 1px;
+        background-repeat: no-repeat;
+        background-position: center bottom, center -webkit-calc(100% - 1px);
+        background-position: center bottom, center calc(100% - 1px);
+        background-color: rgba(0, 0, 0, 0);
+        -webkit-transition: background 0s ease-out;
+        -o-transition: background 0s ease-out;
+        transition: background 0s ease-out;
+        float: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+        outline: none;
+        background-image: -webkit-gradient(linear, left top, left bottom, from( <?= $color ?> ), to(<?= $color ?>)), -webkit-gradient(linear, left top, left bottom, from(#D2D2D2), to(#D2D2D2));
+        background-image: -webkit-linear-gradient(<?= $color ?>, <?= $color ?>), -webkit-linear-gradient(#D2D2D2, #D2D2D2);
+        background-image: -o-linear-gradient(<?= $color ?>, <?= $color ?>), -o-linear-gradient(#D2D2D2, #D2D2D2);
+        background-image: linear-gradient(<?= $color ?>, <?= $color ?>), linear-gradient(#D2D2D2, #D2D2D2);
+        -webkit-background-size: 100% 2px, 100% 1px;
+        background-size: 100% 2px, 100% 1px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        -webkit-transition-duration: 0.3s;
+        -o-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+    }
+
+    /* radio button - default */
+    input[type=checkbox], .one-step-checkout-wrapper input[type=radio] {
+        box-sizing: border-box;
+        padding: 0
+    }
+
+    [type=radio]:checked, .one-step-checkout-wrapper [type=radio]:not(:checked) {
+        position: absolute;
+        left: -9999px;
+        opacity: 0
+    }
+
+    [type=radio]:checked + label, .one-step-checkout-wrapper [type=radio]:not(:checked) + label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        display: inline-block;
+        height: 25px;
+        line-height: 25px; /*font-size:1rem;*/
+        transition: .28s ease;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none
+    }
+
+    [type=radio].with-gap:checked + label:after, .one-step-checkout-wrapper [type=radio].with-gap:checked + label:before, .one-step-checkout-wrapper [type=radio]:checked + label:after {
+        border: 2px solid<?= $color ?>
+    }
+
+    [type=radio].with-gap:checked + label:after, .one-step-checkout-wrapper [type=radio].with-gap:checked + label:before, .one-step-checkout-wrapper [type=radio]:checked + label:after, .one-step-checkout-wrapper [type=radio]:checked + label:before, .one-step-checkout-wrapper [type=radio]:not(:checked) + label:after, .one-step-checkout-wrapper [type=radio]:not(:checked) + label:before {
+        border-radius: 50%
+    }
+
+    [type=radio]:checked + label:before {
+        border: 2px solid transparent
+    }
+
+    [type=radio] + label:after, .one-step-checkout-wrapper [type=radio] + label:before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 3px;
+        width: 13px;
+        height: 13px;
+        z-index: 0;
+        transition: .28s ease
+    }
+
+    [type=radio].with-gap:checked + label:after {
+        -webkit-transform: scale(.5);
+        transform: scale(.5)
+    }
+
+    [type=radio].with-gap:checked + label:after, .one-step-checkout-wrapper [type=radio]:checked + label:after {
+        background-color: <?= $color ?>
+    }
+
+    [type=radio]:checked + label:after {
+        -webkit-transform: scale(1.02);
+        transform: scale(1.02)
+    }
+
+    [type=radio]:not(:checked) + label:after, .one-step-checkout-wrapper [type=radio]:not(:checked) + label:before {
+        border: 2px solid #5a5a5a;
+    }
+
+    [type=radio]:not(:checked) + label:after {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    /* radio button - width-wrap */
+            <?php if ($design['radio_button_style'] == 'with_gap') { ?>
+    [type=radio]:checked + label:after {
+        -webkit-transform: scale(.5);
+        transform: scale(.5);
+    }
+
+    [type=radio]:checked + label:after, .one-step-checkout-wrapper [type=radio]:checked + label:before, .one-step-checkout-wrapper [type=radio]:checked + label:after {
+        border: 2px solid<?= $color ?>;
+    }
+
+            <?php } ?>
+
+    /* checkbox button - default */
+    [type=checkbox]:checked,
+    .mposc-product-modal [type=checkbox]:not(:checked),
+    .one-step-checkout-wrapper [type=checkbox]:not(:checked),
+    #opc-new-shipping-address [type=checkbox]:not(:checked) {
+        position: absolute;
+        opacity: 0;
+        z-index: 999;
+    }
+
+    .fieldset > .field.downloads .field.choice {
+        padding-left: 0;
+    }
+
+    .one-step-checkout-wrapper .payment-method-content input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+
+            <?php if ($design['checkbox_button_style'] == 'default') { ?>
+    [type=checkbox] + label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        display: inline-block;
+        height: 25px;
+        line-height: 25px; /*font-size:1rem*/
+    }
+
+    [type=checkbox] + label:before, .one-step-checkout-wrapper [type=checkbox]:not(.filled-in) + label:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 14px;
+        height: 14px;
+        z-index: 0;
+        border: 2px solid #5a5a5a;
+        border-radius: 1px;
+        margin-top: 2px;
+        transition: .2s
+    }
+
+    [type=checkbox]:not(.filled-in) + label:after {
+        border: 0;
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+
+    [type="checkbox"]:checked + label:before {
+        top: -4px;
+        left: -5px;
+        width: 10px;
+        height: 20px;
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid<?= $color ?>;
+        border-bottom: 2px solid<?= $color ?>;
+        transform: rotate(40deg);
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transform-origin: 100% 100%;
+        transform-origin: 100% 100%
+    }
+
+            <?php } elseif ($design['checkbox_button_style'] == 'filled_in') {?>
+    /* checkbox button - filled_in */
+    [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: absolute;
+        box-sizing: border-box;
+        z-index: 999;
+        opacity: 0
+    }
+
+    [type="checkbox"] + label {
+        position: relative;
+        padding-left: 35px;
+        cursor: pointer;
+        display: inline-block;
+        height: 25px;
+        line-height: 25px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -ms-user-select: none;
+    }
+
+    [type="checkbox"]:checked + label:before {
+        top: 0;
+        left: 1px;
+        width: 8px;
+        height: 13px;
+        border-top: 2px solid transparent;
+        border-left: 2px solid transparent;
+        border-right: 2px solid #fff;
+        border-bottom: 2px solid #fff;
+        -webkit-transform: rotateZ(37deg);
+        transform: rotateZ(37deg);
+        -webkit-transform-origin: 100% 100%;
+        transform-origin: 100% 100%;
+        z-index: 99;
+    }
+
+    [type="checkbox"] + label:before, [type="checkbox"] + label:after {
+        content: '';
+        left: 0;
+        position: absolute;
+        transition: border .25s, background-color .25s, width .2s .1s, height .2s .1s, top .2s .1s, left .2s .1s;
+        box-sizing: border-box;
+    }
+
+    [type="checkbox"] + label:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 18px;
+        height: 18px;
+        z-index: 0;
+        border: 2px solid #5a5a5a;
+        border-radius: 1px;
+        margin-top: 2px;
+        -webkit-transition: 0.2s;
+        -moz-transition: 0.2s;
+        -o-transition: 0.2s;
+        -ms-transition: 0.2s;
+        transition: 0.2s;
+    }
+
+    [type="checkbox"]:not(:checked) + label:before {
+        width: 0;
+        height: 0;
+        border: 3px solid transparent;
+        left: 6px;
+        top: 10px;
+        -webkit-transform: rotateZ(37deg);
+        transform: rotateZ(37deg);
+        -webkit-transform-origin: 20% 40%;
+        transform-origin: 100% 100%;
+    }
+
+    [type="checkbox"]:not(:checked) + label:after {
+        height: 20px;
+        width: 20px;
+        background-color: transparent;
+        border: 2px solid #5a5a5a;
+        top: 0px;
+        z-index: 0;
+    }
+
+    [type="checkbox"]:checked + label:after {
+        top: 0px;
+        width: 20px;
+        height: 20px;
+        border: 2px solid<?= $color ?>;
+        background-color: <?= $color ?>;
+        z-index: 0;
+    }
+
+            <?php } ?>
+
+    /* ripple affect css*/
+    button {
+        border: 0;
+        outline: 0;
+        border-radius: 0.15em;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+    }
+
+    button .ripple {
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.7);
+        position: absolute;
+        transform: scale(0);
+        animation: ripple 0.8s linear;
+        opacity: 0.4;
+    }
+
+    @keyframes ripple {
+        to {
+            transform: scale(2.5);
+            opacity: 0;
+        }
+    }
+
+            <?php
+                  break; ?>
+
+        <?php default:
+            ?>
+    .checkout-payment-method .step-title, #shipping .step-title, #opc-shipping_method .step-title, .order-summary .step-title {
+        border-bottom: 1px solid #ccc;
+        padding-bottom: 10px;
+    }
+
+    <?php endswitch; ?>
+
+    .osc-place-order-wrapper .place-order-primary button.primary.checkout {
+        background-color: <?= $placeOrder ?> !important;
+        border-color: <?= $placeOrder ?> !important;
+    }
+
+    /*===================================================================
+    |                           Custom STYLE                             |
+    ====================================================================*/
+    <?= isset($design['custom_css']) ? $design['custom_css'] : ''; ?>
+
+    /*===================================================================
+    |                      Compatible Themes                             |
+    ====================================================================*/
+    /** Etheme_yourstore  **/
+    <?php if ($block->getCurrentTheme() === 'Etheme/yourstore') { ?>
+    .create-account-block {
+        border: none;
+        padding: 0;
+    }
+
+    .product-image-container {
+        display: initial;
+    }
+
+    .content {
+        margin-top: 0px !important
+    }
+
+    .product-item .product-item-name-block a {
+        background-color: #f0f0f0 !important
+    }
+
+    .product-image-wrapper {
+        height: initial;
+    }
+
+    .qty-wrapper .qty-wrap .input-text.update {
+        top: -2px
+    }
+
+    .popup-authentication .modal-content {
+        padding-top: 0
+    }
+
+    .osc-payment-after-methods .opc-payment-additional .field .control {
+        border-bottom: none;
+    }
+
+    dd.ui_tpicker_second, dd.ui_tpicker_millisec, dd.ui_tpicker_microsec {
+        display: none
+    }
+
+    .ui-timepicker-div dl dd {
+        padding-bottom: 0
+    }
+
+    .ui-timepicker-div dl dt {
+        font-size: 14px
+    }
+
+    aside.modal-popup.osc-social-login-popup.modal-slide._inner-scroll._show .modal-inner-wrap header.modal-header {
+        margin-top: -17px;
+    }
+
+    aside.modal-popup.osc-social-login-popup.modal-slide._inner-scroll._show .modal-inner-wrap header.modal-header button.action-close {
+        padding: 10px 20px 10px 10px !important;
+    }
+
+    div#social-login-popup .social-login.block-container.authentication div#social-login-authentication {
+        width: initial;
+    }
+
+    aside.modal-popup.osc-social-login-popup.modal-slide._inner-scroll._show {
+        z-index: 9999999 !important;
+    }
+
+    div#social-login-authentication {
+        width: 58.3333333333% !important;
+    }
+
+    @media (min-width: 786px) {
+        aside.modal-popup.osc-social-login-popup.modal-slide._inner-scroll._show .modal-inner-wrap {
+            top: 200px;
+        }
+    }
+
+    @media only screen and (max-width: 767px) {
+        .navigation, .breadcrumbs, .page-header .header.panel, .header.content, .footer.content, .page-main, .page-wrapper > .widget, .page-wrapper > .page-bottom, .block.category.event, .top-container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+
+    /** Sm_agood  **/
+    <?php } elseif ($block->getCurrentTheme() === 'Sm/agood') { ?>
+    .create-account-block label[for="create-account-checkbox"], .billing-address-same-as-shipping-block label[for="billing-address-same-as-shipping"], .opc-payment label, .checkout-addition-block label {
+        padding-left: 20px !important
+    }
+
+    .one-step-checkout-wrapper [type=checkbox] + label:before, .one-step-checkout-wrapper [type=checkbox]:not(.filled-in) + label:after {
+        margin-top: 5px
+    }
+
+    .minicart-items .product > .product-image-container {
+        float: none;
+    }
+
+    .product-item .product-item-name-block a {
+        background-color: #f0f0f0 !important
+    }
+
+    header.modal-header {
+        border: none
+    }
+
+    .modal-content {
+        border: none;
+        box-shadow: none;
+    }
+
+    <?php } elseif ($block->getCurrentTheme() === 'Smartwave/porto') { ?>
+
+    ._has-datepicker ~ .ui-datepicker-trigger > span {
+        display: none;
+    }
+
+    ._has-datepicker ~ .ui-datepicker-trigger:before {
+        content: '\f865';
+        font-family: 'porto-icons';
+        font-size: 23px;
+        color: #7d7d7d;
+    }
+
+    .field ._has-datepicker {
+        display: inline-block;
+        margin-right: 10px;
+        width: calc(100% - 33px);
+    }
+
+    ._has-datepicker ~ .ui-datepicker-trigger {
+        line-height: inherit;
+        background: none;
+        border: 0;
+        padding: 0;
+    }
+
+    <?php } ?>
+
+
+    /*===================================================================
+    |                        Hide the Header and Footer                 |
+    ====================================================================*/
+    <?php if (!$block->getHelperConfig()->isShowHeaderFooter()) { ?>
+    .onestepcheckout-index-index .page-wrapper .page-header, .onestepcheckout-index-index .page-footer {
+        display: none;
+    }
+
+    <?php } ?>
+</style>
+
+<?php if ($design['page_design'] == 'material') { ?>
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            // Add ripple affect for button
+            $(document).on('click', 'button', function (e) {
+                var circle = document.createElement('div');
+                $('.ripple').remove();
+                this.appendChild(circle);
+                var d = Math.max(this.clientWidth, this.clientHeight);
+                circle.style.width = circle.style.height = d + 'px';
+                var rect = this.getBoundingClientRect();
+                circle.style.left = e.clientX - rect.left - d / 2 + 'px';
+                circle.style.top = e.clientY - rect.top - d / 2 + 'px';
+                circle.classList.add('ripple');
+            });
+        });
+    </script>
+<?php } ?>

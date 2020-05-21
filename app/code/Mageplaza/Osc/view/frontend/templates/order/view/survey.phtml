@@ -1,0 +1,38 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\Osc\Block\Order\View\Survey $block */
+
+if (!empty($surveyQuestion = $block->getSurveyQuestion()) && !empty($surveyAnswers = $block->getSurveyAnswers())) : ?>
+    <div class="box box-order-survey">
+        <strong class="box-title">
+            <span><?= $block->escapeHtml(__('Order Survey')) ?></span>
+        </strong>
+        <div class="box-content">
+            <div class="question">
+                <strong><?= $block->escapeHtml(__('Question')) ?>: </strong><span><?= $block->escapeHtml($surveyQuestion) ?></span>
+            </div>
+            <div class="answers">
+                <strong><?= $block->escapeHtml(__('Answers')) ?>: </strong><span><?= $block->escapeHtml($surveyAnswers) ?></span>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

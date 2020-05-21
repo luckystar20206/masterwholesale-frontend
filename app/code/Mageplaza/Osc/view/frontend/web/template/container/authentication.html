@@ -1,0 +1,99 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!-- ko if: isActive() -->
+<div class="osc-authentication-wrapper">
+    <a class="action action-auth-toggle osc-authentication-toggle">
+        <span data-bind="i18n: 'Already have an account? Click here to login'"></span>
+    </a>
+</div>
+<div class="block-authentication"
+     data-bind="afterRender: setModalElement, blockLoader: isLoading"
+     style="display: none">
+    <div class="block block-customer-login"
+         data-bind="attr: {'data-label': $t('or')}">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko foreach: getRegion('before') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div class="block-content" aria-labelledby="block-customer-login-heading">
+            <form class="form form-login"
+                  method="post"
+                  data-bind="submit:login">
+                <div class="fieldset" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                    <div class="field field-email required">
+                        <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                        <label class="label" for="login-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                        <!-- /ko -->
+                        <div class="control input-field">
+                            <input type="email"
+                                   class="input-text"
+                                   id="login-email"
+                                   name="username"
+                                   data-bind="attr: {autocomplete: autocomplete}, event: { blur: hasValue}, textInput: email"
+                                   data-validate="{required:true, 'validate-email':true}" required />
+                            <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                            <label class="label" for="login-email"><span data-bind="i18n: 'Email Address'"></span><i class="required-entry">*</i></label>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <div class="field  field-password required">
+                        <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                            <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                        <!-- /ko -->
+                        <div class="control input-field">
+                            <input type="password"
+                                   class="input-text"
+                                   id="login-password"
+                                   name="password"
+                                   data-bind="attr: {autocomplete: autocomplete}, event: { blur: hasValue}"
+                                   data-validate="{required:true}"
+                                   autocomplete="off" required/>
+                            <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                            <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span><i class="required-entry">*</i></label>
+                            <!-- /ko -->
+                        </div>
+                    </div>
+                    <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <div class="actions-toolbar">
+                    <input name="context" type="hidden" value="checkout" />
+                    <div class="primary">
+                        <button type="submit" class="action action-login secondary" name="send" id="osc-send2">
+                            <span data-bind="i18n: 'Sign In'"></span>
+                        </button>
+                    </div>
+                    <div class="secondary">
+                        <a class="action" data-bind="attr: {href: forgotPasswordUrl}">
+                            <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- /ko -->

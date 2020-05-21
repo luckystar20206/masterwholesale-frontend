@@ -1,0 +1,52 @@
+<?php
+$_product = $this->getProduct();
+$_brand = $this->getBrand($_product);
+$_sku = $this->getSku($_product);
+
+$summaryModel = $block->getReviewSummary();
+
+$reviewCount = $summaryModel->getReviewsCount();
+if (!$reviewCount) {
+    $reviewCount = 0;
+}
+$ratingSummary = ($summaryModel->getRatingSummary()) ? $summaryModel->getRatingSummary() : 20;
+?>
+
+<script type="application/ld+json">
+    {
+        "@context": "https://schema.org/",
+        "@type": "Product",
+        "name": "<?php /* @escapeNotVerified */ echo $block->escapeQuote($block->stripTags($_product->getName())); ?>",
+        "image": "<?php /* @escapeNotVerified */ echo $block->stripTags($block->getImage($_product, 'product_base_image')->getImageUrl()); ?>",
+        "description": "<?php /* @escapeNotVerified */ echo $block->escapeQuote($block->stripTags($block->getDescription($_product))); ?>",
+<?php if (strlen(trim($_brand))): ?>
+        "brand": {
+            "@type": "Thing",
+            "name": "<?php echo $block->stripTags($_brand); ?>"
+        },
+<?php endif; ?>
+<?php if (strlen(trim($_sku))): ?>
+        "sku": "<?php echo $block->stripTags($_sku); ?>",
+<?php endif; ?>
+<?php if ($reviewCount) : ?>
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "bestRating": 5,
+            "worstRating": 1,
+            "ratingValue": "<?php echo $ratingSummary / 20 ; ?>",
+            "reviewCount": "<?php echo $reviewCount ?>"
+        },
+<?php endif; ?>
+        "offers": {
+            "@type": "Offer",
+            "priceCurrency": "<?php echo $block->getCurrencyCode() ?>",
+            "url": "<?php echo $block->stripTags($block->getCurrentUrl($_product)); ?>",
+<?php if ($_product->isAvailable()): ?>
+            "availability": "https://schema.org/InStock",
+ <?php else : ?>
+            "availability": "https://schema.org/OutOfStock",
+<?php endif; ?>
+            "price": "<?php echo $this->getPrice(); ?>"
+        }
+    }
+</script>

@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * =================================================================
+ *                 MAGENTO EDITION USAGE NOTICE
+ * =================================================================
+ * This package designed for Magento COMMUNITY edition
+ * BSS Commerce does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BSS Commerce does not provide extension support in case of
+ * incorrect edition usage.
+ * =================================================================
+ *
+ * @category   BSS
+ * @package    Bss_Simpledetailconfigurable
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2015-2016 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <Bss_Commerce>
+            <SDCP_details>
+                <sku>1</sku>
+                <name>1</name>
+                <desc>1</desc>
+                <tier_price>1</tier_price>
+                <stock>1</stock>
+                <image>replace</image>
+                <min_max>1</min_max>
+                <increment>1</increment>
+                <additional_info>1</additional_info>
+                <meta_data>1</meta_data>
+            </SDCP_details>
+            <SDCP_advanced>
+                <url>1</url>
+                <preselect>1</preselect>
+            </SDCP_advanced>
+        </Bss_Commerce>
+    </default>
+</config>

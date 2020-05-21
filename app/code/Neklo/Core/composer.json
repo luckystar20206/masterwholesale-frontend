@@ -1,0 +1,16 @@
+{
+  "name": "neklo/core",
+  "description": "N/A",
+  "type": "magento2-module",
+  "version": "2.2.2",
+  "license": [],
+  "require": {},
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Neklo\\Core\\": ""
+    }
+  }
+}

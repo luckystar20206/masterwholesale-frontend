@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php
+$porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+$_config = $porto_helper->getConfig('porto_settings/product');
+$image_width = (isset($_config['ratio_width']) && $_config['ratio_width'])?$_config['ratio_width']:600;
+$image_height = (isset($_config['ratio_height']) && $_config['ratio_height'])?$_config['ratio_height']:600;
+$aspect_ratio = (isset($_config['aspect_ratio']))?$_config['aspect_ratio']:0;
+if ($aspect_ratio)
+    $image_height = $image_width;
+if ($aspect_ratio)
+    $thumb_height = 75;
+$_product = $block->getProduct();
+?>
+<?php
+    $gallery_images = json_decode($block->getGalleryImagesJson());
+?>
+<div id="gallery_images" class="owl-carousel owl-bottom-narrow">
+    <?php foreach($gallery_images as $gallery_image): ?>
+    <div class="item">
+        <img src="<?php echo $gallery_image->img; ?>" alt=""/>
+    </div>
+    <?php endforeach; ?>
+</div>
+<script type="text/javascript">
+  require([
+    'jquery',
+    'owl.carousel/owl.carousel.min'
+  ], function ($) {
+    $("#gallery_images").owlCarousel({
+      autoplay: false,
+      autoplayTimeout: 5000,
+      autoplayHoverPause: true,
+      loop: false,
+      navRewind: true,
+      margin: 0,
+      nav: false,
+      navText: ["<em class='porto-icon-left-open-huge'></em>","<em class='porto-icon-right-open-huge'></em>"],
+      dots: true,
+      responsive: {
+        0: {
+          items:1
+        },
+        768: {
+          items:1
+        },
+        992: {
+          items:1
+        },
+        1200: {
+          items:1
+        }
+      }
+    });
+  });
+</script>

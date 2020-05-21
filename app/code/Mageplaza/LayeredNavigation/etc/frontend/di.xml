@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_LayeredNavigation
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Mageplaza\LayeredNavigation\Api\Search\DocumentFactory" type="Magento\Framework\Api\Search\DocumentFactory">
+        <arguments>
+            <argument name="instanceName" xsi:type="string">Mageplaza\LayeredNavigation\Api\Search\Document</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\Search\SearchResponseBuilder">
+        <arguments>
+            <argument name="documentFactory" xsi:type="object">Mageplaza\LayeredNavigation\Api\Search\DocumentFactory</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\Layer\Filter\Item">
+        <plugin name="layer_filter_item_url" type="Mageplaza\LayeredNavigation\Plugin\Model\Layer\Filter\Item" sortOrder="1"/>
+    </type>
+    <type name="Magento\Swatches\Block\LayeredNavigation\RenderLayered">
+        <plugin name="layer_filter_item_swatch_url" type="Mageplaza\LayeredNavigation\Plugin\Block\Swatches\RenderLayered" sortOrder="1"/>
+    </type>
+    <type name="Magento\CatalogSearch\Model\Adapter\Mysql\Filter\Preprocessor">
+        <plugin name="layer_filter_item_swatch_url" type="Mageplaza\LayeredNavigation\Plugin\Model\Adapter\Preprocessor" sortOrder="1"/>
+    </type>
+
+    <!--Plugin ajax load add to compare & wishlist-->
+    <type name="Magento\Catalog\Controller\Product\Compare\Add">
+        <plugin name="layer_add_to_compare" type="Mageplaza\LayeredNavigation\Plugin\Controller\Product\CompareWishlist" sortOrder="1"/>
+    </type>
+    <type name="Magento\Wishlist\Controller\Index\Add">
+        <plugin name="layer_add_to_wishlist" type="Mageplaza\LayeredNavigation\Plugin\Controller\Product\CompareWishlist" sortOrder="1"/>
+    </type>
+</config>

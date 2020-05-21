@@ -1,0 +1,22 @@
+<?php
+	$porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+	$page_layout = $porto_helper->getConfig('porto_settings/product/page_layout');
+?>
+<?php if (!isset($page_layout) || $page_layout == "2columns-right"): ?>
+	<div class="side-overlay overlay"></div>
+	<a href="javascript:void(0);" class="right-side-open"><em class="porto-icon-reply"></em></a>
+	<script type="text/javascript">
+		require([
+		    'jquery'
+		], function ($) {
+		    $(document).ready(function(){
+		    	$("a.right-side-open").click(function(){
+		    		$(".sidebar.sidebar-additional").addClass("open");
+		    	});
+		    	$(".side-overlay").click(function(){
+		    		$(".sidebar.sidebar-additional").removeClass("open");
+		    	});
+		    });
+		});
+	</script>
+<?php endif; ?>

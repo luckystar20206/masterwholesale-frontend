@@ -1,0 +1,26 @@
+{
+  "name": "mageplaza/layered-navigation-m2",
+  "description": "Layered navigation M2",
+  "require": {
+    "mageplaza/module-ajax-layered-navigation": "*"
+  },
+  "type": "magento2-module",
+  "version": "2.3.4",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Mageplaza",
+      "email": "support@mageplaza.com",
+      "homepage": "https://www.mageplaza.com",
+      "role": "Technical Support"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Mageplaza\\LayeredNavigation\\": ""
+    }
+  }
+}

@@ -1,0 +1,177 @@
+.upload-mr-file {
+
+}
+#mr_console-container {
+    overflow: scroll;
+    height: 500px
+}
+#mr_console {
+    background: black;
+    padding:10px;
+
+    color:green;
+    font-family: "Courier New";
+}
+.mr-overlay {
+    background:url(../import-loader.gif);
+    background-position: center center;
+    background-color: #fff;
+    opacity:0.6;
+    position:absolute;
+    background-repeat: no-repeat;
+}
+
+
+
+/**
+ *     DASHBOARD
+ */
+.mr-import-dashboard {}
+.mr-import-dashboard h1{
+    border-bottom:1px solid #e5e5e5;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+.mr-import-dashboard .jobs-row {
+    clear:both;
+}
+.mr-import-dashboard .jobs-row .jobs{
+    width: 50%;
+    padding-right:20px;
+    box-sizing:border-box;
+
+    float: left;
+}
+.mr-import-dashboard .jobs-row .jobs h1{}
+.mr-import-dashboard .jobs-row .jobs ul{
+
+}
+.mr-import-dashboard .jobs-row .jobs ul li{}
+.mr-import-dashboard .jobs-row .jobs ul li .details{}
+.mr-import-dashboard .jobs-row .jobs ul li .details .date{
+    color:#c0c0c0;
+}
+.mr-import-dashboard .jobs-row .jobs ul li .details .name{
+    font-weight: bold;
+
+}
+
+
+.mr-import-dashboard .pending-jobs .details div {
+    display: inline-block;
+    font-size: 12px !important;
+    margin-bottom: 6px;
+}
+
+.mr-import-dashboard .processing-jobs {}
+.mr-import-dashboard .processing-jobs li{
+    float: left;
+    width: 240px;
+    margin-bottom: 10px;
+}
+.mr-import-dashboard .processing-jobs .job-progress {
+    height: 50px;
+    float: left;
+    width: 50px;
+    margin-right: 10px;
+    position: relative;
+}
+.mr-import-dashboard .processing-jobs  .job-progress > svg {
+    height: 100%;
+    display: block;
+}
+.mr-import-dashboard .processing-jobs .job-progress .value {
+    font-weight: bold;
+    font-size: 14px;
+    position: absolute;
+    top:16px;
+    width: 50px;
+    text-align: center
+
+}
+
+.mr-import-dashboard .past-jobs {
+    overflow: auto;
+    clear:both;
+    padding-top: 25px;
+}
+.mr-import-dashboard .past-jobs .day{
+    margin-top: 10px;
+    float: left;
+    margin-right: 10px;
+    width: 150px;
+    height: 280px;
+    position: relative;
+}
+.mr-import-dashboard .bar{
+    height: 200px;
+    width: 50px;
+    margin:0px auto;
+    text-align: center;
+    margin-left: 27px;
+    position: absolute;
+
+}
+
+.mr-import-dashboard .day .date {
+    position: absolute;
+    padding-top: 15px;
+    border-top:2px solid #5EB5F6;
+    top:200px;
+    text-align: center;
+}
+
+
+.mr-import-dashboard .day .date .small {
+    color:#8c8a8a;
+}
+.mr-import-dashboard .day .date .weekday {
+    color:#606060;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.mr-import-dashboard .day.Today .weekday{
+    font-size: 17px !important;
+    color:black !important;
+}
+.mr-import-dashboard .day.Today .smal{
+    color:black !important;
+}
+
+
+.mr-import-upload-file {
+    background: #F5F5F5;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border-radius:5px;
+    padding:10px;
+    margin: 10px 0px;
+
+}
+.mr-import-dashboard .bar .value {
+    position: absolute;
+    width: 50px;
+
+    font-weight: bold;
+    text-align: center;
+
+}
+.mr-import-dashboard .bar .progress{
+    width: 50px;
+    position: absolute;
+    background: #5EB5F6;
+    bottom:0;
+}
+
+
+
+
+
+.mr_import .left {
+    float: left;}
+
+.mr_import #versions {}
+.mr_import #versions.version-upgrade-1 {
+    background: #fff4f4; 
+}

@@ -1,0 +1,12 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+
+    <default>
+        <modernretail_copy_attributes>
+            <settings>
+                <is_enabled>1</is_enabled>
+                <attributes>description,meta_description,meta_keyword,meta_title,short_description,status,weight</attributes>
+                <disabled_attributes>sku,price,visibility</disabled_attributes>
+            </settings>
+        </modernretail_copy_attributes>
+    </default>
+</config>

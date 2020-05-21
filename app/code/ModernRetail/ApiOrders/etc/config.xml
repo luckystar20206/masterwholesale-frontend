@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <modernretail_delivery>
+            <store_pickup>
+                <status>0</status>
+                <show_widget>1</show_widget>
+            </store_pickup>
+            <ship_from_store>
+                <status>0</status>
+                <text>Regular Shipping ({QTY} available)</text>
+            </ship_from_store>
+        </modernretail_delivery>
+    </default>
+</config>

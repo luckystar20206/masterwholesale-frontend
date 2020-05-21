@@ -1,0 +1,131 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+.table-wrapper.grouped {
+    width: auto;
+}
+
+.table.grouped {
+    .row-tier-price {
+        > td {
+            border-top: 0;
+        }
+    }
+    .col.item {
+        width: 90%;
+    }
+    .col.qty {
+        width: 10%;
+        min-width: 95px;
+        
+        .control.qty {
+            display: inline-block;
+            vertical-align: middle;
+            
+            .qty {
+                &:extend(.abs-input-qty all);
+            }
+        }
+        .qty-changer {
+            display: inline-block;
+            vertical-align: middle;
+            
+            > a {
+                display: block;
+                border: 1px solid @form-element-input__border-color;
+                border-radius: 3px;
+                height: 18px;
+                line-height: 16px;
+                margin-top: 2px;
+                color: #ccc;
+                font-size: 11px;
+                
+                &:first-child {
+                    margin-top: 0;
+                }
+                &:hover {
+                    color: @_link-color-hover;
+                }
+            }
+        }
+    }
+    .product-item-name {
+        font-weight: @font-weight__regular;
+        margin-bottom: @indent__s;
+        display: inline-block;
+    }
+    .price-box {
+        margin: 8px 0 3px;
+        
+        p {
+            margin: 0;
+        }
+        .price {
+            font-weight: @font-weight__bold;
+            color: @product-view-product-info-price;
+        }
+        .old-price {
+            .price {
+                font-weight: normal;
+                color: @product-view-product-info-old-price;
+            }
+        }
+    }
+    .stock.unavailable {
+        margin: 0;
+        white-space: nowrap;
+        text-transform: none;
+        font-weight: normal;
+    }
+    .row-tier-price {
+    }
+}
+
+.page-product-grouped .product-info-price {
+    float: right;
+    display: block;
+    width: auto;
+    border: 0;
+}
+
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .table.grouped {
+        > thead > tr > th {
+            display: table-cell;
+            border-bottom: @table__border-width @table__border-style @table__border-color;
+        }
+        > tbody {
+            border-bottom: @table__border-width @table__border-style @table__border-color;
+            > tr > td {
+                &:extend(.abs-col-no-prefix all);
+                border: 0;
+                display: table-cell;
+                padding: @table-cell__padding-vertical @table-cell__padding-horizontal;
+                &:last-child {
+                    border: 0;
+                }
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .table-wrapper.grouped {
+        margin-left: -@layout__width-xs-indent;
+        margin-right: -@layout__width-xs-indent;
+    }
+}
+

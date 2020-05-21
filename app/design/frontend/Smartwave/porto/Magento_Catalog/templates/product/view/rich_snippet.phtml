@@ -1,0 +1,35 @@
+<?php
+$porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+$rich_snippet = $porto_helper->getConfig('porto_settings/richsnippets');
+if(isset($rich_snippet['enable']) && $rich_snippet['enable']) {
+    $_product = $this->getProduct();
+    $summaryModel = $block->getReviewSummary();
+    $reviewCount = $summaryModel->getReviewsCount();
+    if (!$reviewCount) {
+        $reviewCount = 0;
+    }
+    $ratingSummary = ($summaryModel->getRatingSummary()) ? $summaryModel->getRatingSummary() : 20;
+?>
+    <div itemscope itemtype="http://schema.org/Product">
+        <meta itemprop="name" content="<?php /* @escapeNotVerified */ echo $block->escapeQuote($block->stripTags($_product->getName())); ?>" />
+        <meta itemprop="image" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getImage($_product, 'product_base_image')->getImageUrl()); ?>" />
+        <meta itemprop="description" content="<?php /* @escapeNotVerified */ echo $block->stripTags($_product->getDescription()); ?>" />
+        <meta itemprop="url" content="<?php /* @escapeNotVerified */ echo $block->stripTags($_product->getProductUrl()); ?>" />
+        <meta itemprop="sku" content="<?php /* @escapeNotVerified */ echo $block->stripTags($_product->getSku()); ?>" />
+        <div itemtype="http://schema.org/AggregateRating" itemscope itemprop="aggregateRating">
+            <meta itemprop="worstRating" content="1" />
+            <meta itemprop="bestRating" content="5" />
+            <meta itemprop="ratingValue" content="<?php echo $ratingSummary / 20 ; ?>" />
+            <meta itemprop="reviewCount" content="<?php echo $reviewCount; ?>" />
+        </div>
+        <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+            <meta itemprop="priceCurrency" content="<?php echo $block->getCurrencyCode() ?>" />
+            <meta itemprop="price" content="<?php echo $_product->getFinalPrice(); ?>" />
+            <?php if ($_product->isAvailable()): ?>
+                <link itemprop="availability" href="http://schema.org/InStock" />
+            <?php else : ?>
+                <link  itemprop="availability" href="http://schema.org/OutOfStock" />
+            <?php endif ?>
+        </div>
+    </div>
+<?php }?>

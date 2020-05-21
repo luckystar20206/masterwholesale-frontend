@@ -1,0 +1,58 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Faq
+ */
+?>
+<?php
+/**
+ * @var \Amasty\Faq\Block\Lists\QuestionsList $block
+ */
+
+/** @var \Amasty\Faq\Block\Rating\Rating $rating */
+$rating = $block->getChildBlock('amasty_faq_rating');
+?>
+<div class="amfaq_questions">
+<?php if ($questions = $block->getQuestions()): ?>
+    <?php foreach ($questions as $question): ?>
+        <div class="am-item">
+            <div class="am-title">
+                <strong>Question: </strong><?= /** @noEscape */ $block->highlight($block->escapeHtml($question->getTitle())); ?>
+            </div>
+            <div class="am-content amfaq-hidden">
+                <p><strong>Answer: </strong>
+                    <?php if ($question->isShowFullAnswer()): ?>
+                        <?= /** @noEscape */ $block->highlight($question->getAnswer()); ?>
+                    <?php else: ?>
+                        <?= /** @noEscape */ $block->highlight($block->escapeHtml($block->getShortAnswer($question))); ?>
+                    <?php endif; ?>
+                </p>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <?php if ($pager = $block->getPagerHtml()): ?>
+        <div class="amfaq-pager"><?= /** @noEscape */ $pager; ?></div>
+    <?php endif; ?>
+<?php else: ?>
+    <div class="am-no-items">
+        <?= $block->escapeHtml($block->getNoItemsLabel()); ?>
+    </div>
+<?php endif; ?>
+</div>
+<?php if ($rating): ?>
+    <?= /** @noEscape */ $block->getChildHtml('amasty_faq_rating'); ?>
+<?php endif; ?>
+<script type="text/x-magento-init">
+{
+    ".amfaq_questions .am-item": {
+        "collapsible": {
+            "collapsible": false,
+            "header": ".am-title",
+            "content": ".am-content",
+            "animate": 500,
+            "icons": {"header": "am-minus", "activeHeader": "am-plus"}
+        }
+    }
+}
+</script>

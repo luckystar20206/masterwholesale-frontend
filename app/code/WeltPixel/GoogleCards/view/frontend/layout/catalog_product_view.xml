@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="head.additional">
+            <block ifconfig="weltpixel_google_cards/general/enable" class="WeltPixel\GoogleCards\Block\GoogleCards" name="weltpixel.googlecards" template="WeltPixel_GoogleCards::meta_head.phtml" />
+            <block ifconfig="weltpixel_google_cards/twitter_cards/enable" class="WeltPixel\GoogleCards\Block\TwitterCards" name="weltpixel.twittercards" template="WeltPixel_GoogleCards::twitter_cards_head.phtml" />
+            <block ifconfig="weltpixel_google_cards/facebook_opengraph/enable" class="WeltPixel\GoogleCards\Block\FacebookOpenGraph" name="weltpixel.facebook.opengraph" template="WeltPixel_GoogleCards::facebookopengraph_head.phtml" />
+            <block ifconfig="weltpixel_google_cards/pinterest_rich_pins/enable" class="WeltPixel\GoogleCards\Block\GoogleCards" name="weltpixel.pinterest.rich.pins" template="WeltPixel_GoogleCards::pinterest_head.phtml" />
+        </referenceBlock>
+    </body>
+</page>

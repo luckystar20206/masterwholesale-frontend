@@ -1,0 +1,64 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_ShopbyBase
+ */
+?>
+<?php
+
+use Amasty\ShopbyBase\Plugin\Catalog\Block\Product\View\BlockHtmlTitlePluginAbstract as TitlePlugin;
+use Amasty\ShopbyBase\Model\OptionSetting;
+
+/** @var $block \Magento\Framework\View\Element\Template */
+$optionsData = $block->getData('options_data');
+?>
+
+<?php foreach ($optionsData as $setting) : ?>
+    <?php
+        $title = $block->stripTags($setting[TitlePlugin::TITLE]);
+        $alt = $block->stripTags($setting[OptionSetting::SMALL_IMAGE_ALT]) ?: $title;
+        $tooltipJs = isset($setting[TitlePlugin::TOOLTIP_JS]) ? $setting[TitlePlugin::TOOLTIP_JS] : '';
+    ?>
+    <div class="amshopby-option-link">
+        <a href="<?= $block->escapeUrl($setting[TitlePlugin::LINK_URL]); ?>"
+           title="<?= $block->escapeHtml($title); ?>"
+            <?= /* @noEscape */ $tooltipJs ?>
+        >
+        <?php echo $block->stripTags($setting[TitlePlugin::TITLE]); ?>
+        </a>
+        <?php if (isset($setting[TitlePlugin::SHORT_DESCRIPTION]) && $setting[TitlePlugin::SHORT_DESCRIPTION]) : ?>
+            <span class="link-short-description">
+                    <?= /* @noEscape */ $setting[TitlePlugin::SHORT_DESCRIPTION];?>
+            <span>
+        <?php endif; ?>
+    </div>
+<?php endforeach; ?>
+
+<script>
+    require([
+        'jquery',
+        "mage/tooltip"
+    ], function ($) {
+        $('.amshopby-option-link [data-amshopby-js="brand-tooltip"]').tooltip({
+            position: {
+                my: "left bottom-10",
+                at: "left top",
+                collision: "flipfit flip",
+                using: function (position, feedback) {
+                    $(this).css(position);
+                    $("<div>")
+                        .addClass("arrow")
+                        .addClass(feedback.vertical)
+                        .addClass(feedback.horizontal)
+                        .appendTo(this);
+                }
+            },
+            tooltipClass: "amshopby-brand-tooltip",
+            content: function () {
+                var current = $(this).is('a') ? $(this) : $(this).parent();
+                return current.data('tooltip-content');
+            }
+        });
+    });
+</script>

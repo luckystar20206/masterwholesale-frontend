@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Copyright © 2018 Porto. All rights reserved.
+*/
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="catalog.topnav" remove="true"/>
+        <referenceContainer name="page.top">
+            <block class="Smartwave\Megamenu\Block\Topmenu" name="sw.topnav" template="Smartwave_Megamenu::topmenu.phtml" before="-"/>
+        </referenceContainer>
+        <referenceContainer name="after.body.start">
+            <block class="Smartwave\Porto\Block\Template" name="category_list_on_left" template="Smartwave_Megamenu::onepagecategory/category_list.phtml" after="-"/>
+        </referenceContainer>
+    </body>
+</page>

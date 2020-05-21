@@ -1,0 +1,186 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@toolbar-mode-icon-font-size: 16px;
+@toolbar-background: transparent;
+@pager-action__background: @toolbar-element-background;
+@pager__font-weight: @font-weight__bold;
+
+//
+//    Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+.page-products .columns {
+    position: relative;
+    z-index: 1;
+    padding-top: 60px;
+}
+
+.toolbar {
+    select {
+        .lib-css(background-color, @toolbar-element-background);
+        border-radius: 3px;
+        padding-top: 0;
+        padding-bottom: 0;
+        height: 26px;
+    }
+
+    text-align: center;
+    &:extend(.abs-add-clearfix all);
+    &-amount {
+        position: static;
+        display: block;
+        float: left;
+        line-height: @toolbar-mode-icon-font-size+2;
+        padding: 6px 0;
+        margin: 0;
+        vertical-align: middle;
+        text-align: left;
+        .products.wrapper ~ .toolbar & {
+            display: none;
+        }
+    }
+    .page-with-filter & {
+        &-amount {
+            position: static;
+        }
+    }
+    &-products {
+        .lib-css(background-color, @toolbar-background);
+        .pages {
+            display: none;
+            .products.wrapper ~ & {
+                display: block;
+            }
+        }
+    }
+    .pages {
+        margin-bottom: @indent__m;
+    }
+    .products.wrapper ~ & .pages {
+        float: left;
+        margin-bottom: 0;
+    }
+}
+
+.sorter {
+    float: right;
+    .page-products & {
+        position: static;
+    }
+    &-label {
+        margin-bottom: 0;
+        line-height: 26px;
+        font-weight: 400;
+    }
+    &-options {
+        margin: 0 @indent__xs 0 7px;
+        width: auto;
+    }
+    &-action {
+        display: inline-block;
+        vertical-align: top;
+        
+        .lib-icon-font(
+            @icon-arrow-up,
+            @_icon-font-size: 16px,
+            @_icon-font-color: @header-icons-color,
+            @_icon-font-color-hover: @header-icons-color-hover
+        );
+        .lib-icon-text-hide();
+        &:before {
+            vertical-align: top;
+        }
+        &.sort-desc:before {
+            content: @icon-arrow-down;
+        }
+    }
+}
+
+.modes {
+    float: left;
+    display: inline-block;
+    margin-right: @indent__base;
+
+    & > a {
+        text-decoration: none;
+    }
+
+    &-label {
+        &:extend(.abs-visually-hidden);
+    }
+
+    &-mode {
+        float: left;
+        border: 1px solid #ccc;
+        font-weight: @font-weight__regular;
+        .lib-css(color, #ccc);
+        text-align: center;
+        width: 26px;
+        line-height: 26px;
+        .lib-css(background-color, @toolbar-element-background);
+        display: block;
+        margin-right: 5px;
+        border-radius: 3px;
+        &:last-child {
+            margin-right: 0;
+        }
+        &.active, &:hover {
+            background-color: @theme-color;
+            border-color: @theme-color;
+            color: #fff;
+        }
+        .lib-icon-font(
+            @icon-grid,
+            @_icon-font-size: @toolbar-mode-icon-font-size,
+            @_icon-font-text-hide: true
+        );
+        &:before {
+            display: block;
+        }
+    }
+}
+
+.mode-list:before {
+    content: @icon-list;
+}
+.limiter {
+    float: right;
+    .products.wrapper ~ .toolbar & {
+        display: block;
+    }
+    &-options {
+        width: auto;
+        margin: 0 5px 0 7px;
+    }
+    & .label {
+        font-weight: 400;
+        margin: 0;
+    }
+    .control {
+        display: inline-block;
+    }
+}
+}
+
+//
+//    Mobile
+//--------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .toolbar-products {
+        margin-bottom: 0;
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .page-products .columns {
+        position: relative;
+        z-index: 1;
+        padding-top: 0;
+    }
+}

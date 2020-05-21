@@ -1,0 +1,160 @@
+<?php
+    $footer = $this->getConfig('porto_settings/footer');
+?>
+<div class="footer">
+<?php
+    if( $footer['footer_top'] ){
+?>
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                <?php
+                    $area = 'footer_top_block';
+                    $type = $footer[$area];
+                    if( $type == 'custom' && $footer['footer_top_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer['footer_top_custom']);
+                        }
+                        if($block){
+                            echo '<div class="custom-block">'.$block->toHtml().'</div>';
+                        }
+                    }
+
+                ?>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_middle'] ){
+?>
+    <div class="footer-middle">
+        <div class="container">
+        <?php
+            if( $footer['footer_ribbon'] ){
+        ?>
+            <div class="footer-ribbon">
+                <span><?php echo $footer['footer_ribbon_text'] ?></span>
+            </div>
+        <?php
+            }
+        ?>
+            <div class="row">
+            <?php
+                for( $i = 1; $i <= 4; $i++ ){
+                    $area = 'footer_middle_column_'.$i;
+                    $type = $footer[$area];
+                    if( $type ){
+                        echo '<div class="col-lg-'.$footer[$area.'_size'].'">';
+                    }
+                    if( $type == 'custom' && $footer[$area.'_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer[$area.'_custom']);
+                        }
+                        if($block){
+                            echo $block->toHtml();
+                        }
+                    }
+                    if( $type == 'newsletter' ){
+                        echo $this->getChildHtml('footer.newsletter');
+                    }
+                    if( $type ){
+                        echo '</div>';
+                    }
+                }
+            ?>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_middle_2'] ){
+?>
+    <div class="footer-middle footer-middle-2">
+        <div class="container">
+            <div class="row">
+            <?php
+                for( $i = 1; $i <= 4; $i++ ){
+                    $area = 'footer_middle_2_column_'.$i;
+                    $type = $footer[$area];
+                    if( $type ){
+                        echo '<div class="col-lg-'.$footer[$area.'_size'].'">';
+                    }
+                    if( $type == 'custom' && $footer[$area.'_custom'] ){
+                        $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                        if($block) {
+                            $block->setBlockId($footer[$area.'_custom']);
+                        }
+                        if($block){
+                            echo $block->toHtml();
+                        }
+                    }
+                    if( $type == 'newsletter' ){
+                        echo $this->getChildHtml('footer.newsletter');
+                    }
+                    if( $type ){
+                        echo '</div>';
+                    }
+                }
+            ?>
+            </div>
+        </div>
+    </div>
+<?php
+    }
+    if( $footer['footer_bottom'] ){
+?>
+    <div class="footer-bottom">
+        <div class="container">
+            <?php
+            if($footer['footer_logo_src']){
+                
+                $url = $this->getFooterLogoSrc();
+            ?>
+            <?php if ($this->isHomePage()):?>
+                <strong class="logo">
+            <?php else: ?>
+                <a class="logo" href="<?php echo $this->getUrl(''); ?>" title="">
+            <?php endif; ?>
+                <img src="<?php echo $url ?>" alt=""/>
+            <?php if ($this->isHomePage()):?>
+                </strong>
+            <?php else:?>
+                </a>
+            <?php endif?>
+            <?php
+            }
+            if($footer['footer_bottom_custom_1']){
+                $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                if($block) {
+                    $block->setBlockId($footer['footer_bottom_custom_1']);
+                }
+                if($block){
+                    echo '<div class="custom-block">'.$block->toHtml().'</div>';
+                }
+            }
+            ?>
+            <?php
+            if($footer['footer_bottom_custom_2']){
+                $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+                if($block) {
+                    $block->setBlockId($footer['footer_bottom_custom_2']);
+                }
+                if($block){
+                    echo '<div class="custom-block f-right">'.$block->toHtml().'</div>';
+                }
+            }
+            ?>
+            <address><?php echo $footer['footer_bottom_copyrights'] ?></address>
+            <?php if($footer['footer_store_switcher']) echo $this->getChildHtml("footer.store_switcher"); ?>
+        </div>
+    </div>
+<?php
+    }
+?>
+</div>
+<a href="javascript:void(0)" id="totop"><em class="porto-icon-up-open"></em></a>

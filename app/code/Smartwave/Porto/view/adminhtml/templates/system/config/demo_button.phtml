@@ -1,0 +1,161 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * @see \Smartwave\Porto\Block\System\Config\Form\Button
+ */
+?>
+<style type="text/css">
+#import_result:before{
+    top: 20px;
+    margin: 0;
+}
+.modal-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+.porto_demo_item{
+    flex: 0 0 25%;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+    cursor:pointer;
+}
+.thumbnail {
+    transition: .5s cubic-bezier(.35, 1.69, .35, .81);
+}
+.thumbnail img {
+    min-height: 100px;
+    display: block;
+}
+.porto_demo_item .thumbnail {
+    border: 3px solid #f4f4f4;
+    height: 180px;
+    overflow: hidden;
+}
+.porto_demo_item:hover .thumbnail, .porto_demo_item.selected .thumbnail {
+    border-color: #08c;
+}
+.porto_demo_item span.title {
+    margin-top: 20px;
+    font-size: 16px;
+    color: #1a1a1a;
+    display: block;
+    text-align: center;
+    line-height: 24px;
+    transition: color 1s;
+    -webkit-transition: color 1s;
+}
+.porto_demo_item:hover span.title {
+    color: #c62828;
+}
+#modal-form-wrapper {
+    padding-top: 20px;
+}
+</style>
+<div class="actions actions-import-data">
+    <button class="action-import-demo-data <?php echo $block->getButtonClass(); ?>" type="button" id="<?php echo $block->getHtmlId() ?>">
+        <span><?php echo $block->escapeHtml($block->getButtonLabel()) ?></span>
+    </button>
+    <div id="import_result" class="message-validation hidden message"></div>
+</div>
+<div id="modal-form-wrapper" style="display:none;">
+    <input type="hidden" name="form_key" value="<?php echo $block->getFormKey() ?>" />
+    <input type="hidden" name="importtype" id="importtype" />
+    <div class="modal-row">
+        <?php $demos = $block->getDemos();
+            foreach($demos as $demo): ?>
+            <div class="porto_demo_item" data-demo-version="<?= $demo['demo_version']?>">
+                <div class="thumbnail">
+                    <img src="<?= $this->helper('Magento\Cms\Helper\Wysiwyg\Images')->getBaseUrl().'porto/demos/'. $demo['demo_version'] .'.png' ?>" />
+                </div>
+                <span class="title"><?= $demo['label']?></span>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>
+<script>
+    require(['jquery','Magento_Ui/js/modal/modal','prototype'],
+        function($, modal) {
+            var brefresh = false;
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: 'Import Demo',
+                buttons: [{
+                    text: $.mage.__('Cancel'),
+                    class: '',
+                    click: function () {
+                        this.closeModal();
+                    }
+                }, {
+                    text: $.mage.__('Import Demo'),
+                    class: '',
+                    click: function () {
+                        if($('#importtype').val() == '') {
+                            alert('Please choose demo version to import.');
+                        }else{
+                            params = {
+                                demo_version: $('#importtype').val(),
+                                current_store: ($('#store_switcher'))?$('#store_switcher').val():'',
+                                current_website: ($('#website_switcher'))?$('#website_switcher').val():''
+                            };
+
+                            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                                parameters: params,
+                                onSuccess: function(response) {
+                                    var validationMessage = document.getElementById("import_result");
+                                    var result = '<?php echo __('Error during Import CMS Datas.') ?>';
+                                    try {
+                                        if (response.responseText.isJSON()) {
+                                            response = response.responseText.evalJSON();
+                                            result = response.message;
+                                        }
+                                        if (response.valid == 1) {
+                                            validationMessage.removeClassName('hidden').addClassName('success').addClassName('message-success')
+                                        } else {
+                                            validationMessage.removeClassName('hidden').addClassName('error').addClassName('message-error')
+                                        }
+                                    } catch (e) {
+                                        validationMessage.removeClassName('hidden').addClassName('error').addClassName('message-error')
+                                    }
+                                    validationMessage.update(result);
+                                    brefresh = true;
+                                    $('#modal-form-wrapper').modal("closeModal");
+                                }
+                            });
+                        }
+                    }
+                }]
+            };
+
+            var popup = $('#modal-form-wrapper').modal(options);
+            popup.on( "modalclosed", function() {
+                if(brefresh) {
+                    setTimeout(function(){
+                        location.href = '<?php echo str_replace('import','generatecss',$block->getAjaxUrl()); ?>';               
+                    },1000);
+                }
+            });
+            $(".action-import-demo-data").on('click',function(){
+                event.preventDefault();
+                $("#modal-form-wrapper").modal("openModal");
+            });
+            $(".porto_demo_item").on('click',function(){
+                $('.porto_demo_item').removeClass('selected');
+                $(this).addClass('selected');
+                $('#importtype').val($(this).attr('data-demo-version'));
+            });
+    });
+</script>

@@ -1,0 +1,20 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) 2020 Amasty (https://www.amasty.com)
+ * @package Amasty_Faq
+ */
+?>
+<?php
+/**
+ * @var \Amasty\Faq\Block\Catalog\Product\Tab $block
+ */
+?>
+<div class="amfaq-product-tab">
+    <?= /** @noEscape */ $block->getChildHtml('amasty_faq_questions'); ?>
+    <?php
+    if ($block->showAskQuestionForm()) {
+        echo $block->getChildHtml('amasty_faq_ask_question_form');
+    }
+    ?>
+</div>

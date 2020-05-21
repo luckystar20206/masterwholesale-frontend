@@ -1,0 +1,148 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+    $_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    
+    $popup = $_helper->getConfig('porto_settings/newsletter');
+    if($popup['enable']) {
+        $delay = $popup["delay"];
+?>
+<script type="text/javascript">
+require([
+        'jquery',
+        'jquery/jquery.cookie',
+		'fancybox/js/jquery.fancybox'
+    ], function ($) {
+        $(document).ready(function(){
+        <?php if($popup['enable'] == 1): ?>
+            if($("body").hasClass("cms-index-index")) {
+        <?php endif; ?>
+                var check_cookie = $.cookie('newsletter_popup');
+                if(window.location!=window.parent.location){
+                    $('#newsletter_popup').remove();
+                } else {
+                    if(check_cookie == null || check_cookie == 'shown') {
+                        setTimeout(function(){
+                            beginNewsletterForm();
+                        }, <?php echo $delay; ?>);
+                    }
+                    $('#newsletter_popup_dont_show_again').on('change', function(){
+                        if($(this).length){        
+                            var check_cookie = $.cookie('newsletter_popup');
+                            if(check_cookie == null || check_cookie == 'shown') {
+                                $.cookie('newsletter_popup','dontshowitagain');            
+                            }
+                            else
+                            {
+                                $.cookie('newsletter_popup','shown');
+                                beginNewsletterForm();
+                            }
+                        } else {
+                            $.cookie('newsletter_popup','shown');
+                        }
+                    });
+                }
+        <?php if($popup['enable'] == 1): ?>
+            }
+        <?php endif; ?>
+        });
+        
+        function beginNewsletterForm() {
+            $.fancybox({
+                'padding': '0px',
+                'autoScale': true,
+                'transitionIn': 'fade',
+                'transitionOut': 'fade',
+                'type': 'inline',
+                'href': '#newsletter_popup',
+                'onComplete': function() {
+                    $.cookie('newsletter_popup', 'shown');
+                },
+                'tpl': { 
+                    closeBtn: '<a title="Close" class="fancybox-item fancybox-close fancybox-newsletter-close" href="javascript:;"></a>' 
+                },
+                'helpers': {
+                    overlay: {
+                        locked: false
+                    }
+                }
+            });
+            $('#newsletter_popup').trigger('click');
+        }
+});
+</script>
+<style type="text/css">
+<?php
+    if($popup["custom_style"]){
+        echo $popup["custom_style"];
+    }
+?>
+#newsletter_popup{
+<?php
+    if($popup["width"]){
+        echo "width:".$popup["width"].";";
+    }
+    if($popup["height"]){
+        echo "height:".$popup["height"].";";
+    }
+    if($popup["bg_color"]){
+        echo "background-color:".$popup["bg_color"].";";
+    }
+    if(isset($popup["bg_image"]) && $popup["bg_image"]){
+        $folderName = \Smartwave\Porto\Model\Config\Backend\Image\Newsletterbg::UPLOAD_DIR;
+        $path = $folderName . '/' . $popup["bg_image"];
+        $imageUrl = $_helper->getBaseUrl() . $path;
+?>
+    background-image:url(<?php echo $imageUrl;?>);
+<?php
+    }
+?>
+}
+</style>
+<div class="newsletter" id="newsletter_popup" style="display: none;">
+    <div class="block-content">
+        <?php
+            if(isset($popup["logo_src"]) && $popup["logo_src"]){
+                $folderName = \Smartwave\Porto\Model\Config\Backend\Image\Newsletterlogo::UPLOAD_DIR;
+                $path = $folderName . '/' . $popup["logo_src"];
+                $logoUrl = $_helper->getBaseUrl() . $path;
+        ?>
+                <img src="<?php echo $logoUrl; ?>" alt="" />
+        <?php
+            }
+        ?>
+        <?php echo $popup["content"]; ?>
+        <form class="form subscribe"
+            novalidate
+            action="<?php echo $block->getFormActionUrl() ?>"
+            method="post"
+            data-mage-init='{"validation": {"errorClass": "mage-error"}}'
+            id="newsletter-validate-detail">
+            <div class="field newsletter">
+                <div class="control">
+                    <input name="email" type="email" id="footer_newsletter"
+                                data-validate="{required:true, 'validate-email':true}"/>
+                </div>
+            </div>
+            <div class="actions">
+                <button class="action subscribe primary" title="<?php echo __('Go') ?>" type="submit">
+                    <span><?php echo __('Go') ?></span>
+                </button>
+            </div>
+        </form>
+        <div class="subscribe-bottom">
+            <input type="checkbox" id="newsletter_popup_dont_show_again"/>
+            <label for="newsletter_popup_dont_show_again"><?php echo __("Don't show this popup again"); ?></label>
+        </div>
+    </div>
+</div>
+<?php
+    }
+?>

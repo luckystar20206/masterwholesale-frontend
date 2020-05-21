@@ -1,0 +1,38 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+if (!empty($surveyQuestion = $block->getSurveyQuestion()) && !empty($surveyAnswers = $block->getSurveyAnswers())) : ?>
+    <div class="admin__page-section-item order-osc-survey">
+        <div class="admin__page-section-item-title">
+            <span class="title"><?= /** @noEscape */ __('Order Survey') ?></span>
+        </div>
+        <div class="admin__page-section-item-content">
+            <div class="question">
+                <strong><?= /** @noEscape */ __('Question:') ?>&nbsp;</strong>
+                <span><?= /** @noEscape */ $surveyQuestion ?></span>
+            </div>
+            <div class="answers">
+                <strong><?= /** @noEscape */ __('Answers:') ?>&nbsp;</strong>
+                <span><?= /** @noEscape */ $surveyAnswers ?></span>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>

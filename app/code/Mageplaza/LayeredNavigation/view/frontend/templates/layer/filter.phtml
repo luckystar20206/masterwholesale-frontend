@@ -1,0 +1,56 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_LayeredNavigation
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<?php
+/** @type \Mageplaza\LayeredNavigation\Model\Layer\Filter\Attribute $filter */
+$filter        = $this->getFilter();
+$attributeCode = $filter->getRequestVar();
+
+/** @type \Mageplaza\Layerednavigation\Model\Layer\Filter $filterModel */
+$filterModel = $this->helper('\Mageplaza\LayeredNavigation\Helper\Data')->getFilterModel();
+?>
+<ol class="items">
+    <?php /** @type  $filterItem */
+    foreach ($filterItems as $filterItem): ?>
+        <li class="item">
+            <?php if ($filterModel->getIsSliderTypes($filter)): ?>
+                <div id="ln_slider_container_<?php echo $attributeCode ?>" class="ln_slider_container">
+                    <div id="ln_slider_<?php echo $attributeCode ?>"></div>
+                    <div id="ln_slider_text_<?php echo $attributeCode ?>"></div>
+                </div>
+            <?php else: ?>
+                <?php if ($filterItem->getCount() > 0): ?>
+                    <input type="<?php echo $filterModel->isMultiple($filter) ? 'checkbox' : 'radio' ?>" <?php echo $filterModel->isSelected($filterItem) ? 'checked="checked"' : '' ?> />
+                <?php else: ?>
+                    <input type="<?php echo $filterModel->isMultiple($filter) ? 'checkbox' : 'radio' ?>"
+                           disabled="disabled"/>
+                <?php endif; ?>
+                <a href="<?php echo $block->escapeUrl($filterModel->getItemUrl($filterItem)) ?>">
+                    <?php echo $filterItem->getLabel() ?>
+                    <?php if ($filterModel->isShowCounter($filter)): ?>
+                        <span class="count"><?php echo $filterItem->getCount() ?><span
+                                    class="filter-count-label"><?php echo ($filterItem->getCount() == 1) ? 'item' : 'items'; ?></span></span>
+                    <?php endif; ?>
+                </a>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

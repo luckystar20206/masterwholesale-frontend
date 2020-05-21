@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ubertheme
+ * @package     Ubertheme_UbDatamigration
+ * @author      Ubertheme.com
+ * @copyright   Copyright 2009-2016 Ubertheme
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="store_edit">
+        <observer name="magento_sequence" instance="Magento\SalesSequence\Observer\SequenceCreatorObserver" />
+    </event>
+</config>

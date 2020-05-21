@@ -1,0 +1,209 @@
+<?php
+/**
+ * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php /* @var $block \Magento\Catalog\Block\Product\View\AbstractView */?>
+<?php $_product = $block->getProduct() ?>
+
+<?php if ($block->displayProductStockStatus()): ?>
+    <?php if ($_product->isAvailable()): ?>
+
+        <div class="manufacturer">
+          <p><b>Brand:</b> <a href="/<?php echo strtolower(str_replace(' ','_',$_product->getAttributeText('manufacturer')))?>"><?php echo $_product->getAttributeText('manufacturer'); ?></a></p>
+        </div>
+
+        <div class="stock available" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+            <?php /*<span class="label"><?php /* @escapeNotVerified * / echo __('Availability:') ?></span>
+            <span><?php /* @escapeNotVerified * / echo __('In stock') ?></span>*/ ?>
+            <div class="custom_stock_shipping">
+
+
+            <?php
+                $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                $total_stock = 0;
+                if($_product->getTypeID() == 'configurable'){
+                    $productTypeInstance = $_product->getTypeInstance();
+                    $usedProducts = $productTypeInstance->getUsedProducts($_product);
+                    foreach ($usedProducts as $simple) {
+                        $productStockObj = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($simple->getId());
+                        $total_stock += round($productStockObj->getData('qty'));
+                    }
+                }elseif($this->hasOptions()){
+                    foreach ($_product->getOptions() as $o) {
+                        $optionType = $o->getType();
+
+                        if ($optionType == 'drop_down' || $optionType == 'radio') {
+                            $values = $o->getValues();
+                            foreach ($values as $k => $v) {
+                                $total_stock += ($v->getData('customoptions_qty') > 0) ? $v->getData('customoptions_qty') : 0;
+                            }
+                        }
+                    }
+                } else {
+                    //$total_stock = $StockState->getStockQty($_product->getId(), $_product->getStore()->getWebsiteId());
+                    $productStockObj = $objectManager->get('Magento\CatalogInventory\Api\StockRegistryInterface')->getStockItem($_product->getId());
+                    $total_stock += round($productStockObj->getData('qty'));
+                }
+
+
+                $date_available = $_product->getData('date_available');
+                $today = date('Y-m-d 00:00:00');
+
+                $stockItem = $_product->getExtensionAttributes()->getStockItem();
+                $total_stock = $stockItem->getQty();
+
+                $ships_store_factory = 37359;
+
+                if($_product->getTypeID() == 'configurable'){
+                    if($total_stock == 0 && $_product->getStockStatus() == 37357 && ($date_available == NULL || $date_available <= $today) ){
+                       $total_stock = "On order. Item will ship when back in stock";
+                    //out of stock, normal stocking product with future backorder date
+                    } elseif ($total_stock == 0 && $_product->getStockStatus() == 37357 && ($date_available > $today)){
+                        $total_stock = 'Item on backorder until '.$date_available.'.  Orders placed will ship when item is back in stock.';
+                    //out of stock in store but ships from factory
+                    } elseif($total_stock == 0 && $_product->getStockStatus() != 37357){
+                        //future backorder date
+                        if($date_available > $today){
+                            $total_stock = "On backorder until ". $date_available." Will ship when item is available again.";
+                        }else{
+                            //factory direct regular item not on back order
+                            $total_stock = $_product->getAttributeText('stock_status');
+                        }
+                    }else{
+                        //catch all to print stock status
+                        $total_stock = $_product->getAttributeText('stock_status');
+                    }
+                    $total_stock = $_product->getAttributeText('stock_status');
+                } elseif ($total_stock > 0){ //visible simple product in stock
+                    $total_stock = $_product->getAttributeText('stock_status') ." (".intval($total_stock)." available in store).";
+                } else{ //visible simple product, 0 qty
+                    if($date_available != NULL && $date_available > $today){ //future backorder date
+                        $total_stock = 'On backorder until '.$date_available.'. Will ship when item is available again';
+                    } elseif($_product->getStockStatus() == 37357){  //stocked item with 0 stock and no backorder date
+                        $total_stock = 'On order.  This item will ship when back in stock';
+                    }else{ //factory direct, no future backorder date so just show stock_status
+                        $total_stock = $_product->getAttributeText('stock_status');
+                    }
+                }
+
+                $total_stock = $total_stock .' <a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+
+                // if($total_stock > 0 && $_product->getStockStatus() == 37355){
+                //     if($total_stock > 5){
+                //         $stock_num = 'More than 5';
+                //     } else {
+                //         $stock_num = intval($total_stock);
+                //     }
+                //     $total_stock = '<link itemprop="availability" href="http://schema.org/InStock"/>In Stock</span> <a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+                // } else {
+                //     if($_product->getStockStatus() == 37355){
+                //         $total_stock = 'On Order<a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+                //    } else {
+
+                //         if($total_stock > 0 && $_product->getStockStatus() == 37358){
+                //             $stock_num = ($total_stock > 5) ? 'More than 5' : intval($total_stock);
+                //             $total_stock = 'Ships from Factory <br />' .$stock_num . ' Available In Store'.' <a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+                //         } elseif($total_stock > 0 && $_product->getStockStatus() == 37356) {
+                //             $stock_num = ($total_stock > 5) ? 'More than 5' : intval($total_stock);
+                //             $total_stock = 'Ships from Factory (2-3 days) <br />' .$stock_num . ' Available In Store'.' <a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+                //         } else {
+                //             $stock_num = ($total_stock > 5) ? 'More than 5' : intval($total_stock);
+                //             $total_stock = $_product->getAttributeText('stock_status') .' <a class="shiplink-sm" href="'.$block->getBaseUrl().'stock-status" target="_blank">(More Info)</a>';
+                //         }
+                //     }
+                // }
+
+                echo '<p><strong>Availability:</strong> '.$total_stock.'</p>';
+
+                $free_shipping = '';
+                $hazmat = '';
+                $fstext = '';
+                $commercial = '';
+
+                $fs = false;
+                /*if($this->getProduct()->getdata('free_over_149') == 1){
+                    $fs = true;
+                    $fstext = ' on orders over $149';
+                }
+                if($this->getProduct()->getdata('free_over_99') == 1){
+                    $fs = true;
+                    $fstext = ' on orders over $99';
+                }
+                if($this->getProduct()->getdata('free_w_tool') == 1){
+                    $fs = true;
+                    $fstext = ' on orders over $49';
+                }
+                if($this->getProduct()->getFreeShipping() == 1){
+                    $fs = true;
+                }
+                if($fs == false){
+                    $shipping = 'Standard <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                } else {
+
+                    if($_product->getOversize() == 1 && $fs == true){
+                        $commercial = ' to commercial address ';
+                    }
+                    $shipping = 'Free' .$commercial .$fstext .' in Continental US <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                }*/
+                $commercial = ($this->getProduct()->getdata('oversize') == 1) ? ' to commercial address ' : '';
+                $shipping = $this->getProduct()->getdata('shipperhq_shipping_group');
+                switch($shipping){
+                   case 47403: // Free PM OK
+                   $shipmsg = 'Free' .$fstext .' to US addresses <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 46803: // Free
+                   $shipmsg = 'Free' .$commercial .$fstext .' in Continental US <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 47403: // Free PM OK
+                   $shipmsg = 'Free' .$fstext .' to US addresses <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 46834: // Free 49
+                   $shipmsg = 'Free' .$commercial .' on orders over $49 in Continental US <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 47404: // Free 49 PM OK
+                   $shipmsg = 'Free on orders over $49 to US addresses <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 47347: // Free 99
+                   $shipmsg = 'Free' .$commercial .' on orders over $99 in Continental US <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 47405: // Free 99 PM OK
+                   $shipmsg = 'Free on orders over $99 to US addresses <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 46821: // Freight 100
+                   case 46818: // Freight 200
+                   case 46822: // Freight 250
+                   case 46819: // Freight 300
+                   case 46820: // Freight 500
+                   case 46829: // Freight 85
+                   $shipmsg = 'LTL Freight';
+                   break;
+                   case 47406: // Schluter Ok Ship MWI
+                   $shipmsg = 'Standard <a class="shiplink-sm" href="' .$block->getBaseUrl() .'shipping-policy#schluter" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 46809: // Schluter
+                   $shipmsg = '$29.95 Flat rate ground shipping for unlimited Schluter products in this order. Some exclusions apply.<a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   case 46833: // Schluter 200
+                   $shipmsg = '$200.00 Flat rate LTL shipping for unlimited Schluter products in this order. Some exclusions apply.<a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+                   default: // Standard or no group selected
+                   $shipmsg = 'Standard <a class="shiplink-sm" href="'.$block->getBaseUrl().'shipping-policy" target="_blank" title="Shipping Policy">(More Info)</a>';
+                   break;
+               }
+                echo '<p><strong>Shipping:</strong> '.$shipmsg.'</p>';
+            ?>
+            </div>
+
+        </div>
+    <?php else: ?>
+        <div class="stock unavailable" title="<?php /* @escapeNotVerified */ echo __('Availability') ?>">
+        	<span class="label"><?php /* @escapeNotVerified */ echo __('Availability:') ?></span>
+            <span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span>
+        </div>
+    <?php endif; ?>
+<?php endif; ?>

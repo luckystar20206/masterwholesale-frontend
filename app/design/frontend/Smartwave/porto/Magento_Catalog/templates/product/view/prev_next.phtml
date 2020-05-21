@@ -1,0 +1,43 @@
+<?php
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $product_view = $porto_helper->getConfig('porto_settings/product');
+    $_helper = $this->helper('Magento\Catalog\Helper\Output');
+    $_imagehelper = $this->helper('Magento\Catalog\Helper\Image');
+    if(isset($product_view['prev_next']) && $product_view['prev_next']) {
+        $_product = $block->getProduct();
+        $prev_product = $porto_helper->getPrevProduct($_product);
+        $next_product = $porto_helper->getNextProduct($_product);
+?>
+<?php if($prev_product || $next_product):?>
+<div class="prev-next-products">
+    <?php if($prev_product): ?>
+    <?php
+        $productImage = $_imagehelper->init($prev_product, 'category_page_grid')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(80);
+        $productImageUrl = $productImage->getUrl();
+    ?>
+    <div class="product-nav product-prev">
+        <a href="<?php echo $prev_product->getProductUrl(); ?>" title="<?php echo __('Previous Product'); ?>"><?php echo $product_view['prev_text']; ?></a>
+        <div class="product-pop theme-border-color">
+            <img class="product-image" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
+            <h3 class="product-name"><?php echo $prev_product->getName(); ?></h3>
+        </div>
+    </div>
+    <?php endif; ?>
+    <?php if($next_product): ?>
+    <?php
+        $productImage = $_imagehelper->init($next_product, 'category_page_grid')->constrainOnly(FALSE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(80);
+        $productImageUrl = $productImage->getUrl();
+    ?>
+    <div class="product-nav product-next">
+        <a href="<?php echo $next_product->getProductUrl(); ?>" title="<?php echo __('Next Product'); ?>"><?php echo $product_view['next_text']; ?></a>
+        <div class="product-pop theme-border-color">
+            <img class="product-image" src="<?php echo $productImageUrl; ?>" alt="<?php echo $productImage->getLabel(); ?>"/>
+            <h3 class="product-name"><?php echo $next_product->getName(); ?></h3>
+        </div>
+    </div>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
+<?php
+    }
+?>

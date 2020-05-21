@@ -1,0 +1,241 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+@autocomplete-background: @color-white;
+@autocomplete-border: 1px solid @form-element-input__border-color;
+@autocomplete-item-border: 1px solid @color-gray90;
+@autocomplete-item-hover: @color-gray91;
+@autocomplete-item-amount-color: @color-gray60;
+
+//
+//    Common
+//--------------------------------------
+
+& when (@media-common = true) {
+
+.block-search {
+    margin-bottom: 0;
+    .block {
+        &-title {
+            display: none;
+        }
+    }
+    .block-content {
+        margin-bottom: 0;
+    }
+    .label {
+        .lib-icon-font(
+            @_icon-font-content: @icon-search,
+            @_icon-font-size: 22px,
+            @_icon-font-line-height: 28px,
+            @_icon-font-margin: 0 @indent__s 0 0,
+            @_icon-font-color: @minicart-icons-color,
+            @_icon-font-color-hover: @minicart-icons-color-hover,
+            @_icon-font-color-active: @minicart-icons-color-hover,
+            @_icon-font-text-hide: true
+        );
+        display: inline-block;
+        float: right;
+        &.active {
+            + .control {
+                input {
+                    position: static;
+                }
+            }
+        }
+    }
+    .action.search {
+        display: none;
+    }
+    .control {
+        clear: both;
+        margin: 0 -@layout__width-xs-indent -1px;
+        padding: 0 @layout__width-xs-indent;
+    }
+
+    input {
+        left: -300%;
+        position: absolute;
+        margin: 15px 0;
+    }
+    .nested {
+        display: none;
+    }
+}
+
+.search-autocomplete {
+    display: none;
+    position: absolute;
+    z-index: 3;
+    overflow: hidden;
+    margin-top: -15px;
+    &:extend(.abs-add-box-sizing all);
+    ul {
+        .lib-list-reset-styles();
+        &:not(:empty) {
+            .lib-css(background, @autocomplete-background);
+            .lib-css(border, @autocomplete-border);
+            border-top: 0;
+        }
+        li {
+            .lib-css(border-top, @autocomplete-item-border);
+            cursor: pointer;
+            padding: @indent__xs @indent__xl @indent__xs @indent__s;
+            margin: 0;
+            position: relative;
+            text-align: left;
+            white-space: normal;
+            &:first-child {
+                border-top: none;
+            }
+            &:hover,
+            &.selected {
+                .lib-css(background, @autocomplete-item-hover);
+            }
+            .amount {
+                .lib-css(color, @autocomplete-item-amount-color);
+                position: absolute;
+                right: 7px;
+                top: @indent__xs;
+            }
+        }
+    }
+}
+
+.form.search.advanced {
+    &:extend(.abs-forms-general-desktop all);
+    
+    display: block;
+    border: 1px solid #ececec;
+    border-radius: 8px;
+    background: #fff;
+    border-top: 4px solid @theme-color;
+    padding: 35px 25px;
+    box-shadow: 0 2px 3px rgba(0,0,0,0.08);
+    
+    .fields.range {
+        .field {
+            &:first-child {
+                position: relative;
+                .control {
+                    padding-right: 25px;
+                    &:after {
+                        content: ' \2013 ';
+                        display: inline-block;
+                        text-align: center;
+                        width: 25px;
+                        position: absolute;
+                        right: 0;
+                        top: 6px;
+                    }
+                }
+            }
+            &:last-child {
+                position: relative;
+                div.mage-error[generated] {
+                    position: absolute;
+                    top: 32px;
+                    left: 0;
+                }
+            }
+            &.with-addon {
+                .control {
+                    padding-right: 45px;
+                }
+            }
+            &.date {
+                &:extend(.abs-field-date all);
+            }
+        }
+    }
+    .group.price {
+        .addon {
+            .addafter {
+                background: none;
+                border: 0;
+                padding-top: 6px;
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+        }
+    }
+}
+
+.search-terms {
+   &:extend(.abs-reset-list all);
+   line-height: 2em;
+   > li {
+        display: inline-block;
+        margin-right: @indent__s;
+   }
+}
+
+}
+
+//
+//    Mobile
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
+    .block-search {
+
+    }
+}
+
+//
+//    Desktop
+//--------------------------------------
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block-search {
+        position: relative;
+        margin-left: 40px;
+        width: 450px;
+        z-index: 4;
+        display: inline-block;
+        vertical-align: middle;
+        .label {
+            &:extend(.abs-visually-hidden-desktop all);
+        }
+        .control {
+            border-top: 0;
+            margin: 0;
+            padding: 0;
+        }
+        .nested {
+            display: none;
+            padding-top: 5px;
+            position: absolute;
+        }
+        input {
+            position: static;
+            margin: 0;
+            border-color: transparent;
+            height: 40px;
+            border-radius: 20px;
+            padding: 10px 50px 10px 20px;
+            
+            .lib-input-placeholder(@form-element-input-placeholder__color);
+        }
+        .action.search {
+            position: absolute;
+            display: inline-block;
+            right: 2px;
+            top: 0;
+            z-index: 1;
+            height: 40px;
+            .lib-button-icon(
+                @_icon-font-content: @icon-search,
+                @_icon-font-text-hide: true,
+                @_icon-font-color: @header-icons-color,
+                @_icon-font-size: 14px
+            );
+            .lib-button-reset();
+            line-height: 40px;
+        }
+    }
+    .search-autocomplete {
+        margin-top: 0;
+    }
+}

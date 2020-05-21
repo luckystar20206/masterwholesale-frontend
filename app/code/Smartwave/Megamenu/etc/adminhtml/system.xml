@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/system_file.xsd">
+    <system>
+        <section id="sw_megamenu" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Mega Menu</label>
+            <tab>sw_extensions</tab>
+            <resource>Smartwave_Megamenu::config_megamenu</resource>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="menu_type" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default Menu Type</label>
+                    <source_model>Smartwave\Megamenu\Model\Config\Menutype</source_model>
+                </field>
+                <field id="static_width" translate="label comment" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Width</label>
+                    <comment>eg: 500px</comment>
+                    <depends>
+                        <field id="menu_type">staticwidth</field>
+                    </depends>
+                </field>
+                <field id="max_level" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Visible Menu Depth</label>
+                    <comment>eg: 1, 2, 3, 4 (0 - disable limits). For example, if you set this value to 2, only second level categories will be displayed.</comment>
+                </field>
+            </group>
+            <group id="custom_links" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Custom Links &amp; Blocks</label>
+                <field id="staticblock_before" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block(before)</label>
+                    <comment><![CDATA[Input the Static Block ID, the block content will be shown before the default category menu items and after home link.<br/>eg: menu_custom_links_before]]></comment>
+                </field>
+                <field id="staticblock_after" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Static Block(after)</label>
+                    <comment><![CDATA[Input the Static Block ID, the block content will be shown after the default category menu items<br/>eg: menu_custom_links]]></comment>
+                </field>
+            </group>
+            <group id="cat_labels" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Category Labels</label>
+                <field id="label1" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label 1</label>
+                    <comment><![CDATA[Define the text of the category label 1. Labels can be assigned to every category in <b>Products > Inventory > Categories</b>]]></comment>
+                </field>
+                <field id="label2" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label 2</label>
+                    <comment><![CDATA[Define the text of the category label 2. Labels can be assigned to every category in <b>Products > Inventory > Categories</b>]]></comment>
+                </field>
+                <field id="label3" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label 3</label>
+                    <comment><![CDATA[Define the text of the category label 3. Labels can be assigned to every category in <b>Products > Inventory > Categories</b>]]></comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

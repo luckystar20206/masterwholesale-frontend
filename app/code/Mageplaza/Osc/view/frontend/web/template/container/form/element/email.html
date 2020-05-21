@@ -1,0 +1,107 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!-- ko foreach: getRegion('amazon-button-region') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
+
+
+<!-- ko ifnot: isCustomerLoggedIn() -->
+
+<!-- ko foreach: getRegion('before-login-form') -->
+<!-- ko template: getTemplate() --><!-- /ko -->
+<!-- /ko -->
+<form class="form form-login" data-role="email-with-possible-login"
+      data-bind="submit:login"
+      method="post">
+    <fieldset id="customer-email-fieldset" class="fieldset" data-bind="blockLoader: isLoading">
+        <div class="field required col-mp mp-12">
+            <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                <label class="label" for="customer-email">
+                    <span data-bind="i18n: 'Email Address'"></span>
+
+                </label>
+            <!-- /ko -->
+            <div class="control input-field _with-tooltip">
+                <input class="input-text"
+                       type="email"
+                       data-bind="
+                            textInput: email,
+                            hasFocus: emailFocused,
+                            css: hasValue() ,
+                            event: {change: emailHasChanged,blur: hasValue}"
+                       name="username"
+                       data-validate="{required:true, 'validate-email':true}"
+                       id="customer-email"  required/>
+                <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                <label class="label" for="customer-email">
+                    <span data-bind="i18n: 'Email Address'"></span>
+                    <i class="required-entry">*</i>
+                </label>
+                <div for="customer-email" generated="true" class="mage-error" id="customer-email-error"></div>
+                <!-- /ko -->
+                <!-- ko template: 'ui/form/element/helper/tooltip' --><!-- /ko -->
+                <div data-bind="fadeVisible: isPasswordVisible" >
+                    <span class="note" data-bind="i18n: 'You already have an account with us.'"></span>
+                    <a href="javascript:void(0)" data-bind="click:triggerLogin.bind(),i18n: 'Sign in'"></a>
+                    <span class="note" data-bind="i18n: 'or continue as guest.'"></span>
+                </div>
+                <!--<span class="note" data-bind="fadeVisible: isPasswordVisible() == false">&lt;!&ndash; ko i18n: 'You can create an account after checkout.'&ndash;&gt;&lt;!&ndash; /ko &ndash;&gt;</span>-->
+            </div>
+        </div>
+
+        <!--Hidden fields -->
+        <fieldset class="fieldset hidden-fields col-mp mp-12" data-bind="fadeVisible: isLoginVisible">
+            <div class="field">
+                <label class="label" for="customer-password">
+                    <span data-bind="i18n: 'Password'"></span>
+                </label>
+                <div class="control">
+                    <input class="input-text"
+                           placeholder="optional"
+                           type="password"
+                           name="password"
+                           id="customer-password"
+                           data-validate="{required:true}" autocomplete="off"/>
+                    <span class="note" data-bind="i18n: 'You already have an account with us. Sign in or continue as guest.'"></span>
+                </div>
+
+            </div>
+            <!-- ko foreach: getRegion('additional-login-form-fields') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!-- /ko -->
+            <div class="actions-toolbar">
+                <input name="context" type="hidden" value="checkout" />
+                <div class="primary">
+                    <button type="submit" class="action login primary" data-action="checkout-method-login"><span data-bind="i18n: 'Login'"></span></button>
+                </div>
+                <div class="secondary">
+                    <a class="action remind" data-bind="attr: { href: forgotPasswordUrl }">
+                        <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                    </a>
+                </div>
+            </div>
+        </fieldset>
+        <!--Hidden fields -->
+    </fieldset>
+</form>
+<!-- /ko -->

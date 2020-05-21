@@ -1,0 +1,11 @@
+.mapping input[type='text']{
+    width:80%;
+    padding:7px;
+}
+#row_modernretail_import_simple_mapping_json_value,
+#row_modernretail_import_configurable_mapping_json_value,
+#row_modernretail_import_update_mapping_json_value
+{
+    display: none !Important;
+
+}

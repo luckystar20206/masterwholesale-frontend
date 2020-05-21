@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <section id="todayhoursdefault" translate="label" type="text" sortOrder="1200" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Manage Store Hours</label>
+            <tab>general</tab>
+            <resource>Mwi_StoreTiming::TodayHours</resource>
+            <group id="defaulttime" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Default</label>
+                <field id="defaulttimetext" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Default Timing</label>
+                    <comment>Please enter default timing</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

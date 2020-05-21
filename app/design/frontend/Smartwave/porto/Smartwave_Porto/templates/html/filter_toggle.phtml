@@ -1,0 +1,27 @@
+<?php
+    $filter_toggle = $this->getConfig('porto_settings/category/filter_toggle');
+?>
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+        $("#layer-product-list > .toolbar-products > .modes").prepend('<a href="javascript:void(0)" class="filter-toggle active"><?php echo __('Filter'); ?></a>');
+        $(".filter-toggle").off("click").on("click", function(){
+            if($(this).hasClass("active")) {
+                $(".columns .sidebar-main").addClass("toggle-close");
+                $(".columns .column.main").addClass("toggle-close");
+                $(this).removeClass("active");
+            } else {
+                $(".columns .sidebar-main").removeClass("toggle-close");
+                $(".columns .column.main").removeClass("toggle-close");
+                $(this).addClass("active");
+            }
+            setTimeout(function(){
+                var carousel = $('.owl-carousel').data('owlCarousel');        
+                carousel.onResize();
+            }, 600);
+        });
+    });
+});
+</script>

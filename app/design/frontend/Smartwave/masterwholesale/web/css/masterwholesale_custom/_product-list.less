@@ -1,0 +1,119 @@
+.sidebar.sidebar-main{
+	> .block.filter ol li.item {
+			padding: 2px 0 !important;
+	}
+	.parent-category{
+		padding:20px 20px;
+    font-weight:bold;
+    font-size:15px;
+		position:relative;
+	}
+	.product-item-name {
+		> a {
+			font-size: 14px !important;
+		}
+	}
+}
+.block-category-list{
+	.block-content{
+		.item{
+			a{
+				color:#0088cc;
+			}
+		}
+	}
+}
+.products-grid{
+	.product-item{
+		.product-item-details{
+			.product-item-name, .product-item-name a{
+				white-space:normal;
+				text-overflow:unset;
+				font-family:"Lato","Open Sans";
+				height:56px;
+				font-size: 14px;
+			}
+		}
+		.has-options {
+			position: absolute;
+			height: 25px;
+			font-size: .9em;
+			font-style: italic;
+			color: #db8400;
+			bottom: 0px;
+			right: -100px;
+		}
+		@media (max-width: 767px){
+			.has-options {
+				display: none;
+			}
+		}
+		.rating-summary .rating-result:before {
+			color: transparent;
+		}
+		.product-reviews-summary {
+			position: absolute;
+			top: 0px;
+			padding-left: 10px;
+		}
+		.minimal-price-link{
+			display:none;
+		}
+		.product-item-actions button.toitem {
+			text-transform: uppercase;
+    		font-size: 12.53px;
+    		font-family: "Oswald";
+    		font-weight: 400;
+    		letter-spacing: .025em;
+    		color: #333;
+    		line-height: 30px;
+    		background-color: #f9f9f9;
+    		border-color: #dcdcdc;
+			&:hover {
+				background-color: #006496;
+				border-color: #006496;
+				color: #fff;
+    		}
+		}
+	}
+}
+
+
+.product-item .rating-summary .rating-result > span::before {
+	color: #ff9900;
+}
+.amshopby-filters-bottom-cms + .category-description{
+	margin-top:30px;
+}
+.filter-current .items {
+	margin-left: 20px;
+	.item {
+		.amshopby-filter-name,
+		.amshopby-filter-value {
+			display: inline;
+			white-space: normal;
+			margin-right: 10px;
+		}
+	}
+}
+
+.am_shopby_link_selected {
+	color: @steel-blue !important;
+}
+
+.amshopby-filter-current .amshopby-filter-name {
+	padding-left: 20px;
+	display: inline;
+}
+.am-filter-items-attr_category_ids{
+	.item{
+		input{ display:none;}
+	}
+}
+.filter-content {
+	#narrow-by-list{
+		div:last-child {
+			border-bottom: none;
+		}
+	}
+}

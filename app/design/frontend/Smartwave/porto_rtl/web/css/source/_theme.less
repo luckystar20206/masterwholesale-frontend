@@ -1,0 +1,479 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Porto theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+@rtl: true;
+
+//
+//  Layout grid
+//  ---------------------------------------------
+
+@layout__max-width: 1140px;
+
+@total-columns: 12;
+
+//  Variables for layout columns
+@layout-column__sidebar-width: 3;
+
+//  Checkout columns width
+@layout-column-checkout__width-left: 4;
+
+//
+//  Typography
+//  ---------------------------------------------
+
+@theme-color: #08c;
+@base-font-family: 'Open Sans',Arial,Helvetica,sans-serif;
+@base-font-size: 13px;
+@base-line-height: 1.42857143;
+@base-font-color: #777;
+@_link-color: @theme-color;
+@_link-color-visited: @theme-color;
+@_link-color-hover: @theme-color;
+@_link-color-active: @theme-color;
+
+@enable_border_radius: true;
+
+@font-size__base: @base-font-size;
+@primary__color: @base-font-color;
+@link__color: @theme-color;
+@link__hover__color: @link__color;
+@link__active__color: @link__color;
+
+@button__font-size: 14px;
+@button-primary__background: @theme-color;
+@button-primary__border: 1px solid @theme-color;
+@button-primary__hover__background: @theme-color;
+@button-primary__hover__border: 1px solid @theme-color;
+
+@body_background-color: #fff;
+
+//  Fonts
+@icons__font-path: '@{baseDir}icon-fonts/font/porto-icons';
+@icons__font-name: 'porto-icons';
+@font-size__base: 13px;
+@line-height__base: 1.4;
+
+// Form elements
+@form-element-input-placeholder__color: #ddd;
+@form-element-input__border-color: #ccc;
+@input-text__font-size: @base-font-size;
+@form-element-input__border-radius: 6px;
+@form-element-input__height: 38px;
+@form-element-input__padding: 10px;
+
+//  Header
+@collapsible-nav-background: #fff;
+
+@header-icons-color: @theme-color;
+@header-icons-color-hover: @theme-color;
+
+@header__type1_text-color: #777;
+@header__type1_link-color: @theme-color;
+@header__type1_link-hover-color: @theme-color;
+@header__type1_background-color: #fff;
+@header__type1_border-color: @theme-color;
+@header__type1_top_panel_background-color: #f0f0ed;
+@header__type1_top_panel_text-color: #777;
+@header__type1_top_panel_link-color: @theme-color;
+@header__type1_top_panel_link-hover-color: @theme-color;
+@header__type1_top_link_split-color: #ccc;
+@header__type1_nav_background-color: #f0f0ed;
+@header__type1_nav_text-color: #777;
+@header__type1_nav_link-color: @theme-color;
+@header__type1_nav_link-hover-color: #fff;
+@header__type1_nav_link-hover-background-color: @theme-color;
+@header__type1_search_box_background-color: #fff;
+@header__type1_search_box_border-color: #ccc;
+@header__type1_search_box_text-color: #777;
+@header__type1_search_box_button-font-color: #777;
+
+@header__type2_text-color: #fff;
+@header__type2_link-color: #fff;
+@header__type2_link-hover-color: #fff;
+@header__type2_background-color: #0083c1;
+@header__type2_top_panel_background-color: #008acc;
+@header__type2_top_panel_text-color: #fff;
+@header__type2_top_panel_link-color: #fff;
+@header__type2_top_panel_link-hover-color: #fff;
+@header__type2_top_link_split-color: rgba(255,255,255,.5);
+@header__type2_nav_background-color: #006fa4;
+@header__type2_nav_text-color: #fff;
+@header__type2_nav_link-color: #fff;
+@header__type2_nav_link-hover-color: #99cee8;
+@header__type2_search_box_background-color: #006393;
+@header__type2_search_box_border-color: rgba(255,255,255,.2);
+@header__type2_search_box_text-color: #ddd;
+@header__type2_search_box_button-font-color: #fff;
+
+@header__type3_background-color: #1e1e1e;
+@header__type3_nav_link-color: #fff;
+@header__type3_nav_link-hover-color: #fff;
+@header__type3_nav_link-hover-background-color: @theme-color;
+@header__type3_top_panel_text-color: #fff;
+@header__type3_top_panel_link-color: #fff;
+@header__type3_top_panel_link-hover-color: #fff;
+@header__type3_top_link_split-color: #101010;
+
+@header__type4_background-color: #1e1e1e;
+@header__type4_nav_link-color: #fff;
+@header__type4_nav_link-hover-color: #fff;
+@header__type4_nav_link-hover-background-color: @theme-color;
+@header__type4_top_panel_text-color: #fff;
+@header__type4_top_panel_link-color: #fff;
+@header__type4_top_panel_link-hover-color: #fff;
+@header__type4_top_link_split-color: #eee;
+
+@header__type5_nav_link-color: #3d3734;
+@header__type5_nav_link-hover-color: #fff;
+@header__type5_nav_link-hover-background-color: #3d3734;
+
+@header__type6_nav_link-color: #08c;
+@header__type6_nav_link-hover-color: #fff;
+@header__type6_nav_link-hover-background-color: #08c;
+@header__type6_top_panel_background-color: #08c;
+@header__type6_top_panel_text-color: #fff;
+@header__type6_top_panel_link-color: #fff;
+@header__type6_top_panel_link-hover-color: #fff;
+
+@header__background-color: @header__type1_background-color;
+@header__border-color: @header__type1_border-color;
+@header-panel__background-color: @header__type1_top_panel_background-color;
+@header-panel__text-color: @header__type1_top_panel_text-color;
+@header__top_link_split-color: @header__type1_top_link_split-color;
+
+//  Minicart
+@minicart-icons-color: @theme-color;
+@minicart-icons-color-hover: @minicart-icons-color;
+@minicart__border-color: #eee;
+@minicart__text-color: @base-font-color;
+
+@header-type1-minicart__icon_color: @theme-color;
+@header-type1-minicart__qty_color: #fff;
+@header-type1-minicart-qty__height: 24px;
+@header-type2-minicart__icon_color: #fff;
+@header-type2-minicart__qty_color: #000;
+@header-type2-minicart-qty__height: 24px;
+@header-type3-minicart__background_color: #101010;
+@header-type3-minicart__icon_color: #fff;
+@header-type3-minicart__qty_color: #fff;
+@header-type3-minicart-qty__height: 24px;
+@header-type4-minicart__background_color: #fff;
+@header-type4-minicart__icon_color: #777;
+@header-type4-minicart__qty_color: #777;
+@header-type4-minicart-qty__height: 24px;
+@header-type5-minicart__icon_color: #08c;
+@header-type5-minicart__qty_color: #08c;
+@header-type6-minicart__icon_color: #08c;
+@header-type6-minicart__qty_color: #fff;
+@header-type8-minicart__icon_color: #fff;
+@header-type8-minicart__qty_color: #000;
+@header-type8-minicart-qty__height: 24px;
+
+@minicart__icon_color: @header-type1-minicart__icon_color;
+@minicart__qty_color: @header-type1-minicart__qty_color;
+@minicart-qty__height: @header-type1-minicart-qty__height;
+
+// Navigation
+
+@navigation__background: transparent;
+@mobile_navigation__background: #f6f6f6;
+@mobile_navigation__font-color: #777;
+@mobile_navigation__border-color: #ddd;
+@mobile_navigation_submenu__font-color: #777;
+@mobile_navigation_opened_submenu__background-color : #eee;
+@mobile_navigation_opened_submenu-item_icon-color: #aaa;
+@mobile_navigation-tab__background: @theme-color;
+@mobile_navigation-tab__font-color: #fff;
+@mobile_navigation-tab-active__font-color: @theme-color;
+
+// Breadcrumbs
+@breadcrumbs__font-size: 13px;
+@breadcrumbs__container-margin: 0;
+@breadcrumbs__padding: 12px 0;
+@breadcrumbs-icon__font-color: inherit;
+@breadcrumbs-icon__font-vertical-align: middle;
+
+@breadcrumbs__background-color: #171717;
+@breadcrumbs__font-color: #fff;
+
+// Footer
+@footer-middle_background-color: #121214;
+@footer-middle_font-color: #777;
+@footer-middle-block-title_font-color: #fff;
+@footer-middle-link_font-color: #fff;
+@footer-middle-icon_font-color: #777;
+@footer-middle-newsletter-input_background-color: #dcdcdc;
+
+@footer-bottom_background-color: #0c0c0c;
+
+@footer-ribbon_background-color: @theme-color;
+@footer-ribbon_font-color: #fff;
+
+// Category
+@product-info-price: #444;
+@product-info-old-price: #999;
+@cart-price-color: #444;
+// Toolbar
+@toolbar-element-background: #fff;
+@toolbar-mode-icon-font-size: 12px;
+
+// Product
+@product-view-product-info-price: @theme-color;
+@product-view-product-info-old-price: #999;
+@product-info-page-title: #555;
+@product-reviews-summary-links: #bdbdbd;
+@tab-control__border-color: #eee;
+
+// Addtolinks
+@addto-wishlist-icon: #ed4949;
+@addto-compare-icon: #52b9b5;
+@mailto-friend-icon: #999;
+
+//
+//  Pager
+//  ---------------------------------------------
+
+@pager__font-weight: @font-weight__regular;
+@pager__line-height: @indent__l;
+@pager-item__margin: 0 5px 0 0;
+@pager-item__padding: 0 @indent__xs;
+
+//  Pager link.action
+@pager-action__background: #fff;
+@pager-action__border: 1px solid #ccc;
+@pager-action__color: #999;
+
+@pager-action__hover__color: #fff;
+@pager-action__hover__border: 1px solid @theme-color;
+@pager-action__hover__background: @theme-color;
+@pager-icon__font-margin: 0;
+@pager-icon__font-size: 16px;
+
+//  Pager link.action active
+@pager-action__active__color: #fff;
+@pager__active__color: #fff;
+
+@pager__background: #fff;
+@pager__border: 1px solid #ccc;
+@pager__hover__background: @theme-color;
+@pager__hover__color: #fff;
+@pager__hover__border: 1px solid @theme-color;
+@pager-current__color: #fff;
+@pager-current__background: @theme-color;
+@pager-current__border: 1px solid @theme-color;
+@pager-current__font-weight: 400;
+@pager__font-size: 13px;
+@pager__line-height: 24px;
+
+//
+//  Rating
+//  ---------------------------------------------
+
+@rating-icon__font-size: 16px;
+@rating-icon__letter-spacing: 2px;
+@rating-icon__color: #c3c5c9;
+@rating-icon__active__color: #ffc600;
+
+//  Color nesting
+@panel__background-color: @color-gray-light0;
+@border-color__base: @color-gray80;
+
+//  Headings
+@h3__font-weight: @font-weight__semibold;
+@h3__margin-top: @indent__base;
+
+//
+//  Tables
+//  ---------------------------------------------
+
+@table-cell__padding-vertical: 11px;
+@table-cell-stripped__background-color: @table-cell__hover__background-color;
+@table-responsive-th__background-color: @table-cell-stripped__background-color;
+@table-responsive-cell__padding: @indent__xs @indent__s;
+
+
+//  Tabs
+@tab-control__font-weight: @font-weight__regular;
+@tab-control__height: @indent__base*2;
+@tab-control__margin-right: -1px;
+@tab-control__padding-top: 1px;
+@tab-control__padding-right: 35px;
+
+//  Tabs content
+@tab-content__padding-top: 35px;
+@tab-content__padding-right: @tab-control__padding-right;
+
+//
+//  Accordion
+//  ---------------------------------------------
+
+@accordion-control__font-family: false;
+@accordion-control__font-size: @font-size__base;
+@accordion-control__font-style: false;
+@accordion-control__font-weight: @font-weight__semibold;
+@accordion-control__border-right: false;
+@accordion-control__border-bottom: false;
+@accordion-control__border-left: false;
+@accordion-control__background-color: false;
+@accordion-control__color: @primary__color;
+@accordion-control__hover__background-color: false;
+@accordion-control__hover__color: @accordion-control__color;
+@accordion-control__active__background-color: false;
+@accordion-control__active__color: @accordion-control__color;
+@accordion-control__margin-bottom: 0;
+@accordion-control__padding-right: @indent__s;
+@accordion-control__padding-left: @indent__s;
+@accordion-content__border: false;
+@accordion-content__margin: 0;
+@accordion-content__padding: @indent__s @indent__s @indent__l;
+
+//
+//  Buttons
+//  ---------------------------------------------
+
+@button__font-weight: @font-weight__semibold;
+
+//  Default = secondary button
+@button__background: @color-gray-darken0;
+@button__border: 1px solid @border-color__base;
+@button__hover__color: @button__color;
+@button__hover__background: darken(@button__background, 5%);
+@button__active__background: @color-gray-darken1;
+
+//  Primary button
+@button-primary__hover__color: @color-white;
+@button-primary__active__background: @link__hover__color;
+@button-primary__active__border: 1px solid @link__hover__color;
+@button-primary__active__color: @color-white;
+
+//  Button with icon
+@button-icon__line-height: @icon-font__line-height;
+
+//
+//  Icons
+//  ---------------------------------------------
+
+@icon-wishlist-empty: false;
+@icon-comment-reflected: false;
+@icon-compare-empty: false;
+@icon-arrow-up-thin: false;
+@icon-arrow-right-thin: false;
+@icon-arrow-left-thin: false;
+@icon-arrow-down-thin: false;
+@icon-wishlist-empty: '\e601';
+
+//
+//  Messages
+//  ---------------------------------------------
+
+@message__padding: 12px @indent__base 12px @indent__m;
+@message__line-height: false;
+@message-icon__font-size: 24px;
+@message-icon__inner-padding-left: 45px;
+@message-icon__top: 22px;
+@message-error-icon: @icon-error;
+@message-success-icon: @icon-success;
+
+//
+//  Loaders
+//  ---------------------------------------------
+
+@loader-overlay__background-color: rgba(255, 255, 255, .7);
+
+//
+//  Forms
+//  ---------------------------------------------
+
+//  Form fieldset
+@form-fieldset-legend__font-size: 18px;
+@form-fieldset-legend__font-weight: @font-weight__light;
+@form-fieldset-legend__margin: 0 0 @indent__base;
+@form-fieldset-legend__padding: 0 0 @indent__s;
+@form-fieldset-legend__width: 100%;
+
+//  Form field
+@form-field-type-revert: false;
+@form-field__additional-vertical-indent: @indent__s;
+
+//  Form field label
+@form-field-label__font-size: 14px;
+@form-field-label__font-weight: 400;
+@form-field-type-label-block__margin: 0 0 8px;
+
+//  Form field note icon
+@form-field-note-icon-font__content: false;
+
+//
+//  Dropdowns
+//  ---------------------------------------------
+
+@dropdown-toggle-icon__content: @icon-down;
+@dropdown-toggle-icon__active__content: @icon-up;
+@dropdown-toggle-icon__font-size: 12px;
+
+//  Split dropdown
+@dropdown-split-actions__padding: 0 @indent__xs;
+@dropdown-split-toggle__actions__padding: false;
+
+//  Actions-toolbar
+@actions-toolbar-actions__position: left;
+@actions-toolbar-actions-primary__margin: 0 15px 0 0;
+
+//
+//  Breadcrumbs
+//  ---------------------------------------------
+
+@breadcrumbs__container-margin: 0 0 15px;
+@breadcrumbs-icon__font-size: 10px;
+@breadcrumbs-icon__font-margin: 0 @indent__s;
+
+//
+//  Popups
+//  ---------------------------------------------
+
+@popup__border: 1px solid @color-gray68;
+@popup-title-headings__level: h2;
+
+//  Popup icons
+@popup-icon-font__size: 16px;
+@popup-icon-font__line-height: 16px;
+@popup-icon-font__color: @color-gray55;
+@popup-icon-font__color-hover: darken(@popup-icon-font__color, 10%);
+@popup-icon-font__color-active: @popup-icon-font__color-hover;
+
+//  Window overlay
+@overlay__background: @color-gray55;
+@overlay__opacity: .7;
+@overlay__opacity-old: 70;
+
+@gallery-thumb-border-color-active: @active__color;
+
+//  Modal popup
+@modal-action-close__font-size: @font-size__base;
+
+//  Checkout tooltip icon
+@checkout-tooltip-icon__font-size: 21px;
+
+// Checkout Payment Option icon
+@checkout-payment-option-title-icon__font-size: 14px;
+@checkout-payment-option-title-icon__line-height: 16px;
+@checkout-payment-option-title-icon__margin: 0 0 0 @indent__s;
+
+// Checkout Sidebar Shipping Information
+@checkout-sidebar-shipping-information-edit-icon__content: @icon-edit;
+@checkout-sidebar-shipping-information-edit-icon__font-size: 18px;
+@checkout-sidebar-shipping-information-edit-icon__line-height: 20px;
+@checkout-sidebar-shipping-information-edit-icon__top: @indent__s;
+
+// Checkout
+@checkout-sidebar__columns: 8;

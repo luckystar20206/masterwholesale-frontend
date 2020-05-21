@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <event name="sales_order_save_after">
+        <observer name="mr_apiorders_save_orders" instance="ModernRetail\ApiOrders\Observer\SendOrder" />
+    </event>
+
+    <event name="sales_order_invoice_save_after">
+        <observer name="mr_apiorders_save_invoices" instance="ModernRetail\ApiOrders\Observer\SendInvoice" />
+    </event>
+
+    <event name="sales_order_shipment_save_after">
+        <observer name="mr_apiorders_save_shipments" instance="ModernRetail\ApiOrders\Observer\SendShipment" />
+    </event>
+
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="mr_apiorders_save_creditmemos" instance="ModernRetail\ApiOrders\Observer\SendCreditmemo" />
+    </event>
+
+
+
+</config>

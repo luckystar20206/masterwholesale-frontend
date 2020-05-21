@@ -1,0 +1,50 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable $block */
+$_product    = $block->getProduct();
+/** @var \Magento\ConfigurableProduct\Model\Product\Type\Configurable\Attribute[] $_attributes */
+$_attributes = $block->decorateArray($block->getAllowAttributes());
+$_itemId     = $block->getData('quote_item')->getId();
+?>
+<?php if ($_product->isSaleable() && count($_attributes)) : ?>
+    <div class="fieldset">
+        <?php foreach ($_attributes as $_attribute) : ?>
+            <div class="field configurable required">
+                <label class="label"
+                       for="attribute<?= $block->escapeHtml($_itemId . '-' . $_attribute->getAttributeId()) ?>">
+                    <span><?= $block->escapeHtml($_attribute->getProductAttribute()->getStoreLabel()) ?></span>
+                </label>
+                <div class="control">
+                    <select name="super_attribute[<?= $block->escapeHtml($_attribute->getAttributeId()) ?>]"
+                            data-selector="super_attribute[<?= $block->escapeHtml($_itemId) ?>]
+                        [<?= $block->escapeHtml($_attribute->getAttributeId()) ?>]"
+                            data-validate="{required:true}"
+                            id="attribute<?= $block->escapeHtml($_attribute->getAttributeId()) ?>"
+                            class="super-attribute-select"
+                            data-attribute-id="<?= $block->escapeHtml($_attribute->getAttributeId()) ?>">
+                        <option value=""><?= $block->escapeHtml(__('Choose an Option...')) ?></option>
+                    </select>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    </div>
+<?php endif; ?>

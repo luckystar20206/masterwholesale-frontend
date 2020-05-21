@@ -1,0 +1,139 @@
+<?php 
+    $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $page_layout = $this->getConfig('porto_settings/general/layout');
+    if($page_layout == "full_width") {
+        $page_layout = "layout-fullwidth";
+    } else if($page_layout == "1140") {
+        $page_layout = "layout-1140";
+    } else if($page_layout == "1280") {
+        $page_layout = "layout-1280";
+    }
+    $boxed = $this->getConfig('porto_settings/general/boxed');
+?>
+<?php //Include Google fonts character subsets (such as extended latin, cyrillic)
+    $d = $this->getConfig('porto_design');
+    $charSubset = "";
+    if (isset($d['font']['char_latin_ext']) && $d['font']['char_latin_ext']==1 )
+        $charSubset .= ',latin-ext';
+    if (isset($d['font']['char_subset']) && $d['font']['char_subset'])
+        $charSubset .= ','.$d['font']['char_subset'];
+    $font_sizes = "%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic";
+?>
+<?php if (isset($d['font']['custom']) && $d['font']['custom'] && $d['font']['font_family'] == 'google'): ?>
+<link rel="stylesheet" href='//fonts.googleapis.com/css?family=<?php echo str_replace(' ', '+', $d['font']['google_font_family']).$font_sizes; echo $charSubset; ?>' type='text/css' />
+<?php else: ?>
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A300%2C300italic%2C400%2C400italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic&amp;v1&amp;subset=latin%2Clatin-ext" type="text/css" media="screen"/>
+<?php endif;?>
+<link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<?php if ($this->getConfig('porto_settings/optimization/bootstrap')): ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'bootstrap/css/bootstrap.rtl.min.css'; ?>">
+<?php else: ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'bootstrap/css/bootstrap.rtl.optimized.min.css'; ?>">
+<?php endif; ?>
+<?php if ($this->getConfig('porto_settings/optimization/bootstrap')): ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/animate.css'; ?>">
+<?php else: ?>
+    <link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/animate.optimized.css'; ?>">
+<?php endif; ?>
+<?php
+    $header_type = $this->getConfig('porto_settings/header/header_type');
+?>
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/header/type'.$header_type.'.rtl.css'; ?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getPortoWebDir().'css/custom.rtl.css'; ?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getDesignFile()?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php echo $_helper->getSettingsFile()?>">
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+        $("body").addClass("<?php echo $page_layout; ?>");
+        $("body").addClass("<?php echo $boxed; ?>");
+    <?php if ($this->getConfig('porto_settings/header/mobile_sticky_header')): ?>
+        $("body").addClass("mobile-sticky");
+    <?php endif; ?>
+    <?php if ($this->getConfig('porto_settings/header/header_type') == "10" || $this->getConfig('porto_settings/header/header_type') == "22"): ?>
+        $("body").addClass("side-header");
+    <?php endif; ?>
+        $(".drop-menu > a").off("click").on("click", function(){
+            if($(this).parent().children(".nav-sections").hasClass("visible"))
+                $(this).parent().children(".nav-sections").removeClass("visible");
+            else
+                $(this).parent().children(".nav-sections").addClass("visible")
+        });
+    });
+<?php if ($this->getConfig('porto_settings/header/sticky_header')): ?>
+    var scrolled = false;
+    $(window).scroll(function(){
+        if(!$('.page-header').hasClass('type10') && !$('.page-header').hasClass('type22')) {
+            if($(window).width()>=768){
+                if(140<$(window).scrollTop() && !scrolled){
+                    $('.page-header').addClass("sticky-header");
+                    scrolled = true;
+                    if(!$(".page-header").hasClass("type12")) {
+                        $('.page-header .minicart-wrapper').after('<div class="minicart-place hide"></div>');
+                        var minicart = $('.page-header .minicart-wrapper').detach();
+                        if($(".page-header").hasClass("type8") || $(".page-header").hasClass("type25"))
+                            $('.page-header .menu-wrapper').append(minicart);
+                        else
+                            $('.page-header .navigation').append(minicart);
+                        <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                        var logo_image = $('<div>').append($('.page-header .header > .logo').clone()).html();
+                        if($(".page-header").hasClass("type8") || $(".page-header").hasClass("type25"))
+                            $('.page-header .menu-wrapper').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                        else
+                            $('.page-header .navigation').prepend('<div class="sticky-logo">'+logo_image+'</div>');
+                        <?php endif; ?>
+                    } else {
+                        <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                        $('.page-header.type12 .logo').append('<span class="sticky-logo"><img src=""/></span>');
+                        $('.page-header .logo > img').addClass("hide");
+                        <?php endif; ?>
+                    }
+                    <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                    <?php
+                    if($logo_src = $this->getConfig('porto_settings/header/sticky_header_logo_src')){
+                        $folderName = \Smartwave\Porto\Model\Config\Backend\Image\Stickylogo::UPLOAD_DIR;
+                        $path = $folderName . '/' . $logo_src;
+                        $imageUrl = $porto_helper->getBaseUrl() . $path;
+                    ?>
+                    $(".sticky-logo img").attr("src","<?php echo $imageUrl; ?>");
+                    <?php
+                    }
+                    ?>
+                    <?php endif; ?>
+                }
+                if(140>=$(window).scrollTop() && scrolled){
+                    $('.page-header').removeClass("sticky-header");
+                    scrolled = false;
+                    if(!$(".page-header").hasClass("type12")) {
+                        var minicart;
+                        if($(".page-header").hasClass("type8") ||  $(".page-header").hasClass("type25"))
+                            minicart = $('.page-header .menu-wrapper .minicart-wrapper').detach();
+                        else
+                            minicart = $('.page-header .navigation .minicart-wrapper').detach();
+                        $('.minicart-place').after(minicart);
+                        $('.minicart-place').remove();
+                        $('.page-header .minicart-wrapper-moved').addClass("minicart-wrapper").removeClass("minicart-wrapper-moved").removeClass("hide");
+                    }
+                    <?php if ($this->getConfig('porto_settings/header/sticky_header_logo')): ?>
+                    if($(".page-header").hasClass("type8") || $(".page-header").hasClass("type25"))
+                        $('.page-header .menu-wrapper > .sticky-logo').remove();
+                    else if($(".page-header").hasClass("type12")) {
+                        $('.page-header .sticky-logo').remove();
+                        $('.page-header .logo > img').removeClass("hide");;
+                    } else
+                        $('.page-header .navigation > .sticky-logo').remove();
+                    <?php endif; ?>
+                }
+            }
+        }
+    });
+<?php endif; ?>
+});
+</script>
+<?php if($this->getConfig('porto_settings/general/smartlayers')): ?>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-58378513496862c5"></script>
+<?php endif; ?>

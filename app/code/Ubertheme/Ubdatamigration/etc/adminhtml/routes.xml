@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ubertheme
+ * @package     Ubertheme_UbDatamigration
+ * @author      Ubertheme.com
+ * @copyright   Copyright 2009-2016 Ubertheme
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="ubdatamigration" frontName="ubdatamigration">
+            <module name="Ubertheme_Ubdatamigration" before="Magento_Backend"/>
+        </route>
+    </router>
+</config>

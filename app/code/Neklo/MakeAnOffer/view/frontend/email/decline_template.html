@@ -1,0 +1,39 @@
+<!--@subject Your Offer For {{var product_name}} is Declined @-->
+<!--@vars
+{"store url=\"\"":"Store Url",
+"skin url=\"images/logo_email.gif\" _area='frontend'":"Email Logo Image"}
+@-->
+<!--@styles
+body { background-color: #f3f3f3; } .offer__container { font-family: Arial; width: 100%; background-color: #f3f3f3; text-align: center; } .offer__title { font-size: 30px; font-weight: 700; margin-top: 55px; margin-bottom: 25px; line-height: 1; } .offer__content { max-width: 640px; display: inline-block; text-align: left; background-color: #fff; padding: 0 30px 55px 30px; } .offer__info { margin-bottom: 30px; font-size: 16px; } .offer__table { font-size: 16px; margin-bottom: 30px; } .offer__table p{ margin: 0 0 5px 0; } .offer__table td{ vertical-align: top; } .offer__image { padding-right: 25px; } .offer__text { border-top: 1px solid #e7e9ed; padding: 20px 0; font-size: 16px; } .offer__name { color: #026dcf; font-weight: 700; } .offer__coupon { font-size: 18px; text-align: center; font-weight: 700; } .offer__decline { font-size: 22px; color: red; }
+@-->
+{{template config_path="design/email/header_template"}}
+<div class="offer__container">
+    <div class="offer__content">
+        <div class="offer__title">Hello {{var email}}</div>
+        <div class="offer__info"><span class="offer__decline">Unfortunately your request for discount was declined</span> {{var reason_copy}}</div>
+        <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" class="offer__table">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td class="offer__image">
+                                <img src="{{var image_url}}">
+                            </td>
+                            <td class="offer__data">
+                                <a href="{{var product_url}}" class="offer__name">
+                                    {{var product_name}}
+                                </a>
+                                {{layout handle="email_product_options" product_options=$product_options area="frontend"}}
+                                <p>Qty: {{var qty}}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <div class="offer__text">
+            Thank you!
+        </div>
+    </div>
+</div>
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Framework\Console\CommandList">
+       <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="apiorders:cron" xsi:type="object">ModernRetail\ApiOrders\Command\Cron</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="ModernRetail\ApiOrders\Model\Sender\Order">
+        <arguments>
+            <argument name="entityModel" xsi:type="object">\Magento\Sales\Model\Order</argument>
+        </arguments>
+    </type>
+
+
+    <type name="ModernRetail\ApiOrders\Model\Sender\Invoice">
+        <arguments>
+            <argument name="entityModel" xsi:type="object">\Magento\Sales\Model\Order\Invoice</argument>
+        </arguments>
+    </type>
+
+
+    <type name="ModernRetail\ApiOrders\Model\Sender\Shipment">
+        <arguments>
+            <argument name="entityModel" xsi:type="object">\Magento\Sales\Model\Order\Shipment</argument>
+        </arguments>
+    </type>
+
+    <type name="ModernRetail\ApiOrders\Model\Sender\Creditmemo">
+        <arguments>
+            <argument name="entityModel" xsi:type="object">\Magento\Sales\Model\Order\Creditmemo</argument>
+        </arguments>
+    </type>
+
+
+    <type name="ModernRetail\ApiOrders\Model\Queue">
+        <arguments>
+            <argument name="senders" xsi:type="array">
+
+                <item name="order" xsi:type="object">ModernRetail\ApiOrders\Model\Sender\Order</item>
+                <item name="invoice" xsi:type="object">ModernRetail\ApiOrders\Model\Sender\Invoice</item>
+                <item name="shipment" xsi:type="object">ModernRetail\ApiOrders\Model\Sender\Shipment</item>
+                <item name="creditmemo" xsi:type="object">ModernRetail\ApiOrders\Model\Sender\Creditmemo</item>
+
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <plugin name="mr_api_sales_order_grid" type="\ModernRetail\ApiOrders\Plugin\Sales\Grid"/>
+    </type>
+</config>

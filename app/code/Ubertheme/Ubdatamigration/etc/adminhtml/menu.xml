@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ubertheme
+ * @package     Ubertheme_UbDatamigration
+ * @author      Ubertheme.com
+ * @copyright   Copyright 2009-2016 Ubertheme
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ubertheme_Ubdatamigration::migrate" title="UB Data Migration Pro (CE)" module="Ubertheme_Ubdatamigration" sortOrder="80"
+             action="ubdatamigration/index" resource="Ubertheme_Ubdatamigration::migrate"/>
+    </menu>
+</config>

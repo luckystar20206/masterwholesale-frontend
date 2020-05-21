@@ -1,0 +1,27 @@
+<?php
+$socialfeeds = $this->helper('Smartwave\Socialfeeds\Helper\Data');
+
+$fb_result = $socialfeeds->getFBFans();
+if ($fb_result) : ?>
+<?php 
+    $fb_fans = $fb_result['fans'];
+?>
+
+
+<div class="block block-facebook-like">
+    <div class="block-title">
+        <strong>
+            <span><?php echo __('Facebook') ?></span>
+            <a target="_blank" href="<?php echo $fb_result['link'] ?>" class="btn-like f-right">
+                <?php echo __('Like!') ?>
+            </a>
+        </strong>
+    </div>
+
+    <div class="block-content">
+        <div class="clearfix fb-persons">
+            <?php echo $fb_fans ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>

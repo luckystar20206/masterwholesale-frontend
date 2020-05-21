@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+
+    <template id="sales_email_cancel_template" label="Canceleation Email" file="cancel.html" type="html" module="ModernRetail_CancelEmails" area="frontend"/>
+
+    <template id="sales_email_cancel_guest_template" label="Cancelation  Email for Guest" file="cancel.html" type="html" module="ModernRetail_CancelEmails" area="frontend"/>
+
+</config>

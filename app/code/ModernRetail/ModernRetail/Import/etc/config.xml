@@ -1,0 +1,23 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+
+<default>
+    <modernretail_import>
+        <settings>
+            <attributes>_inventory_qty,status,visibility</attributes>
+            <skip_exist>1</skip_exist>
+            <limit>20</limit>
+            <new_products_status>2</new_products_status>
+            <cleanup_days>7</cleanup_days> 
+            <use_categories>0</use_categories>
+            <categories_status>1</categories_status>
+            <categories_include_in_menu>0</categories_include_in_menu>
+            <default_attribute_set>4</default_attribute_set>
+            <can_use_system_calls>1</can_use_system_calls>
+            <flush_cache>1</flush_cache>
+        </settings>
+        <credentials>
+            <protect_mode>0</protect_mode>
+        </credentials>
+    </modernretail_import>
+</default>
+</config>

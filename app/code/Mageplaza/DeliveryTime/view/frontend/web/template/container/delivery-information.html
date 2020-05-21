@@ -1,0 +1,78 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_DeliveryTime
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<div class="delivery-information">
+    <div class="delivery-date">
+        <div class="title">
+            <span data-bind="i18n: 'Delivery Date'"></span>
+        </div>
+        <div class="control">
+            <input type="text" readonly="readonly" data-bind="mpdatepicker: true, value: deliveryDate"
+                   name="delivery-date" id="mp-delivery-date"/>
+            <div class="remove-delivery-date" data-bind="click: removeDeliveryDate, visible: isVisible()">
+                <i class="fa fa-remove"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- ko if: window.checkoutConfig.mpDtConfig.isEnabledDeliveryTime -->
+    <div class="delivery-time">
+        <div class="title">
+            <span data-bind="i18n: 'Delivery Time'"></span>
+        </div>
+        <div class="control">
+            <select class="select" name="delivery-time" id="mp-delivery-time"
+                    data-bind="
+                    value: deliveryTime,
+                    options: deliveryTimeOptions,
+                    optionsCaption: $t('-- Please select a delivery time--')"
+            ></select>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: window.checkoutConfig.mpDtConfig.isEnabledHouseSecurityCode -->
+    <div class="house-security-code">
+        <div class="title">
+            <span data-bind="i18n: 'House Security Code'"></span>
+        </div>
+        <div class="control">
+            <input type="text" name="house-security-code" id="mp-house-security-code"
+                   data-bind="value: houseSecurityCode">
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: window.checkoutConfig.mpDtConfig.isEnabledDeliveryComment -->
+    <div class="delivery-comment">
+        <div class="title">
+            <span data-bind="i18n: 'Delivery Comment'"></span>
+        </div>
+        <div class="control">
+            <div class="input-box">
+                <textarea name="delivery-comment" id="mp-delivery-comment" rows="2"
+                          data-bind="value: deliveryComment"></textarea>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+</div>

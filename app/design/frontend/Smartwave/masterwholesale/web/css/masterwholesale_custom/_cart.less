@@ -1,0 +1,143 @@
+.cart-summary{
+	.checkout-methods-items{
+		.action.primary.checkout{
+			background:#27b401;
+			border-color:#27b401;
+			&:hover{
+				background:#FF7B0D;
+				border-color:#FF7B0D;
+			}
+		}
+	}
+	div.estimate-disclaimer {
+		font-size: .8em;
+		color: #888;
+		font-style: italic;
+		padding: 2px 6px;
+	}
+	div.ship-bill-disclaimer {
+		color: #197daf;
+      margin: 12px 0 0 0;
+      font-size: 11px;
+      text-align: left;
+	}
+}
+.cart.table-wrapper{
+	.product-item-details {
+		vertical-align: top;
+		padding-top: 0;
+	}
+	.product-item-name{
+		margin-top: 0;
+		font-size: inherit;
+		> a{
+			font-size: inherit;
+			color:#636363;
+			font-weight:bold;
+		}
+	}
+	.col{
+		vertical-align:top;
+		&.subtotal{
+			.price{
+				color:#444;
+			}
+		}
+	}
+	.cart{
+		thead{
+			tr{
+				th.col{
+					font-weight: normal;
+					text-transform: uppercase;
+				}
+			}
+		}
+	}
+}
+@media (min-width: 768px), print {
+	.opc-progress-bar {
+		margin-top: 30px;
+	}
+}
+
+.minicart-items {
+	.product-item-name {
+		a {
+			color: #333;
+		}
+	}
+}
+
+.onestepcheckout-index-index .field.choice.col-mp {
+	input {
+		top: -1px;
+	}
+	font-size: 1.1em;
+	font-family: "Lato",sans-serif;
+}
+
+.checkout-index-index #opc-shipping_method #checkout-shipping-method-load .table-checkout-shipping-method,
+.table-checkout-shipping-method tbody{
+	min-width: inherit;
+	max-width: 100%;
+	width: 100%;
+	tr.row {
+		td.col-price {
+			max-width: 60px !important;
+			width: 60px !important;
+		}
+		td.col-method {
+			max-width: 150px;
+			width: 150px;
+		}
+		td:first-child {
+			max-width: 20px !important;
+			width: 20px !important;
+		}
+		td.col-carrier {
+			max-width: 70% !important;
+			width: 70% !important;
+		}
+		td.col-description {
+			display: none;
+		}
+	}
+}
+
+.opc-block-summary {
+	.items-in-cart {
+	   & > .title {
+			border: none;
+			margin-bottom: 0;
+		}
+	}
+}
+.checkout-index-index {
+	.opc-block-summary {
+		margin: -7px -12px 0;
+	}
+}
+.osc-place-order-block {
+	border: none;
+	padding: 0;
+}
+#opc-sidebar {
+	.opc-block-shipping-information {
+		margin-top: 25px;
+	}
+}
+.opc-wrapper {
+	.step-content {
+		border: 1px solid silver;
+    	padding: 12px;
+    	background: #f9f9f9;
+	}
+}
+.shipping-policy-block.field-tooltip .field-tooltip-action {
+	color: #fff;
+	cursor: pointer;
+	padding: 6px 12px;
+	font-style: italic;
+	font-size: 11px;
+}

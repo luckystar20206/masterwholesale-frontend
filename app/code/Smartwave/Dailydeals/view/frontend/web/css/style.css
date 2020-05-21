@@ -1,0 +1,102 @@
+/* Contdonwn */
+
+.sw-dailydeal-wrapper {
+    padding: 13px;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+.sw-dailydeal {
+    font-size: 13px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0,136,204,0.7);
+    width: 100%;
+    z-index: 5;
+    font-family: 'Oswald';
+    text-transform: uppercase;
+    line-height: 1;
+    padding: 9px 10px 11px;
+    text-align: center;
+}
+
+.sw-dailydeal .number {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sw-dailydeal p {
+    margin: 0;
+}
+
+.sw-dailydeal .line {
+    display: none;
+}
+
+.sw-dailydeal .caption {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 -3px;
+}
+
+.sw-dailydeal .dailydeal-label {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 11px;
+    font-weight: 400;
+}
+
+.catalog-product-view .sw-dailydeal-wrapper {
+    position: static;
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: -10px;
+}
+
+.catalog-product-view .sw-dailydeal {
+    display: block;
+    background-color: transparent;
+    padding: 0;
+    text-align: left;
+}
+
+.catalog-product-view .sw-dailydeal .dailydeal-label {
+    display: block;
+    color: #21293c;
+    font-family: 'Open Sans';
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.catalog-product-view .sw-dailydeal .number-wrapper {
+    background-color: #08c;
+    display: inline-block;
+    width: 66px;
+    text-align: center;
+    float: left;
+    margin-right: 2px;
+}
+
+.catalog-product-view .sw-dailydeal .caption {
+    display: block;
+    font-size: 10px;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 11px;
+}
+
+.catalog-product-view .sw-dailydeal .number {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-top: 6px;
+}
+
+.catalog-product-view .sw-dailydeal-wrapper:after {
+    content: '';
+    display: table;
+    clear: both;
+}

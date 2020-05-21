@@ -1,0 +1,10 @@
+<?php
+    $static_block_id = $this->getConfig('porto_settings/header/static_block');
+    $block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+    if($block) {
+        $block->setBlockId($static_block_id);
+    }
+    if($block){
+        echo '<div class="custom-block">'.$block->toHtml().'</div>';
+    }
+?>

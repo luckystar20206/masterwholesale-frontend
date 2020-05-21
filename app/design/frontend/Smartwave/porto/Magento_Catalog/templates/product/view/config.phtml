@@ -1,0 +1,40 @@
+<?php
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $move_upsell = $porto_helper->getConfig('porto_settings/product/move_upsell');
+    $move_addtolinks = $porto_helper->getConfig('porto_settings/product/move_addtolinks');
+    $tab_fullbg = $porto_helper->getConfig('porto_settings/product/tab_full_background');
+    $uppsell_fullbg = $porto_helper->getConfig('porto_settings/product/move_upsell_full');
+?>
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+        if(!($("body").hasClass("product-type-default") || $("body").hasClass("product-type-carousel") || $("body").hasClass("product-type-fullwidth") || $("body").hasClass("product-type-grid") || $("body").hasClass("product-type-sticky-right") || $("body").hasClass("product-type-wide-grid"))) {
+    <?php if($move_upsell): ?>
+        $(".product.media").after($(".block.upsell").detach());
+    <?php endif; ?>
+    <?php if($tab_fullbg):?>
+        var m = $('<div class="main-product-detail"/>');
+        $('<div class="container"/>').html($(".move-product-tab").detach()).appendTo(m);
+        $("#maincontent").after(m);
+        <?php if(!$move_upsell): ?>
+        $(".main-product-detail").after($('<div class="container"/>').html($(".block.upsell").detach()));
+        <?php endif; ?>
+    <?php endif;?>
+    <?php if($uppsell_fullbg && !$move_upsell && !$tab_fullbg):?>
+        if($(".block.upsell").length > 0) {
+            var u = $('<div class="main-upsell-product-detail"/>');
+            $('<div class="container"/>').html($(".block.upsell").detach()).appendTo(u);
+            $("#maincontent").after(u);
+        }
+    <?php endif;?>
+        }
+    <?php if($move_addtolinks): ?>
+        $(".box-tocart .actions").after('<div class="moved-add-to-links"></div>');
+        $(".product-social-links > .product-addto-links").appendTo(".moved-add-to-links");
+        $(".product-social-links > .action.mailto").appendTo(".moved-add-to-links");
+    <?php endif; ?>
+    });
+});
+</script>

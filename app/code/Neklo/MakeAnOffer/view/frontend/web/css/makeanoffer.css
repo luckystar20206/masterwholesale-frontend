@@ -1,0 +1,212 @@
+.make-an-offer__content {
+    display: none;
+    max-width: 500px;
+    margin: auto;
+}
+
+.make-an-offer__line {
+    margin: 15px 0;
+}
+
+.make-an-offer__label {
+    text-align: left;
+    margin-bottom: 5px;
+}
+
+.make-an-offer__label.required:after {
+    content: '*';
+    color: red;
+}
+
+.make-an-offer__button {
+    margin-top: 10px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+.make-an-offer__button-default {
+    text-align: center;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+.action.primary.make-an-offer__button-default {
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #ccc;
+    line-height: 2.2rem;
+    padding: 14px 17px;
+    font-size: 1.8rem;
+    border-radius: 3px;
+}
+
+.action.primary.make-an-offer__button-default:hover {
+    background-color: #e0e0e0;
+    border: 1px solid #e0e0e0;
+}
+
+@media screen and (max-width: 768px) {
+    .action.primary.make-an-offer__button-default {
+        width: 100%;
+    }
+}
+
+/* popup */
+
+.make-an-offer-popup {
+    background-color: #fff;
+    position: relative;
+    padding: 35px;
+    max-width: 500px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.make-an-offer-popup__container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 40px;
+}
+
+.make-an-offer-popup__close {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.make-an-offer-popup__close:before, .make-an-offer-popup__close:after {
+    transition: all 0.3s ease;
+    display: block;
+    content: ' ';
+    height: 2px;
+    width: 20px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.make-an-offer-popup__close:before {
+    -ms-transform: translate(-50%, -50%) rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.make-an-offer-popup__close:after {
+    -ms-transform: translate(-50%, -50%) rotate(-45deg);
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.make-an-offer-popup__close:hover:before, .make-an-offer-popup__close:hover:after {
+    background-color: #1979c3;
+}
+
+.make-an-offer-popup__title {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.make-an-offer-popup__description {
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.make-an-offer-popup .make-an-offer__input {
+    font-size: 16px;
+    height: 38px;
+}
+
+.make-an-offer-popup__button {
+    font-size: 16px !important;
+    padding: 10px 25px !important;
+    margin-top: 10px;
+}
+
+.make-an-offer-popup__message {
+    padding: 25px 0;
+    font-size: 18px;
+    display: none;
+}
+
+.make-an-offer__loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    z-index: 2;
+    width: 70px;
+    height: 70px;
+}
+
+.make-an-offer__loader svg {
+    animation: rotating 2s linear infinite;
+    transform-origin: center;
+    height: 100%;
+    width: 100%;
+}
+
+#make_an_offer_content {
+    position: relative;
+}
+
+#make_an_offer_content.loading:after {
+    position: absolute;
+    content: ' ';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+#make_an_offer_content.loading .make-an-offer__loader{
+    display: block;
+}
+
+#make_an_offer_content .mage-error {
+    margin: 0;
+    text-align: left;
+}
+
+@keyframes rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.make-an-offer__error-field {
+    border-color: #ed8380!important;
+}
+
+.make-an-offer__error-message {
+    color: #e02b27;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+/* magento theme edit */
+
+.box-tocart {
+    margin-bottom: 20px;
+}

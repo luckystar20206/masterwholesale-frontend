@@ -1,0 +1,52 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_DeliveryTime
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var Mageplaza\DeliveryTime\Block\Order\View\DeliveryInformation $block */
+$data              = $block->getDeliveryInformation();
+$houseSecurityCode = $data->getData('houseSecurityCode');
+$deliveryComment   = $data->getData('deliveryComment');
+$deliveryDate      = $data->getData('deliveryDate');
+$deliveryTime      = $data->getData('deliveryTime');
+?>
+
+<div class="admin__page-section-item-content delivery-information">
+    <?php if ($deliveryDate || $deliveryTime) : ?>
+        <br><strong><?= $block->escapeHtml(__('Delivery On:')) ?> </strong>
+        <span><?= $block->escapeHtml($deliveryTime) ?></span>
+        <span><?= $block->escapeHtml($deliveryDate) ?></span>
+    <?php endif; ?>
+
+    <?php if ($houseSecurityCode) : ?>
+        <br><strong><?= $block->escapeHtml(__('House Security Code:')) ?> </strong>
+        <span><?= $block->escapeHtml($houseSecurityCode) ?></span>
+    <?php endif; ?>
+
+    <?php if ($deliveryComment) : ?>
+        <br><strong><?= $block->escapeHtml(__('Delivery Comment:')) ?> </strong>
+        <span><?= $block->escapeHtml($deliveryComment) ?></span>
+    <?php endif; ?>
+</div>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $('.order-shipping-method').append($('.delivery-information'));
+    });
+</script>

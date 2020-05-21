@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+    <head>
+        <link src="Smartwave_Dailydeals::js/script.js"/>
+        <css src="Smartwave_Dailydeals::js/chosen.min.css"/>
+        <css src="Smartwave_Dailydeals::js/style.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Smartwave\Dailydeals\Block\Adminhtml\Dailydeal\Edit" name="sw_dailydeals_dailydeal_edit"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Smartwave\Dailydeals\Block\Adminhtml\Dailydeal\Edit\Tabs" name="sw_dailydeals_dailydeal_tabs">
+                <block class="Smartwave\Dailydeals\Block\Adminhtml\Dailydeal\Edit\Tab\Dailydeal" name="sw_dailydeals_dailydeal_edit_tab_dailydeal"/>
+                <action method="addTab">
+                    <argument name="name" xsi:type="string">dailydeal</argument>
+                    <argument name="block" xsi:type="string">sw_dailydeals_dailydeal_edit_tab_dailydeal</argument>
+                </action>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

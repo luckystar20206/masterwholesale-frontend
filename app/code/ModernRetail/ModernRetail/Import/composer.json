@@ -1,0 +1,30 @@
+{
+  "name": "modernretail/import",
+  "description": "N/A",
+  "require": {
+    "php": "~5.5.0|~5.6.0|~7.0.0",
+    "modernretail/base": "0.1.*"
+  },
+  "type": "magento2-module",
+  "version": "1.6.0",
+  "license": [
+    "OSL-3.0",
+    "AFL-3.0"
+  ],
+  "authors": [
+    {
+      "name": "Mukovoz Oleg",
+      "email": "codemorgan@gmail.com",
+      "homepage": "https://www.modernretail.com/",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "ModernRetail\\Import\\": ""
+    }
+  }
+}

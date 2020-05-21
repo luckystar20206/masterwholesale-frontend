@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Smartwave_Socialfeeds::socialfeeds" title="Social Feeds" module="Smartwave_Socialfeeds" sortOrder="510" parent="Smartwave_Core::sw_all" resource="Smartwave_Core::all"/>
+        <add id="Smartwave_Socialfeeds::configration" title="Configuration" module="Smartwave_Socialfeeds" sortOrder="10" parent="Smartwave_Socialfeeds::socialfeeds" action="adminhtml/system_config/edit/section/sw_socialfeeds" resource="Smartwave_Socialfeeds::socialfeeds"/>
+    </menu>
+</config>

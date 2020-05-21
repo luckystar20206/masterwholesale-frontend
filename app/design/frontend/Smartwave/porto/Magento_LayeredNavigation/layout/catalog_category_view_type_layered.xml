@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="sidebar.main">
+            <block class="Smartwave\Porto\Block\Template" name="filter_toggle" template="Smartwave_Porto::html/filter_toggle.phtml" ifconfig="porto_settings/category/filter_toggle" after="-"/>
+        </referenceContainer>
+    </body>
+</page>

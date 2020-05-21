@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <weltpixel_google_cards>
+            <general>
+                <enable>1</enable>
+                <description>1</description>
+                <price>incl_tax</price>
+                <brand>0</brand>
+                <sku>sku</sku>
+            </general>
+            <twitter_cards>
+                <enable>1</enable>
+                <card_type>product</card_type>
+                <description>1</description>
+                <price>incl_tax</price>
+                <site></site>
+                <creator></creator>
+            </twitter_cards>
+            <facebook_opengraph>
+                <enable>1</enable>
+                <description>1</description>
+                <price>incl_tax</price>
+                <site_name></site_name>
+                <app_id></app_id>
+                <retailer_id>sku</retailer_id>
+            </facebook_opengraph>
+            <pinterest_rich_pins>
+                <enable>1</enable>
+            </pinterest_rich_pins>
+        </weltpixel_google_cards>
+    </default>
+</config>

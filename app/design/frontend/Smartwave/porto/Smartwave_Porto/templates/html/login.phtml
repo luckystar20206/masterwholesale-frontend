@@ -1,0 +1,54 @@
+<div class="block block-customer-login block-header-customer-login">
+    <div class="block-content" aria-labelledby="block-customer-login-heading">
+        <form class="form form-login"
+              action="<?php /* @escapeNotVerified */ echo $block->getPostActionUrl() ?>"
+              method="post"
+              id="header-login-form"
+              data-mage-init='{"validation":{}}'>
+            <?php echo $block->getBlockHtml('formkey'); ?>
+            <fieldset class="fieldset login" data-hasrequired="<?php /* @escapeNotVerified */ echo __('* Required Fields') ?>">
+                <div class="field email required">
+                    <div class="control">
+                        <input name="login[username]" value="<?php echo $block->escapeHtml($block->getUsername()) ?>" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> id="email" type="email" class="input-text" title="<?php /* @escapeNotVerified */ echo __('Email') ?>" data-validate="{required:true, 'validate-email':true}" placeholder="<?php /* @escapeNotVerified */ echo __('Email') ?>">
+                    </div>
+                </div>
+                <div class="field password required">
+                    <div class="control">
+                        <input name="login[password]" type="password" <?php if ($block->isAutocompleteDisabled()) :?> autocomplete="off"<?php endif; ?> class="input-text" id="pass" title="<?php /* @escapeNotVerified */ echo __('Password') ?>" data-validate="{required:true}" placeholder="<?php /* @escapeNotVerified */ echo __('Password') ?>">
+                    </div>
+                </div>
+                <div class="actions-toolbar">
+                    <div class="primary"><button type="submit" class="action login primary" name="send" id="send2"><span><?php /* @escapeNotVerified */ echo __('Sign In') ?></span></button></div>
+                    <div class="secondary"><a class="action remind" href="<?php /* @escapeNotVerified */ echo $block->getForgotPasswordUrl() ?>"><span><?php /* @escapeNotVerified */ echo __('Forgot Your Password?') ?></span></a></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+        var href = $(".header.links .authorization-link > a").attr("href");
+        if(href.indexOf("logout") == -1) {
+            $(".block-header-customer-login").detach().appendTo(".authorization-link");
+            $(".block-header-customer-login").click(function(e){
+                e.stopPropagation();
+            })
+            $("html,body").click(function(){
+                if($(".block-header-customer-login").hasClass("open"))
+                    $(".block-header-customer-login").removeClass("open");
+            });
+            $(".header.links .authorization-link > a").off("click").on("click", function(){
+                if(!$(".block-header-customer-login").hasClass("open"))
+                    $(".block-header-customer-login").addClass("open");
+                else
+                    $(".block-header-customer-login").removeClass("open");
+                    
+                return false;
+            });
+        }
+    });
+});
+</script>

@@ -1,0 +1,24 @@
+<?php /** @var $block \Neklo\Core\Block\System\Extension\ExtensionList */ ?>
+<?php $moduleConfigList = $block->getExtensionList(); ?>
+<ul id="neklo_core_extension_list">
+    <?php foreach ($moduleConfigList as $moduleCode => $moduleConfig) : ?>
+        <?php if (!$block->canShowExtension($moduleCode)) continue; ?>
+        <li class="neklo-item">
+            <?php if ($block->getExtensionUrl($moduleCode)) : ?>
+            <a class="neklo-link" href="<?php echo $block->getExtensionUrl($moduleCode); ?>" target="_blank">
+                <?php endif; ?>
+                <div class="ovh">
+                    <div class="neklo-row neklo-ext-name"><?php echo $block->getExtensionName($moduleCode); ?> <?php echo $block->getExtensionVersion($moduleConfig); ?></div>
+                    <div class="neklo-img neklo-row"><img src="<?php echo $block->getImageUrl($moduleCode); ?>"/></div>
+                    <?php if ($block->isExtensionVersionOutdated($moduleCode, $moduleConfig)) : ?>
+                        <?php echo __('New release %1 is available', $block->getLastExtensionVersion($moduleCode)); ?> <img src="<?php echo $block->getViewFileUrl('Neklo_Core::images/update.gif'); ?>" alt="">
+                    <?php else: ?>
+                        <?php echo __('Your version is up to date'); ?> <img src="<?php echo $block->getViewFileUrl('Neklo_Core::images/ok.gif'); ?>" alt="">
+                    <?php endif; ?>
+                </div>
+                <?php if ($block->getExtensionUrl($moduleCode)) : ?>
+            </a>
+        <?php endif; ?>
+        </li>
+    <?php endforeach; ?>
+</ul>

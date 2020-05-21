@@ -1,0 +1,93 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<!-- ko if: isActive() -->
+<div class="gift-message field choice col-mp mp-12">
+    <input type="checkbox" name="osc-gift-message" data-bind="attr: {id: 'osc-gift-message'}, click: $data.toggleFormBlockVisibility.bind($data),checked: isUseGiftMessage()" />
+    <label data-bind="attr: {for: 'osc-gift-message'}">
+        <span data-bind="i18n: 'Gift Message'"></span>
+    </label>
+    <div class="gift-options-content" data-bind="visible: formBlockVisibility() || resultBlockVisibility()">
+        <div class="fieldset">
+            <div class="field field-from col-mp mp-6">
+                <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                <label for="gift-message-whole-from" class="label">
+                    <span data-bind="i18n: 'From:'"></span>
+                </label>
+                <!-- /ko -->
+
+                <div class="control input-field">
+                    <input type="text"
+                           id="gift-message-whole-from"
+                           class="input-text"
+                           data-bind="value: getObservable('sender')" required>
+                    <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                    <label for="gift-message-whole-from" class="label">
+                        <span data-bind="i18n: 'From:'"></span>
+                    </label>
+                    <div class="bar"></div>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="field field-to col-mp mp-6">
+                <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                    <label for="gift-message-whole-to" class="label">
+                        <span data-bind="i18n: 'To:'"></span>
+                    </label>
+                <!-- /ko -->
+                <div class="control input-field">
+                    <input type="text"
+                           id="gift-message-whole-to"
+                           class="input-text"
+                           data-bind="value: getObservable('recipient')" required>
+                    <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                    <label for="gift-message-whole-to" class="label">
+                        <span data-bind="i18n: 'To:'"></span>
+                    </label>
+                    <!-- /ko -->
+                </div>
+            </div>
+            <div class="field text col-mp mp-12">
+                <!-- ko ifnot: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                <label for="gift-message-whole-message" class="label">
+                    <span data-bind="i18n: 'Message:'"></span>
+                </label>
+                <div class="control">
+                    <textarea id="gift-message-whole-message"
+                              class="input-text"
+                              rows="5" cols="10"
+                              data-bind="value: getObservable('message')"></textarea>
+                </div>
+                <!-- /ko -->
+                <!-- ko if: window.checkoutConfig.oscConfig.isUsedMaterialDesign -->
+                <div class="control">
+                    <textarea id="gift-message-whole-message"
+                              class="input-text material"
+                              rows="3" cols="10"
+                              data-bind="value: getObservable('message'),attr:{placeholder: $t('Message')}"></textarea>
+                </div>
+                <!-- /ko -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /ko -->
+

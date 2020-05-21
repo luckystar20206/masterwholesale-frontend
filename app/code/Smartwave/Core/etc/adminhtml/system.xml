@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="sw_extensions" translate="label" sortOrder="51">
+            <label>Porto Extensions</label>
+        </tab>
+    </system>
+</config>

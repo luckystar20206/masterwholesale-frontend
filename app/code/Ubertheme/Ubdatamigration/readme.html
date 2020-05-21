@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Readme</title>
+	<style type="text/css">
+		body {
+			background: #ccc;
+			color: #666;
+			font-family: "Open Sans","Helvetica","Arial",sans-serif;
+		}
+		.container {
+			max-width: 1170px;
+			margin: 15px auto;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+			padding: 30px;
+			background: #fff;
+			-moz-box-shadow: 2px 2px 5px 0px #999;
+			-webkit-box-shadow: 2px 2px 5px 0px #999;
+			box-shadow: 2px 2px 5px 0px #999;
+		}
+		.main-content {
+			width: 1170px;
+			margin: 0 auto;
+		}
+		.block-title {
+			margin: 0 0 20px;
+		}
+		.block-code {
+			background-color:#eee;
+			width: 80%;
+			margin: 15px auto;
+			padding: 20px;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			border-radius: 5px;
+		}
+		code {
+			padding: .1em 3px;
+			background: #eee;
+			border: 1px solid #ccc;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			border-radius: 3px;
+		}
+	</style>
+</head>
+<body>
+<div class="page-wraper">
+	<div class="main-content">
+		<div class="container">
+			***** Module: <a href="https://www.ubertheme.com/magento-extensions-2-x/magento-2-data-migration-pro/" target="_blank">UB Data Migration Pro</a> Edition for Magento CE *****<br/>
+			Copyright &copy; 2019 Ubertheme.com All rights reserved.
+		</div>
+		<div class="container">
+			<h1 class="block-title">Table of Contents</h1>
+			<div class="block-content">
+				<ol>
+					<li><a href="#ub1">Getting Started</a></li>
+					<li><a href="#ub2">How to install UB Data Migration Pro and enable PHP Memcached.</a></li>
+					<li><a href="#ub3">How to upgrade UB Data Migration Pro to a newer version</a></li>
+					<li><a href="#ub4">Extra guide for Nginx Server configuration</a></li>
+					<li><a href="#ub5">How to use UB Data Migration Pro (video tutorial)</a></li>
+					<li><a href="#ub6">Required steps to complete migration process (REQUIRED)</a></li>
+					<li><a href="#ub7">Delta Migration</a></li>
+					<li><a href="#ub8">Changelog</a></li>
+					<li><a href="#ub9">Troubleshooting & FAQs</a></li>
+					<li><a href="#ub10">Helpful resources</a></li>
+				</ol>
+			</div>
+		</div>
+		<div class="container">
+			<h1 class="block-title" id="ub1">1. Getting Started</h1>
+			<div class="block-content">
+
+				<h2 class="block-title">1.1. Introduction</h2>
+
+				<p><a href="https://www.ubertheme.com/magento-extensions-2-x/magento-2-data-migration-pro/" target="_blank">UB Data Migration Pro</a> helps to port all your key data (Database Settings, Websites/Stores, Attributes, Categories, Products, Customers, Sales Data, Tax Data, Reviews & Ratings...) to Magento 2. </p>
+
+				<p>Since UB Data Migration Pro deals with direct database to database migration only, other perspectives like extensions, themes or customisation would be a separated task and would be best handled by the extension/theme providers accordingly.</p>
+
+				<div>UB Data Migration Support the following Magento versions:
+					<ul>
+						<li>Magento CE 1.x: 1.6.0.2 and later, 1.7.x, 1.8.x, 1.9.x</li>
+						<li>Magento CE 2.0.0 and later</li>
+					</ul>
+				</div>
+				<h2 class="block-title">1.2. Recommended Workflow</h2>
+
+				<p>Following is our recommended workflow:</p>
+				<ul>
+					<li>Step 1 - Install a fresh Magento 2 instance</li>
+					<li>Step 2 - Install UB Data Migration Pro extension</li>
+					<li>Step 3 - Proceed data mgiration and verify all migrated data</li>
+					<li>Step 4 - Once you complete all of the tasks in step #3, start with themes/extension integration.</li></ul>
+
+			</div>
+		</div>
+		<div class="container">
+			<h1 class="block-title" id="ub2">2. How To Install</h1>
+			<div class="block-content">
+				<h2 class="block-title">2.1. Pre-requisite: </h2>
+				<ul>
+					<li>Download Magento Community Edition 2.x from the link: <a href="https://www.magentocommerce.com/download" target="_blank">https://www.magentocommerce.com/download</a> </li>
+					<li>Before continue, make sure you always backup your Magento installation (files and database) so you can roll back in the event of issues. </li>
+					<li>Stop all activities in the Magento 1 Admin Panel and stop all Magento 1.x and Magento 2 cron jobs.  </li>
+					<li>Assign Write permission to the <code>pub</code> folder at <code>PATH_TO_YOUR_MAGENTO_2/pub</code></li>
+				</ul>
+				<h2 class="block-title">2.2. Installation Steps:</h2> <em>(For new installation)</em><br>
+				<ol>
+					<li> Copy the app folder and paste to the root folder of your fresh Magento 2 (Select the <em>'merge'</em> folders/files option).</li>
+					<li>Open your Terminal window, go to your Magento 2 folder and run the following commands to install this module:<br>
+						<div class="block-code">
+							php -f bin/magento deploy:mode:set developer (<em>optional</em>)	<br>
+							php -f bin/magento module:enable -c Ubertheme_Ubdatamigration<br>
+							php -f bin/magento setup:upgrade<br>
+							php -f bin/magento setup:di:compile (<em>optional</em>)<br>
+						</div>
+					</li>
+				</ol>
+
+				<h2 class="block-title">2.3. Enable PHP Memcached (Optional)</h2>
+
+				<p>Enable PHP Memcached to improve the performance of the UB Data Migration Pro tool. Default settings of our tool uses cached file storeage. We highly recommend you enable the PHP Memcached to improve the overall performance.</p>
+
+				<ol>
+					<li>First, make sure you have the PHP memcached installed in your web server (Reference: <a rel="nofollow" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-memcache-on-ubuntu-14-04" target="_blank">https://www.digitalocean.com/community/tutorials/how-to-install-and-use-memcache-on-ubuntu-14-04</a>)</li>
+
+					<li>Once done, enable PHP Memcached to use with UB Data Migration Pro tool. Supposed you already install our migration tool successfully, simply open the configuration file at: <code>PATH_TO_YOUR_MAGENTO_2/pub/ub-tool/protected/config/cache.php</code>, then navigate to the lines: 6 -> 8 and:<br>
+						++ comment out multiple lines from 6 -> 8<br>
+						++ un-comment the lines from 11 -> 21<br>
+
+					</li>
+				</ol>
+			</div>
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub3">3. Upgrade Note</h1>
+			<div class="block-content">
+
+				<p>Please always backup your full Magento 2 site so you can roll back in the event of issues. We recommend to install our extension in a testing environment before deploying it to your production environment.</p>
+
+				<p>You simply follow steps below to upgrade to a newer UB Data Migration Pro version:</p>
+
+				<ul>
+					<li>Step 1: Extract the latest version of our tool and upload to your Magento 2 web root folder as per Installation Guide in step 2.2 above.</li>
+					<li>Step 2: Run the command: <code>php -f bin/magento setup:upgrade</code></li>
+				</ul>
+
+
+			</div>
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub4">4. Server Configuration</h1>
+			<div class="block-content">
+				<p>After installing UB Data Migration Pro, check the followings: </p>
+				<ul>
+					<li>Step 1. Check your current Nginx configuration:<br>
+						<p>If you have custom Nginx configuration, you need to check the following Nginx parameter: <code>fastcgi_pass {your_value}</code><br>
+							- Open our UB Data Migration Pro's Nginx configuration file at:  <code>path_to_your_magento2/pub/ub-tool/nginx.conf</code>.<br>
+							- Then find the line <code>fastcgi_pass 127.0.0.1:9000;</code>, and replace this parameter with your own value <code>fastcgi_pass {your_value};</code>.</p>
+					</li>
+					<li>Step 2: Open your Magento 2's nginx.conf file and add the following line to the end of that file:
+						<code>include path_to_your_magento2/pub/ub-tool/nginx.conf;</code><br>
+						Sample configuration in your nginx.conf file:<br>
+						<div class="block-code">
+							server {<br>
+							listen 80;<br>
+							#...other configs<br><br>
+
+							#include config file for ub-tool<br>
+							include path_to_your_magento2/pub/ub-tool/nginx.conf;<br>
+							}
+						</div>
+					</li>
+					<li>Step 3: Restart your Nginx server.</li>
+				</ul>
+			</div>
+		</div>
+
+
+		<div class="container">
+			<h1 class="block-title" id="ub5">5. How To Use (Video Tutorial)</h1>
+			<div class="block-content">
+
+				<p>There are two ways to go about running data migration with our UB Data Migration Pro: </p>
+
+                <ul><li>Running in GUI mode (under UB Data Migration Pro’s dashboard right in your Magento 2’s backend)</li>
+                <li>Running in CLI mode (see the section <em><strong>5.2 How to proceed the migration using CLI</strong></em> below)</li></ul>
+
+                <p><code>IMPORTANT</code>: If you are migrating high volume of data into Magento 2, it is essential that you should proceed migration using the CLI mode after you complete all Pre-migration Setting steps.</p>
+
+				<h2 class="block-title">5.1. How to proceed the migration: </h2>
+
+				<p>This 9-minutes tutorial video will walk you through all installation and migration process, including delta migration steps: <a href="https://youtu.be/R4UBLe2kf-I" target="_blank">https://youtu.be/R4UBLe2kf-I</a></p>
+				<h2 class="block-title">5.2. How to proceed the migration using Command-Line Interface (OPTIONAL)</h2>
+
+
+				<p>Make sure you complete all Pre-migration Setting (8) steps first. Then open your terminal, navigate to your Magento 2 folder and run one of following commands. Once done, please follow the section <b>6 - Required Steps to complete migration process</b> below.</p>
+
+				<div class="block-code">
+					<p>Migrates Data All Steps:<br> <code>php bin/ubdatamigration run</code></p>
+					<p>Migrates Single Step: Eg. The command to proceed migration in step #2 - Migrate Websites, Stores:<br>
+						<code>php bin/ubdatamigration run --step=2</code></p>
+					<p>Migrates Data Single Step with custom number of records per each batch runtime. Eg. The command to proceed the migration in step #5 with a custom 200 records:<br> <code>php bin/ubdatamigration run --step=5 --limit=200</code></p>
+					<p>Resets Migrated Data All Steps:<br> <code>php bin/ubdatamigration reset</code></p>
+					<p>Resets Migrated Data Single Step. Eg. The command to reset migration in only step #2 - Migrate Websites, Stores: <br><code>php bin/ubdatamigration reset --step=2</code></p>
+
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub6">6. Required Steps To Complete Migration Process</h1>
+			<p><b>NOTE</b>: After you complete 8 steps in the above mentioned <a href="https://youtu.be/R4UBLe2kf-I" target="_blank">video tutorial</a>, make sure you follow a few more steps (<b>Required</b>) to complete the migration process: </p>
+
+			<p><b>6.1. Copy media files: </b>
+			<ul>
+				<li>Copy the folder at <code>PATH_YOUR_MAGENTO_1\media\catalog</code> and paste replace to <code>PATH_YOUR_MAGENTO_2\pub\media\</code></li>
+				<li>Copy the folder at <code>PATH_YOUR_MAGENTO_1\media\downloadable</code> and paste replace to <code>PATH_YOUR_MAGENTO_2\pub\media\</code></li>
+				<li>Make recursive write permission to "<b>catalog</b>" and "<b>downloadable</b>" folders which you have just copied.</li></ul>
+			</p>
+
+			<p><b>6.2. Re-save each migrated Store View:</b></p>
+			For each your migrated store, navigate to your backend, open each Store Views (as per <a href="http://static.ubertheme.com/userguide/Extensions/Magento2/UbDataMigrationPro/store_views.png" target="_blank">this screenshot</a>) and click <b>Save</b> button.
+
+			<p><b>6.3. Clean Magento 2 cache:</b></p>
+			<p>In your terminal window, go to your Magento 2 folder and run the command: <code>php -f bin/magento cache:clean</code></p>
+
+			<p><b>6.4. Re-Index the data: </b></p>
+			<p>In your terminal window, go to your Magento 2 folder and run the command: <code>php -f bin/magento indexer:reindex</code></p>
+
+			<p><b>6.5. Re-Clean Magento 2 cache: </b></p>
+			<p>In your terminal window, go to your Magento 2 folder and run the command: <code>php -f bin/magento cache:clean</code></p>
+
+			<p><b>NOTE</b>: Since UB Data Migration Pro version 2.0.6, we apply a small change by appending the label of Attributes set / Attribute Group with the text 'Migrated'. You can edit with your own label.
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub7">7. Delta Migration</h1>
+			<p>Delta migration is a completely new feature in UB Data Migration Pro V3.x. It enables to migrate incremental changes since the last time you migrate new data like Customers, Sales orders.... In short, it ports the following changes to Magento 2:  </p>
+			<ul>
+				<li>All newly created items in Magento 1 site</li>
+				<li>All changes to existing items in Magento 1 site which have been migrated to Magento 2 since the first migration.</li></ul>
+
+			<p>Proceeding delta migration should be done using one of the Commands (CLI) below:
+			<ol>
+				<li>Run delta migration for all steps: <code>php -f bin/ubdatamigration run --mode=update</code><br>
+					<p><b>IMPORTANT NOTE</b>: the <code>--mode=update</code> will also overwrite existing Magento 2 data that has been migrated from Magento 1. This update mode will port the following data to Magento 2: <br>
+						- Newly created items<br>
+						- All existing Magento 1 items (including changed items) that have been migrated to Magento 2 since the first migration.</p>
+				</li>
+				<li>Run delta migration for a specific step: <code>php -f bin/ubdatamigration run --step=STEP_INDEX --mode=update</code>
+					<br/>For instance, you run delta migration for step #5 only, use this command: <code>php -f bin/ubdatamigration run --step=5 --mode=update</code></li>
+			</ol>
+			</p>
+
+			<b>How to migrate Customers changes: </b>
+			<ul>
+				<li>Run the following command: <code>php -f bin/ubdatamigration run --step=6 --mode=update</code></li>
+				<li>Once done, Reindex your data using the command: <code>php -f bin/magento indexer:reindex</code></li>
+				<li>Then clean M2 cache with the command: <code>php -f bin/magento cache:clean</code></li></ul>
+			<b>How to migrate Sales Orders changes:</b>
+			<ul>
+				<li>Run the following command: <code>php -f bin/ubdatamigration run --step=7 --mode=update</code></li>
+				<li>Clean M2 cache: <code>php -f bin/magento cache:clean</code></li></ul>
+
+			<p>Apply similiar steps, for other data objects that you wish to migrate new incremental data changes. Please note, Reindex step is only needed if you migrate: Catalog Categories, Catalog Products, Customers data.</p>
+
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub8">8. Changelog</h1>
+			Full information on release revisions, bug fixes, new features: <a href="https://www.ubertheme.com/magento-updates/ub-data-migration-pro-update-info/" target="_blank">UB Data Migration Pro changelog</a>
+		</div>
+
+		<div class="container">
+			<h1 class="block-title" id="ub9">9. Troubleshooting & FAQs:</h1>
+
+			<h2 class="block-title">9.1. Attention - For Magento 2.1.0 only: </h2>
+			<p>After you finish all migration steps as instructed above, if you see the following issues (which might occure in Magento 2.1.0 only), this is workaround to get it fixed: </p>
+
+			<p>If you can't edit the product in the back-end and see the issue as per <a rel="nofollow" href="https://github.com/magento/magento2/issues/5236#issuecomment-229550083" target="_blank">this post</a>.</p>
+
+			<p>HOW TO FIX:</p>
+			<ul>
+				<li>Open the file: <em><small>vendor/magento/module-configurable-product/Ui/DataProvider/Product/Form/Modifier/ConfigurablePrice.php</small></em><br>
+					and find the line:<br>
+					<code>'config' => $visibilityConfig,</code>
+					and replace it with: <code>'config' => ['componentType'=>'container',$visibilityConfig],</code></li>
+
+				<li>Then clean the Magento cache by using command line: <code>php -f bin/magento cache:clean</code></li></ul>
+
+
+			<h2 class="block-title">9.2. 404 Issues</h2>
+			<p>If you run across 404 issues, the reason might vary. Check the following to see if it's your case: </p>
+
+			<p>404 issue might associate with the owner and file permissions at the /pub/ub-tool. You can try to set the folder to 755 and files to 644 respectively:
+				<ul>
+<li><code>find . -type d -exec chmod 755 {} \;</code></li>
+<li><code>find . -type f -exec chmod 644 {} \;</code></li></ul></p>
+
+			<p>If you use Nginx Server, please make sure you follow the configuration steps mentioned in the Section #4. Server Configuration above.</p>
+
+            <h2 class="block-title">9.3. Couldn't connected to Magento 1 database</h2>
+
+            <p>If the source and destination databases are on different MySQL servers, you must enable a remote MySQL database connection to your Magento 1 database following <a href="https://devdocs.magento.com/guides/v2.0/install-gde/prereq/mysql_remote.html" target="_blank">this guide</a>. </p>
+
+            <p> It’s a better option in terms of migration performance if you connect directly to your databases in the same MySQL server rather than via a remote connection. </p>
+
+			<h2 class="block-title">9.4 . Enable debugging mode of UB Data Migration Pro</h2>
+			<p>If you wish to view the issue log in more details while proceeding migration, you can enable debugging mode following steps below:</p>
+
+			<ul>
+				<li>Open the file: <em><small>PATH_TO_YOUR_MAGENTO_2/pub/ub-too/index.php</small></em></li>
+				<li>Find and uncomment the two lines below:<br>
+					<code>#ini_set('display_errors', 1);</code><br>
+					and: <br>
+					<code>#defined('YII_DEBUG') or define('YII_DEBUG', true);</code></li>
+			</ul>
+
+
+			<h2 class="block-title">9.5 Migration Logs</h2>
+
+			<p>The migration tool generates the log file at: <em><small>pub/ub-tool/protected/runtime/ub_data_migration.log</small></em> which includes errors, warnings, and successes information. </p>
+
+			<p>You can also enable browser’s console to see any other issue that might occur during your migration process. </p>
+
+			<h2 class="block-title">9.6 Migration FAQs</h2>
+
+			<p>You can check out the commonly raised questions (FAQs) and how to deal with them: <a href="http://bit.ly/magento-data-migration-faqs-part-3" target="_blank">Part 3</a>  - <a href="http://bit.ly/magento-data-migration-part-ii" target="_blank">Part 2</a> - <a href="http://bit.ly/magento-2-data-migration-faqs-part-i" target="_blank">Part 1</a> </p>
+
+		</div>
+
+
+		<div class="container">
+			<h1 class="block-title" id="ub10">10. Useful Resources</h1>
+
+			<ul>
+				<li>Technical support: <a href="https://www.ubertheme.com/questions/" target="_blank">https://www.ubertheme.com/questions</a></li>
+
+				<li>Custom Work Inquiry: <a href="https://www.ubertheme.com/magento-custom-services/" target="_blank">https://www.ubertheme.com/magento-custom-services</a></li></ul>
+		</div>
+	</div>
+</div>
+</body>
+</html>

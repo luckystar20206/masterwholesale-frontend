@@ -1,0 +1,89 @@
+<?php
+/**
+ * Copyright © 2018 Porto. All rights reserved.
+ */
+
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see \Smartwave\Megamenu\Block\Topmenu
+ */
+?>
+<?php
+    $_helper = $this->helper('Smartwave\Megamenu\Helper\Data');
+    $_portohelper = $this->helper('Smartwave\Porto\Helper\Data');
+    
+    $categories = $_helper->getFirstLevelCategories();
+
+    $custom_styles='<style type="text/css">';
+?>
+<?php if($_portohelper->getConfig('porto_settings/general/layout') == "full_width" && $_portohelper->getConfig('porto_settings/general/category_list_on_left')): ?>
+<div class="onepage-cat category-list">
+    <ul>
+    <?php
+        $i = 0;
+        foreach($categories as $category) {
+            $cat_id = $category->getId();
+            $cat_model = $_helper->getCategoryModel($cat_id);
+            if($category->getIsActive() && !$cat_model->getData("sw_ocat_hide_this_item")) {
+                $icon = '<em class="porto-icon-circle-empty"></em>';
+                if($cat_icon_img=$cat_model->getData("sw_ocat_category_icon_image")) {
+                    $icon = '<img src="'.'catalog/category/'.$cat_icon_img.'" alt=""/>';
+                } else if($cat_font_icon=$cat_model->getData("sw_ocat_category_font_icon")){
+                    $icon = '<em class="'.$cat_font_icon.'"></em>';
+                }
+                if($hover_bg_color = $cat_model->getData("sw_ocat_category_hoverbgcolor"))
+                    $custom_styles .= '.onepage-category .category-list > ul > li > a[data-cat="'.$cat_id.'"]:hover,.onepage-category .category-list > ul > li > a[data-cat="'.$cat_id.'"].active{background-color:'.$hover_bg_color.';}.onepage-category .category-list > ul > li > a[data-cat="'.$cat_id.'"]:hover:after,.onepage-category .category-list > ul > li > a[data-cat="'.$cat_id.'"].active:after{border-left-color:'.$hover_bg_color.';}';
+                echo '<li data-index="'.$i.'"><a href="'.$cat_model->getUrl().'" data-cat="'.$cat_id.'">'.$icon.'<span>'.$category->getName().'</span></a></li>';
+                $i++;
+            }
+        }
+    ?>
+    </ul>
+    <?php
+        $custom_styles .= '</style>';
+        echo $custom_styles;
+    ?>
+</div>
+
+<script type="text/javascript">
+require([
+    'jquery'
+], function ($) {
+    $(document).ready(function(){
+        $("#maincontent .columns").before($(".onepage-cat.category-list").detach());
+        $("#maincontent").addClass("onepage-category");
+        $(".onepage-cat.category-list > ul > li > a").each(function(){
+            var href = $(this).attr("href");
+            if(href.indexOf(window.location.pathname) > -1)
+                $(this).addClass("active");
+        });
+        $(".onepage-category .columns").css("min-height", $(".onepage-cat.category-list").height());
+        $(window).scroll(function(){
+            if($(".onepage-cat.category-list > ul").outerHeight() < $(this).innerHeight()) {
+                $(".onepage-cat.category-list > ul").removeClass("fixed-bottom");
+                if($(this).scrollTop() >= $(".onepage-cat.category-list").offset().top + 46) {
+                    $(".onepage-cat.category-list > ul").addClass("fixed-top");
+                } else {
+                    $(".onepage-cat.category-list > ul").removeClass("fixed-top");
+                }
+            } else {
+                $(".onepage-cat.category-list > ul").removeClass("fixed-top");
+                if($(this).scrollTop() >= $(".onepage-cat.category-list").offset().top + $(".onepage-cat.category-list > ul").height() + 46 - $(this).innerHeight()) {
+                    $(".onepage-cat.category-list > ul").addClass("fixed-bottom");
+                } else {
+                    $(".onepage-cat.category-list > ul").removeClass("fixed-bottom");
+                }
+            }
+            if(($(".onepage-cat.category-list > ul").hasClass("fixed-bottom") && ($(this).scrollTop() + $(window).innerHeight() >= $(".page-footer").offset().top)) || ($(".onepage-cat.category-list > ul").hasClass("fixed-top") && ($(this).scrollTop() + $(window).innerHeight() >= $(".page-footer").offset().top) && ($(".onepage-cat.category-list > ul").offset().top + $(".onepage-cat.category-list > ul").outerHeight() >= $(".page-footer").offset().top) && ($(this).scrollTop() + $(".onepage-cat.category-list > ul").outerHeight() + 70 >= $(".page-footer").offset().top))) {
+                $(".onepage-cat.category-list > ul").addClass("absolute-bottom");
+            } else {
+                $(".onepage-cat.category-list > ul").removeClass("absolute-bottom");
+            }
+        });
+    });
+});
+</script>
+<?php endif; ?>

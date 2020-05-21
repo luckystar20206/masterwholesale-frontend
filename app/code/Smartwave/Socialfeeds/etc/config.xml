@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../Store/etc/config.xsd">
+    <default>
+        <sw_socialfeeds>
+            <facebook_fanbox>
+                <enable>1</enable>
+                <facebook_name>promokit.eu</facebook_name>
+                <showing_counts>6</showing_counts>
+            </facebook_fanbox>
+            <flickr_photos>
+                <enable>1</enable>
+                <api_key>dd14978e9347319cdc672f3336cfdf9f</api_key>
+                <photo_set_id>72157636619779965</photo_set_id>
+                <showing_counts>6</showing_counts>
+            </flickr_photos>
+        </sw_socialfeeds>
+    </default>
+</config>

@@ -1,0 +1,48 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_DeliveryTime
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/**************************************************** Shipping method area ****************************************************/
+.delivery-date .title, .delivery-time .title, .house-security-code .title, .delivery-comment .title {
+    margin-bottom: 8px;
+}
+
+.delivery-date .control input {
+    width: 75%;
+    position: relative;
+    display: inline-block;
+}
+
+.delivery-date .remove-delivery-date {
+    cursor: pointer;
+    position: relative;
+    right: 45px;
+    display: inline-block;
+}
+
+.delivery-date, .delivery-time {
+    display: inline-block;
+    width: 45%;
+    margin-bottom: 20px;
+}
+
+.delivery-comment, .house-security-code {
+    width: 90%;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../Magento/Backend/etc/menu.xsd">
+    <menu>
+        <add id="Smartwave_Core::sw_all" title="Porto" module="Smartwave_Core" sortOrder="60" resource="Smartwave_Core::all"/>
+    </menu>
+</config>

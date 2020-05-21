@@ -1,0 +1,206 @@
+<?php /** @var Neklo\MakeAnOffer\Block\Adminhtml\Request\Respond $block */ ?>
+<?php $request = $block->getItem(); ?>
+<div class="page-main-actions">
+    <div class="page-actions-placeholder" style=""></div>
+    <div class="page-actions" data-ui-id="page-actions-toolbar-content-header">
+        <div class="page-actions-inner" data-title="Strive Shoulder Pack">
+            <div class="page-actions-buttons">
+                <button id="back" title="Back" type="button" class="action- scalable back"
+                        onclick="location.href = '<?php echo $block->escapeUrl($block->getBackUrl()); ?>';"
+                        data-ui-id="back-button">
+                    <span>Back</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="" method="POST">
+    <input id="" name="form_key" data-ui-id="affected-attribute-set-form-fieldset-element-hidden-form-key"
+           value="<?php echo $block->escapeHtml($block->getFormKey()); ?>" type="hidden">
+    <input name="request_id" type="hidden" value="<?php echo $block->escapeHtml($request->getId()); ?>">
+    <fieldset class="admin__fieldset">
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Email:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <?php
+                if (!$request->getCustomerId() || $request->getCustomerId() === null) {
+                    $customerInfo = __('(Guest)');
+                } else {
+                    $customerInfo = '(<a href="' . $block->escapeUrl($block->getCustomerEditUrl()) . '">' . __('Show') . '</a>)';
+                }
+                ?>
+                <span><?php echo $block->escapeHtml($request->getEmail()) . ' ' . $customerInfo; ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Date Created:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($request->getCreatedAt()); ?></span>
+            </label>
+        </div>
+        <?php if ($request->getLink() or $request->getLink() !== null) : ?>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Another Store Link with Less Product Price:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><a href="<?php echo $block->escapeUrl($request->getLink()) ?>"><?php echo $block->escapeHtml($request->getLink()); ?></a></span>
+                </label>
+            </div>
+        <?php endif; ?>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Product Name:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($request->getProductName()); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('SKU:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><a href="<?php echo $block->escapeUrl($block->getProductEditUrl()) ?>"><?php echo $block->escapeHtml($request->getProductSku()); ?></a></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Quantity:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($request->getProductQty()); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Actual Product Price:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getActualPrice())); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Product Price When Discount was Requested:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getPrice())); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Requested Price:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getRequestPrice())); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Requested Sale Amount:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getRequestedSaleAmount())); ?></span>
+            </label>
+        </div>
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml(__('Status:')); ?></span>
+            </label>
+            <label class="admin__field-label">
+                <span><?php echo $block->escapeHtml($request->getStatusName()); ?></span>
+            </label>
+        </div>
+        <?php
+        if ($request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::NEW_REQUEST_STATUS) {
+            $block->changeStatus();
+        }
+        ?>
+        <?php if ($request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::PENDING_REQUEST_STATUS) : ?>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Reason copy')); ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <textarea class="admin__control-textarea" name="reason_copy" cols="15" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Discount Sum')); ?></span>
+                </label>
+                <div class="admin__field-control">
+                    <input class="admin__control-text" type="text" name="discount_sum"
+                           value="<?php echo $block->escapeHtml($block->getRenderedPrice($request->getRequestedSaleAmount(), false)); ?>">
+                </div>
+            </div>
+            <div class="admin__field admin__field_buttons">
+                <label class="admin__field-label">
+                </label>
+                <div class="admin__field-label">
+                    <input type="submit"
+                           onclick='this.form.action="<?php echo $block->escapeUrl($block->getAcceptUrl()); ?>";'
+                           value="Accept" class="admin__button admin__button_accept">
+                    <input type="submit"
+                           onclick='this.form.action="<?php echo $block->escapeUrl($block->getDeclineUrl()); ?>";'
+                           value="Decline" class="admin__button admin__button_decline">
+                    <button title="Back" type="button" class="admin__button admin__button_back"
+                            onclick="location.href = '<?php echo $block->escapeUrl($block->getBackUrl()); ?>';">
+                        <span>Back</span>
+                    </button>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::ACCEPTED_REQUEST_STATUS
+            || $request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::COMPLETED_REQUEST_STATUS
+            || $request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::EXPIRED_REQUEST_STATUS) : ?>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Coupon Code:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml($request->getCoupon()); ?></span>
+                </label>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Applied Coupon Amount:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getAppliedCouponAmount())); ?></span>
+                </label>
+            </div>
+        <?php endif; ?>
+        <?php if ($request->getStatus() == Neklo\MakeAnOffer\Model\Source\Status::COMPLETED_REQUEST_STATUS) : ?>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Order Number:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml($request->getOrderNumber()); ?></span>
+                </label>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Order Date:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml($request->getOrderDate()); ?></span>
+                </label>
+            </div>
+            <div class="admin__field">
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml(__('Sold Price:')); ?></span>
+                </label>
+                <label class="admin__field-label">
+                    <span><?php echo $block->escapeHtml($block->getRenderedPrice($request->getSoldPrice())); ?></span>
+                </label>
+            </div>
+        <?php endif; ?>
+    </fieldset>
+</form>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="default_head_blocks"/>
+    <body>
+         <referenceBlock name="authentication-popup">
+        <arguments>
+            <argument name="jsLayout" xsi:type="array">
+                
+            </argument>
+        </arguments>
+    </referenceBlock>
+        <referenceBlock name="footer_links">
+        <block class="Magento\Framework\View\Element\Html\Link\Current" name="sw.dailydeals.link">
+            <arguments>
+                <argument name="label" xsi:type="string">Daily Deals</argument>
+                <argument name="path" xsi:type="string">dailydeals/deal/view</argument>
+            </arguments>
+        </block>
+    </referenceBlock>
+</body>
+</page>

@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Neklo_MakeAnOffer::css/makeanoffer.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Neklo\MakeAnOffer\Block\Request\Form" name="makeanoffer" template="requestform.phtml">
+                <container name="form.additional.info" label="Form Additional Info">
+                    <block class="Magento\Captcha\Block\Captcha" name="captcha" after="-">
+                        <action method="setFormId">
+                            <argument name="formId" xsi:type="string">make_an_offer_form</argument>
+                        </action>
+                        <action method="setImgWidth">
+                            <argument name="width" xsi:type="string">230</argument>
+                        </action>
+                        <action method="setImgHeight">
+                            <argument name="width" xsi:type="string">50</argument>
+                        </action>
+                    </block>
+                </container>
+            </block>
+
+        </referenceContainer>
+        <referenceBlock name="product.info.options.wrapper.bottom">
+            <block class="Neklo\MakeAnOffer\Block\Request\Form"
+                   name="product.view.extra.configurable"
+                   template="Neklo_MakeAnOffer::button.phtml"
+                   after="-">
+            </block>
+        </referenceBlock>
+        <referenceBlock name="product.info.form.content">
+            <block class="Neklo\MakeAnOffer\Block\Request\Form"
+                   name="product.view.extra.simple"
+                   template="Neklo_MakeAnOffer::button.phtml"
+                   after="-">
+            </block>
+        </referenceBlock>
+        <referenceBlock name="head.components">
+            <block class="Magento\Framework\View\Element\Js\Components" name="captcha_page_head_components" template="Magento_Captcha::js/components.phtml"/>
+        </referenceBlock>
+    </body>
+</page>

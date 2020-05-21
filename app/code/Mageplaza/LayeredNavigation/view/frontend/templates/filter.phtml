@@ -1,0 +1,68 @@
+<ol class="items">
+    <?php foreach ($filterItems as $filterItem): ?>
+        <?php
+        $filter = $filterItem->getFilter();
+        $attributeModel = $filter->getData('attribute_model');
+        $inputName = $filter->getRequestVar();
+        $requestValue = $block->getRequest()->getParam($inputName);
+        $requestArray = $requestValue ? explode(',', $requestValue) : [];
+        $url = in_array($filterItem->getValue(), $requestArray) ? $filterItem->getRemoveUrl() : $filterItem->getUrl();
+        ?>
+        <li class="item">
+            <?php if($attributeModel && $attributeModel->getFrontendInput() == 'price'): ?>
+                <?php
+                    $productCollection = $filter->getLayer()->getProductCollection();
+                    $productCollectionClone = $productCollection->getCollectionClone();
+                    $collection = $productCollectionClone
+                        ->removeAttributeSearch(['price.from', 'price.to']);
+
+                    $min = $collection->getMinPrice();
+                    $max = $collection->getMaxPrice();
+
+                    list($from, $to) = $requestValue ? explode('-', $requestValue) : [$min, $max];
+                ?>
+                <div id="ln_price_attribute">
+                    <div id="ln_price_slider"></div>
+                    <div id="ln_price_text"></div>
+                </div>
+                <script type="text/x-magento-init">
+                    {
+                        "#ln_price_attribute": {
+                            "Mageplaza_LayeredNavigation/js/price/slider": {
+                                "selectedFrom": <?php echo $from ?>,
+                                "selectedTo": <?php echo $to ?>,
+                                "minValue": <?php echo $min ?>,
+                                "maxValue": <?php echo $max ?>,
+                                "priceFormat": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Tax\Helper\Data')->getPriceFormat($block->getStore()); ?>,
+                                "ajaxUrl": <?php /* @escapeNotVerified */ echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($filterItem->getUrl()) ?>
+                            }
+                        }
+                    }
+                </script>
+                <?php break; ?>
+            <?php else: ?>
+				<?php if ($filterItem->getCount() > 0): ?>
+                    <a href="<?php echo $block->escapeUrl($url) ?>">
+                        <?php if($attributeModel && $attributeModel->getFrontendInput() == 'multiselect'): ?>
+                            <input type="checkbox" <?php echo in_array($filterItem->getValue(), $requestArray) ? 'checked="checked"' : ''  ?> />
+                        <?php endif; ?>
+						<?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                        <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                            <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+								<?php if ($filterItem->getCount() == 1):?> <?php /* @escapeNotVerified */ echo __('item')?><?php else:?> <?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                        <?php endif; ?>
+					</a>
+                <?php else:?>
+                    <?php if($attributeModel && $attributeModel->getFrontendInput() == 'multiselect'): ?>
+                        <input type="checkbox" disabled="disabled" />
+                    <?php endif; ?>
+                    <?php /* @escapeNotVerified */ echo $filterItem->getLabel() ?>
+                    <?php if ($this->helper('\Magento\Catalog\Helper\Data')->shouldDisplayProductCountOnLayer()): ?>
+                        <span class="count"><?php /* @escapeNotVerified */ echo $filterItem->getCount()?><span class="filter-count-label">
+							<?php if ($filterItem->getCount() == 1):?><?php /* @escapeNotVerified */ echo __('item')?><?php else:?><?php /* @escapeNotVerified */ echo __('items') ?><?php endif;?></span></span>
+                    <?php endif; ?>
+                <?php endif; ?>
+            <?php endif; ?>
+        </li>
+    <?php endforeach ?>
+</ol>

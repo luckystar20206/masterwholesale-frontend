@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="../../../../../../../lib/internal/Magento/Framework/View/Layout/etc/page_configuration.xsd">
+     <update handle="editor"/>
+    <body>
+	   <referenceContainer name="content">
+            <block class="Mwi\StoreTiming\Block\Adminhtml\Timing\Edit" name="storetiming_timing_edit"/>
+        </referenceContainer>
+		 <referenceContainer name="left">
+            <block class="Mwi\StoreTiming\Block\Adminhtml\Timing\Edit\Tabs" name="storetiming_timing_edit_tabs">
+				<block class="Mwi\StoreTiming\Block\Adminhtml\Timing\Edit\Tab\TimingInfo" name="storetiming_timing_edit_tab_timinginfo"/>
+				 <action method="addTab">
+                    <argument name="name" xsi:type="string">timinginfo_section</argument>
+                    <argument name="block" xsi:type="string">storetiming_timing_edit_tab_timinginfo</argument>
+                </action>
+				<!--CedAddTab-->
+			</block>
+        </referenceContainer>
+    </body>
+</page>

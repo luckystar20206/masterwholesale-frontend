@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="ModernRetail_Base::root" title="Modern Retail" module="ModernRetail_Base" sortOrder="20" dependsOnModule="Magento_Catalog" resource="ModernRetail_Base::root"/>
+        <add id="ModernRetail_Base::api" title="API" module="ModernRetail_Base" sortOrder="10" parent="ModernRetail_Base::root" action="mrbase/base/index/" resource="ModernRetail_Base::api"/>
+
+
+        <!--<add id="ModernRetail_Base::api" title="Monitor" module="ModernRetail_Base" sortOrder="10" parent="ModernRetail_Base::root" action="mrbase/base/monitor/" resource="ModernRetail_Base::api"/>-->
+
+    </menu>
+</config>

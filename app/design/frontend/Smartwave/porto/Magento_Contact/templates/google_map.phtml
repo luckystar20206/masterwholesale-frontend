@@ -1,0 +1,44 @@
+<?php
+    $contacts_config = $this->getConfig('porto_settings/contacts');
+    $_enable = $contacts_config['enable'];
+    if($_enable){
+        $_apikey = $contacts_config['api_key'];
+        $_full_width = $contacts_config['full_width'];
+        $_address = $contacts_config['address'];
+        $_zoom = $contacts_config['zoom'];
+        $_center_lat = $contacts_config['latitude'];
+        $_center_lng = $contacts_config['longitude'];
+?>
+<script type="text/javascript" src="//maps.googleapis.com/maps/api/js?<?php if($_apikey): ?>key=<?php echo $_apikey; ?><?php else: ?>v=3.17<?php endif; ?>"></script>
+<script type="text/javascript">
+    function initialize() {
+        var pos = new google.maps.LatLng(<?php echo $_center_lat; ?>, <?php echo $_center_lng; ?>);
+        var mapOptions = {
+            center: pos,
+            panControl: true,
+            zoomControl: true,
+            mapTypeControl: true,
+            scaleControl: true,
+            streetViewControl: true,
+            overviewMapControl: true,
+            zoom: <?php echo $_zoom; ?>
+        };
+        var map = new google.maps.Map(document.getElementById("store_map"), mapOptions);
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map,
+            title: '<?php echo $_address; ?>'
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<?php if(!$_full_width): ?>
+<div class="container">
+<?php endif; ?>
+<div id="store_map" style="min-height: 300px; width: 100%;"></div>
+<?php if(!$_full_width): ?>
+</div>
+<?php endif; ?>
+<?php
+    }
+?>

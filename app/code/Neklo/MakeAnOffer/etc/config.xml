@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <neklo_makeanoffer>
+            <general>
+                <enable>0</enable>
+            </general>
+            <coupon>
+                <coupon_lifetime>30</coupon_lifetime>
+                <coupon_length>16</coupon_length>
+                <dash>0</dash>
+            </coupon>
+            <frontend>
+                <display>0</display>
+                <button_label>Make An Offer</button_label>
+                <short_descriptions>Make An Offer</short_descriptions>
+                <title>Make An Offer</title>
+                <success_message>Your offer was successfully registered!</success_message>
+                <display_another_store_link>0</display_another_store_link>
+            </frontend>
+            <email>
+                <decline_template>neklo_makeanoffer_email_decline_template</decline_template>
+                <accept_template>neklo_makeanoffer_email_accept_template</accept_template>
+                <counter_template>neklo_makeanoffer_email_counter_template</counter_template>
+                <enable_notify_customer>0</enable_notify_customer>
+                <notify_customer_template>neklo_makeanoffer_email_notify_customer_template</notify_customer_template>
+                <enable_notify_admin>0</enable_notify_admin>
+                <notify_admin_template>neklo_makeanoffer_email_notify_admin_template</notify_admin_template>
+                <identity>general</identity>
+            </email>
+            <cron>
+                <enable>0</enable>
+                <delete_after>15</delete_after>
+            </cron>
+        </neklo_makeanoffer>
+        <customer>
+            <captcha>
+                <shown_to_logged_in_user>
+                    <make_an_offer_form>1</make_an_offer_form>
+                </shown_to_logged_in_user>
+                <always_for>
+                    <make_an_offer_form>1</make_an_offer_form>
+                </always_for>
+            </captcha>
+        </customer>
+        <captcha translate="label">
+            <frontend>
+                <areas>
+                    <make_an_offer_form>
+                        <label>Make an Offer Form</label>
+                    </make_an_offer_form>
+                </areas>
+            </frontend>
+        </captcha>
+    </default>
+</config>

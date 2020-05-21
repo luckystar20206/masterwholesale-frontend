@@ -1,0 +1,30 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<div class="payment-method" css="_active: getCode() == isChecked()" afterRender="initListeners">
+    <div class="payment-method-content">
+        <each args="getRegion('messages')" render=""/>
+        <div class="checkout-agreements-block">
+            <each args="$parent.getRegion('before-place-order')" render=""/>
+        </div>
+        <div class="actions-toolbar" attr="id: getButtonId()" afterRender="renderPayPalButtons"/>
+    </div>
+</div>

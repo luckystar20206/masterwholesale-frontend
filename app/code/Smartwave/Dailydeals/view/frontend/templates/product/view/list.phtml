@@ -1,0 +1,281 @@
+
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+use Magento\Framework\App\Action\Action;
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list template
+ *
+ * @var $block \Magento\Catalog\Block\Product\ListProduct
+ */
+?>
+<?php
+$_productCollection = $block->getLoadedProductCollection();
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+
+// Daily deal Helper 
+$dailydealhelper=$this->helper('Smartwave\Dailydeals\Helper\Data');
+
+?>
+<?php if (!$_productCollection->count()): ?>
+    <div class="message info empty"><div><?php /* @escapeNotVerified */ echo __('We can\'t find products matching the selection.') ?></div></div>
+<?php else: ?>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php echo $block->getAdditionalHtml() ?>
+    <?php
+    if ($block->getMode() == 'grid') {
+        $viewMode = 'grid';
+        $image = 'category_page_grid';
+        $showDescription = false;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+    } else {
+        $viewMode = 'list';
+        $image = 'category_page_list';
+        $showDescription = true;
+        $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::FULL_VIEW;
+    }
+    /**
+     * Position for actions regarding image size changing in vde if needed
+     */
+    $pos = $block->getPositioned();
+    ?>
+    <div class="products wrapper <?php /* @escapeNotVerified */ echo $viewMode; ?> products-<?php /* @escapeNotVerified */ echo $viewMode; ?>">
+        <?php $iterator = 1; ?>
+        <ol class="products list items product-items">
+            <?php /** @var $_product \Magento\Catalog\Model\Product */ ?>
+            <?php foreach ($_productCollection as $_product): ?>
+                <?php /* @escapeNotVerified */ echo($iterator++ == 1) ? '<li class="item product product-item">' : '</li><li class="item product product-item">' ?>
+                <div class="product-item-info" data-container="product-grid">
+                    <?php
+                    $productImage = $block->getImage($_product, $image);
+                    if ($pos != null) {
+                        $position = ' style="left:' . $productImage->getWidth() . 'px;'
+                            . 'top:' . $productImage->getHeight() . 'px;"';
+                    }
+                    ?>
+                    <?php // Product Image ?>
+                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
+                        <?php echo $productImage->toHtml(); ?>
+                    </a>
+                    <div class="product details product-item-details">
+                        <?php
+                            $_productNameStripped = $block->stripTags($_product->getName(), null, true);
+                        ?>
+                        <strong class="product name product-item-name">
+                            <a class="product-item-link"
+                               href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>">
+                                <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getName(), 'name'); ?>
+                            </a>
+                        </strong>
+                        <?php echo $block->getReviewsSummaryHtml($_product, $templateType); ?>
+                        <?php /* @escapeNotVerified */ echo $block->getProductPrice($_product) ?>
+                        <?php echo $block->getProductDetailsHtml($_product); ?>
+                        
+                        <!-- Dailydeal Product data -->
+                        <?php if($dailydealhelper->isDealProduct($_product->getId())) : ?>
+
+                            <?php if($_product->getTypeId() != "bundle" && $_product->getTypeId() != "grouped") : ?>
+
+                                <div style="float:right"><strong>OFF:<?php echo number_format($dailydealhelper->getDealOffValue($_product->getSku()),2); ?>%</strong></div>
+                                <div style="float:left"><strong>Save:<?php echo "" .$dailydealhelper->getcurrencySymbol()."".number_format($dailydealhelper->getDealSaveValue($_product->getSku()),2); ?></strong></div>
+                            <?php else: ?>
+                                <?php echo $dailydealhelper->getbundleProductDiscount($_product->getSku()); ?>
+                            <?php endif; ?>
+                        <input type="text" style="display: none" id="todate_<?php echo $iterator; ?>" value="<?php echo $dailydealhelper->getDailydealToDate($_product->getSku()); ?>" >
+                        <input type="text" style="display: none" id="fromdate_<?php echo $iterator; ?>" value="<?php echo $dailydealhelper->getDailydealFromDate($_product->getSku()); ?>">
+                        <div>
+                            <div id="CDT">
+                                <p id="expired_<?php echo $iterator; ?>"></p> 
+                                <div class="countdowncontainer_<?php echo $iterator; ?>" style="display:none;">
+                                    <span class="number-wrapper" >
+                                        <div class="line"></div>
+                                        <div class="caption">DAYS</div>
+                                       <span class="number day"><p id="countdown_days_<?php echo $iterator; ?>"></p></span>
+
+                                    </span>
+
+                                    <span class="number-wrapper">
+                                        <div class="line"></div>
+                                        <div class="caption">HOURS</div>
+                                        <span class="number hour"><p id="countdown_hours_<?php echo $iterator; ?>"></p></span>
+                                    </span>
+
+                                    <span class="number-wrapper">
+                                        <div class="line"></div>
+                                        <div class="caption">MINS</div>
+                                        <span class="number min"><p id="countdown_minutes_<?php echo $iterator; ?>"></p></span>
+                                    </span>
+
+                                    <span class="number-wrapper">
+                                        <div class="line"></div>
+                                        <div class="caption">SECS</div>
+                                        <span class="number sec"><p id="countdown_seconds_<?php echo $iterator; ?>"></p></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <?php endif; ?> 
+                       <!-- Dailydeal Product End -->
+                        <div class="product-item-inner">
+                            <div class="product actions product-item-actions"<?php echo strpos($pos, $viewMode . '-actions') ? $position : ''; ?>>
+                                <div class="actions-primary"<?php echo strpos($pos, $viewMode . '-primary') ? $position : ''; ?>>
+                                    <?php if ($_product->isSaleable()): ?>
+                                        <?php $postParams = $block->getAddToCartPostParams($_product); ?>
+                                        <form data-role="tocart-form" action="<?php /* @escapeNotVerified */ echo $postParams['action']; ?>" method="post">
+                                            <input type="hidden" name="product" value="<?php /* @escapeNotVerified */ echo $postParams['data']['product']; ?>">
+                                            <input type="hidden" name="<?php /* @escapeNotVerified */ echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */ echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+                                            <?php echo $block->getBlockHtml('formkey')?>
+                                            <button type="submit"
+                                                    title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+                                                    class="action tocart primary">
+                                                <span><?php /* @escapeNotVerified */ echo __('Add to Cart') ?></span>
+                                            </button>
+                                        </form>
+                                    <?php else: ?>
+                                        <?php if ($_product->getIsSalable()): ?>
+                                            <div class="stock available"><span><?php /* @escapeNotVerified */ echo __('In stock') ?></span></div>
+                                        <?php else: ?>
+                                            <div class="stock unavailable"><span><?php /* @escapeNotVerified */ echo __('Out of stock') ?></span></div>
+                                        <?php endif; ?>
+                                    <?php endif; ?>
+                                </div>
+                                <div data-role="add-to-links" class="actions-secondary"<?php echo strpos($pos, $viewMode . '-secondary') ? $position : ''; ?>>
+                                    <?php if ($addToBlock = $block->getChildBlock('addto')): ?>
+                                        <?php echo $addToBlock->setProduct($_product)->getChildHtml(); ?>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <?php if ($showDescription):?>
+                                <div class="product description product-item-description">
+                                    <?php /* @escapeNotVerified */ echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+                                    <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" title="<?php /* @escapeNotVerified */ echo $_productNameStripped ?>"
+                                       class="action more"><?php /* @escapeNotVerified */ echo __('Learn More') ?></a>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                </div>
+                <?php echo($iterator == count($_productCollection)+1) ? '</li>' : '' ?>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php echo $block->getToolbarHtml() ?>
+    <?php if (!$block->isRedirectToCartEnabled()) : ?>
+        <script type="text/x-magento-init">
+        {
+            "[data-role=tocart-form], .form.map.checkout": {
+                "catalogAddToCart": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+
+<script>
+ 
+// Timer for LEFT time for Dailydeal product
+    var _second = 1000;
+    var _minute = _second * 60;
+    var _hour = _minute * 60;
+    var _day = _hour * 24;
+    var timer;
+   
+    function showRemaining(currentdate) 
+    {
+        
+       var count;
+       for (count = 2; count <= <?php echo $iterator; ?>; count++) 
+       {
+           // get Value of dailydeal product
+           var cid='countdown_'+count;
+           var daysid='countdown_days_'+count;
+           var hoursid='countdown_hours_'+count;
+           var minutesid='countdown_minutes_'+count;
+           var secondsid='countdown_seconds_'+count;
+           
+           var startdateid='fromdate_'+count;
+           var id='todate_'+count;
+           
+           var enddate = new Date(jQuery('#'+id).val());
+           var dealstartdate=new Date(jQuery('#'+startdateid).val());
+           
+           // Get Current Date from magentodatetime
+           var currentdate=new Date(currentdate);
+          
+           //Get Difference between Two dates
+           var distance = enddate - currentdate;
+           
+           if (distance < 0) 
+           {
+               // clearInterval(timer);
+                jQuery('#expired_'+count).html("<span style='font-size:25px; color:#000;'>EXPIRED!<span>");
+
+           }
+           else if(dealstartdate > currentdate)
+           {
+               jQuery('.countdowncontainer_'+count).hide();
+               var msg="<span style='font-size:15px; color:#000;'> Coming Soon..<br>Deal Start at:<br>"+jQuery('#'+startdateid).val()+"<span>";
+               jQuery('#expired_'+count).html(msg);
+                
+            }
+            else
+            {
+                var days = Math.floor(distance / _day);
+                var hours = Math.floor((distance % _day) / _hour);
+                var minutes = Math.floor((distance % _hour) / _minute);
+                var seconds = Math.floor((distance % _minute) / _second);
+               
+               
+               jQuery('.countdowncontainer_'+count).show();
+               jQuery('#'+daysid).html(days);
+               jQuery('#'+hoursid).html(hours);
+               jQuery('#'+minutesid).html(minutes);
+               jQuery('#'+secondsid).html(seconds);
+               
+            
+            }
+        }         
+    }
+    
+    //Set date as magentodatetime 
+    var date = new Date('<?php echo $dailydealhelper->getcurrentDate() ?>');
+    
+    var day   = date.getDate();
+    var month = date.getMonth();
+    var year  = date.getFullYear();
+    var hours = date.getHours();
+    var minutes = "0" + date.getMinutes();
+    var seconds = "0" + date.getSeconds();
+
+    var fulldate = year+'-'+(month+1)+'-'+day+' '+hours + ':' + minutes.substr(minutes.length-2) + ':' + seconds.substr(seconds.length-2);
+
+    // Set Interval
+    timer = setInterval(function() 
+    {
+        date.setSeconds(date.getSeconds() + 1);
+        var month=date.getMonth();
+        var currentdatetime=date.getFullYear()+"-"+(month+1)+"-"+date.getDate()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds();
+        showRemaining(currentdatetime);
+    }, 1000);
+      
+       
+</script>
+<style>
+
+#CDT
+{
+    margin:107px 0 50px;
+}
+    
+#CDT .number-wrapper
+{
+    margin:3px;
+}
+</style>

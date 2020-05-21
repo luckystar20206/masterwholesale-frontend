@@ -1,0 +1,40 @@
+<?php
+$_enable = $this->getConfig('sw_socialfeeds/instagram_photos/enable');
+if($_enable==1){
+    $accesstoken = $this->getConfig('sw_socialfeeds/instagram_photos/accesstocken');
+    $count = $this->getConfig('sw_socialfeeds/instagram_photos/showing_counts');
+    $user_id = $this->getConfig('sw_socialfeeds/instagram_photos/user_id');
+    $padding = $this->getData("padding_item")!=''?'padding:'.$this->getData("padding_item").';':'';
+?>
+    <div class="insta-items grid-items">
+        <div class="photo-instagrams row"></div>
+    </div>
+    <script type="text/javascript">
+        require([
+            'jquery'
+        ], function ($) {
+            var instaGram = $('.photo-instagrams'),
+                userID = <?php echo $user_id;?>,
+                token = '<?php echo $accesstoken;?>',
+                count = <?php echo $count;?>;
+            var url = "https://api.instagram.com/v1/users/"+userID+"/media/recent/?access_token="+token;
+            $.ajax({
+                type: "GET",
+                dataType: "jsonp",
+                cache: false,
+                url: url,
+                success: function(data) {
+                    for (var i = 0; i < count; i++) {
+                        if (data.data[i]) {
+                            var caption = "";
+                            if (data.data[i].caption) {
+                                caption = data.data[i].caption.text;
+                            }
+                            instaGram.append("<div class='col-xl-2 col-lg-3 col-sm4 col-6' style='<?php echo $padding;?>' data-date='"+data.data[i].created_time+"' data-sortid='"+i*2+"'><a class='image-link' target='_blank' href='" + data.data[i].link +"'><img class='instagram-image' src='" + data.data[i].images.low_resolution.url +"' /><span class='content'><i class='porto-icon-instagram'></i></span></a></div>");
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+<?php }?>

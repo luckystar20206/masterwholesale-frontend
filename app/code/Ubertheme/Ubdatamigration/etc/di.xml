@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @category    Ubertheme
+ * @package     Ubertheme_UbDatamigration
+ * @author      Ubertheme.com
+ * @copyright   Copyright 2009-2016 Ubertheme
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- fixed: https://github.com/magento/magento2/issues/8681-->
+    <!--<preference for="Magento\Catalog\Model\Indexer\Category\Product\Action\Full" type="Ubertheme\Ubdatamigration\Model\Indexer\Product\Category\Action\Full" />-->
+</config>

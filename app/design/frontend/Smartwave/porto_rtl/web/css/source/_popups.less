@@ -1,0 +1,109 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@popup-marker__size: 7px;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+    //  Popup working with dropdown dialog
+    .ui-dialog {
+        &.popup {
+            .action {
+                &.close {
+                    .lib-css(bottom, @popup-button-close__position-bottom);
+                    .lib-css(right, @popup-button-close__position-left);
+                    .lib-css(position, @popup-button-close__position);
+                    height: 40px;
+                    left: 0;
+                    top: 0;
+                    width: 40px;
+                    z-index: 1001;
+                    .lib-button-icon(
+                        @_icon-font-content: @popup-icon-font__content,
+                        @_icon-font:@popup-icon-font,
+                        @_icon-font-size: @popup-icon-font__size,
+                        @_icon-font-line-height: @popup-icon-font__line-height,
+                        @_icon-font-color: @popup-icon-font__color,
+                        @_icon-font-color-hover: @popup-icon-font__color-hover,
+                        @_icon-font-color-active: popup-icon-font__color-active,
+                        @_icon-font-margin: @popup-icon-font__margin,
+                        @_icon-font-vertical-align: @popup-icon-font__vertical-align,
+                        @_icon-font-position: @popup-icon-font__position,
+                        @_icon-font-text-hide: @popup-icon-font__text-hide
+                    );
+                    ._lib-popup-button-close-reset(
+                    @popup-button-close__reset
+                    );
+                }
+            }
+        }
+    }
+
+    .popup {
+        .actions-toolbar {
+            .action {
+                &.cancel {
+                    &:extend(.abs-action-button-as-link all);
+                    font-weight: @font-weight__regular;
+                }
+            }
+        }
+    }
+
+    .popup-pointer {
+        .lib-pointer(
+        @_size: @popup-marker__size,
+        @_background-color: @popup__background,
+        @_border-color: @popup__border-color,
+        @_position__vertical__value: 2px,
+        @_position__horizontal__value: 2px
+        );
+        margin-right: -@popup-marker__size * 2;
+        position: absolute;
+        top: -@popup-marker__size * 2;
+    }
+}
+
+//
+//  Mobile
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .popup-content {
+        .fieldset {
+            .actions-toolbar {
+                .secondary {
+                    display: inline-block;
+                    float: none;
+                }
+                .action {
+                    &.cancel {
+                        margin-top: @actions-toolbar-actions-links-secondary__margin-top;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .ui-dialog {
+        &.popup {
+            width: 420px;
+        }
+    }
+}

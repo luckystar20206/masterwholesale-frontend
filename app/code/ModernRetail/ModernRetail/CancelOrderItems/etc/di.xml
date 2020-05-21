@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="ModernRetail\CancelOrderItems\Api\CancelItemsInterface" type="ModernRetail\CancelOrderItems\Model\CancelItems"/>
+    <preference for="ModernRetail\CancelOrderItems\Api\CancelItemsInformationInterface" type="ModernRetail\CancelOrderItems\Model\CancelItemsInformation"/>
+
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="cancel_orders" xsi:type="object">ModernRetail\CancelOrderItems\Command\Cancel</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+</config>

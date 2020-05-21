@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="admin_system_config_changed_section_porto_settings">
+        <observer name="porto_settings" instance="Smartwave\Porto\Observer\SavePortoSettings"/>
+    </event>
+    <event name="admin_system_config_changed_section_porto_design">
+        <observer name="porto_design" instance="Smartwave\Porto\Observer\SavePortoDesign"/>
+    </event>
+    <event name="admin_system_config_changed_section_porto_license">
+        <observer name="porto_license" instance="Smartwave\Porto\Observer\SavePortoLicense"/>
+    </event>
+</config>

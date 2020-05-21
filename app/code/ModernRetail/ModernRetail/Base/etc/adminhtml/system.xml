@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="modernretail" translate="label" sortOrder="200">
+            <label>Modern Retail</label>
+        </tab> 
+
+        <section id="modernretail_base" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+        <class>separator-top</class>
+        <label>API</label>
+        <tab>modernretail</tab>
+        <resource>Magento_Catalog::config_modernretail</resource>
+
+            <group id="api_credentials" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>API Credentials</label>
+
+                <field id="login" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Login</label>
+                </field>
+
+                <field id="password" translate="label comment" type="obscure" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Password</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+
+                <field id="is_live" translate="label comment"  type="select" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Live API?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+            </group>
+
+        </section>
+    </system>
+</config> 

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="integrator_run_file">
+        <observer name="ModernRetail_Integrator_Run_File_Main" instance="ModernRetail\Import\Observer\Run" />
+    </event>
+
+    <event name="integrator_attach_image">
+        <observer name="ModernRetail_Integrator_AttachImage" instance="ModernRetail\Import\Observer\AttachImage" />
+    </event>
+
+
+    <event name="modernretail_import_finished">
+        <observer name="ModernRetail_Integrator_FinishImport" instance="ModernRetail\Import\Observer\FinishImport" />
+    </event>
+
+</config>

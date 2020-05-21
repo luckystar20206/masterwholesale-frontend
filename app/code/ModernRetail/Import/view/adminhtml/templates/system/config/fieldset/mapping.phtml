@@ -1,0 +1,80 @@
+<?php
+$mappingType = $this->getMappingType();
+
+$attributes = json_decode($block->scopeConfig->getValue('modernretail_import/'.$mappingType.'_mapping/json_value',\Magento\Store\Model\ScopeInterface::SCOPE_STORE));
+//dd($attributes);
+?>
+
+<div style="padding:10px">
+
+    <div class="grid" id="import-mapping-<?php echo $mappingType?>">
+        <button type="button" class="add-new-mapping"><?php echo __("Add new attribute mapping")?></button>
+            <p>&nbsp;</p>
+            <table class="data-grid">
+            <thead>
+            <tr class="headings">
+                <th class="data-grid-th" width="20px">Enabled/Disabled</th>
+                <th class="data-grid-th">TagName (from XML)</th>
+                <th class="data-grid-th">Local attribute</th>
+
+                <th class="data-grid-th" width="20px">Used for configurable?</th>
+                <th class="data-grid-th" width="20px">Remove</th>
+            </tr>
+            </thead>
+            <tbody class="mapping">
+            <tr style="display:none" class="example">
+                <td>
+                    <input checked="checked" class="toggler" type="checkbox"/>
+                </td>
+                <td><input class="tagName" placeholder="<?php echo __("Enter <tagName> from XML")?>" type="text"/></td>
+                <td><input class="attributeName" placeholder="<?php echo __("Enter attribute_code from Local Magento Installation")?>" type="text"/></td>
+                <td>
+                    <input class="is_configurable"  type="checkbox"/>
+                </td>
+                <td><button type="button" class="remove"><span><span><?php echo __("x")?></span></span></button></td>
+            </tr>
+            <?php if ($attributes):foreach($attributes as $tagName=>$attribute):
+                    $attribute = (array)$attribute;
+                ?>
+                <tr  <?php if ($attribute===false):?>style='opacity:0.2'<?php endif;?> >
+                    <td>
+                        <input <?php if ($attribute['status']===true):?> checked="checked"<?php endif;?> class="toggler" type="checkbox"/>
+                    </td>
+                    <td><input value='<?php echo $tagName?>' class="tagName" placeholder="<?php echo __("Enter <tagName> from XML")?>" type="text"/></td>
+                    <td><input value="<?php echo $attribute['attribute']?>" class="attributeName" placeholder="<?php echo __("Enter attribute_code from Local Magento Installation")?>" type="text"/></td>
+                    <td>
+                        <input class="is_configurable" <?php if ($attribute['is_configurable']==true):?>checked='true'<?php endif;?> type="checkbox"/>
+                    </td>
+                    <td><button type="button" class="remove"><span><span><?php echo __("x")?></span></span></button></td>
+                </tr
+            <?php endforeach; endif;?>
+            </tbody>
+            </table>
+
+    </div>
+</div>
+<?php /*
+<script type="text/javascript">
+    //<![CDATA[
+    require(['prototype'], function() {
+        reportGridJsObject.doFilter = function (){
+            var filters = $$('#'+this.containerId+' .filter input', '#'+this.containerId+' .filter select', '#magestore-bannerslider-formdate input', '#magestore-bannerslider-todate input');
+            var elements = [];
+            for(var i in filters){
+                if(filters[i].value && filters[i].value.length) elements.push(filters[i]);
+            }
+            if (!this.doFilterCallback || (this.doFilterCallback && this.doFilterCallback())) {
+                this.reload(this.addVarToUrl(this.filterVar, encode_base64(Form.serializeElements(elements))));
+            }
+        }
+    });
+    //]]>
+</script>*/?>
+<script type="text/javascript"> 
+    var mappping_<?php echo $mappingType?> = null;
+    require(['mr_import/configuration'], function(MRImportMapping) {
+      mappping_<?php echo $mappingType?> = new MRImportMapping($("import-mapping-<?php echo $mappingType?>"),{
+            valueField:$("modernretail_import_<?php echo $mappingType?>_mapping_json_value")
+        });
+    });
+</script>

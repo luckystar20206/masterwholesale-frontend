@@ -1,0 +1,30 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<script type="text/javascript">
+    require([
+        'jquery'
+    ], function ($) {
+        $(document).ready(function(){
+            var purchase_code = $("#porto_license_general_purchase_code").val();
+            if(purchase_code) {
+                $("#porto_license_general_purchase_code").attr("value","********-****-****-****"+purchase_code.substring(23));
+            }
+            $("button#save").click(function(){
+                if(purchase_code) {
+                    if($("#porto_license_general_purchase_code").val() == "********-****-****-****"+purchase_code.substring(23)) {
+                        $("#porto_license_general_purchase_code").attr("value",purchase_code);
+                        $("#porto_license_general_purchase_code").attr("type","password");
+                        $("#config-edit-form").submit();
+                    }
+                }
+            });
+        });
+    });
+</script>

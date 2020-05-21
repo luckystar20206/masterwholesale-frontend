@@ -1,0 +1,12 @@
+<!--
+/**
+* Copyright © 2018 Porto. All rights reserved.
+*/
+-->
+<theme xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/theme.xsd">
+    <title>Smartwave Porto</title>
+	<parent>Magento/blank</parent>
+    <media>
+        <preview_image>media/preview.png</preview_image>
+    </media>
+</theme>

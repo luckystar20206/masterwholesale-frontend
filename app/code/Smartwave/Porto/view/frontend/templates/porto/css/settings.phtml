@@ -1,0 +1,120 @@
+/**
+ * WARNING: Do not change this file. Your changes will be lost.
+ * <?php echo date("Y-m-d H:i:s"); ?>
+ */
+<?php
+    $s = $this->getConfig("porto_settings",$this->_coreRegistry->registry('cssgen_store'));
+    $_helper = $this->helper('Smartwave\Porto\Helper\Cssconfig');
+?>
+body.boxed {
+<?php if(isset($s['general']['boxed_bg_color']) && $s['general']['boxed_bg_color']): ?>
+    background-color: #<?php echo $s['general']['boxed_bg_color']; ?>;
+<?php endif; ?>
+<?php if(isset($s['general']['boxed_bg_img']) && $s['general']['boxed_bg_img']): ?>
+    background-image: url(<?php echo $_helper->getBaseMediaUrl()."porto/boxed_bg/".$s['general']['boxed_bg_img']; ?>);
+<?php elseif(isset($s['general']['boxed_bg_color']) && $s['general']['boxed_bg_color']): ?>
+    background-image: none;
+<?php endif; ?>
+<?php if(isset($s['general']['boxed_custom_style']) && $s['general']['boxed_custom_style']): ?>
+    <?php echo $s['general']['boxed_custom_style']; ?>
+<?php endif; ?>
+}
+<?php
+$product_image_size = 49;
+$product_info_main = 49;
+if($s['product']['product_image_size'] == 1) {
+    $product_image_size = 8.17;
+    $product_info_main = 89.83;
+} else if($s['product']['product_image_size'] == 2) {
+    $product_image_size = 16.33;
+    $product_info_main = 81.67;
+} else if($s['product']['product_image_size'] == 3) {
+    $product_image_size = 24.5;
+    $product_info_main = 73.5;
+} else if($s['product']['product_image_size'] == 4) {
+    $product_image_size = 32.67;
+    $product_info_main = 65.33;
+} else if($s['product']['product_image_size'] == 5) {
+    $product_image_size = 40.83;
+    $product_info_main = 57.17;
+} else if($s['product']['product_image_size'] == 6) {
+    $product_image_size = 49;
+    $product_info_main = 49;
+} else if($s['product']['product_image_size'] == 7) {
+    $product_image_size = 57.17;
+    $product_info_main = 40.83;
+} else if($s['product']['product_image_size'] == 8) {
+    $product_image_size = 65.33;
+    $product_info_main = 32.67;
+} else if($s['product']['product_image_size'] == 9) {
+    $product_image_size = 73.5;
+    $product_info_main = 24.5;
+} else if($s['product']['product_image_size'] == 10) {
+    $product_image_size = 81.67;
+    $product_info_main = 16.33;
+} else if($s['product']['product_image_size'] == 11) {
+    $product_image_size = 89.83;
+    $product_info_main = 8.17;
+}
+?>
+@media (min-width: 768px) {
+    .page-layout-1column .product-info-main, .page-layout-2columns-left .product-info-main, .page-layout-2columns-right .product-info-main, .page-layout-3columns .product-info-main {
+        width: <?php echo $product_info_main."%"; ?>;
+    }
+    .page-layout-1column .product.media, .page-layout-2columns-left .product.media, .page-layout-2columns-right .product.media, .page-layout-3columns .product.media {
+        width: <?php echo $product_image_size."%"; ?>;
+    }
+
+    .page-layout-1column .column.main > .custom-block ~ .product-info-main, .page-layout-2columns-left .column.main > .custom-block ~ .product-info-main, .page-layout-2columns-right .column.main > .custom-block ~ .product-info-main, .page-layout-3columns .column.main > .custom-block ~ .product-info-main {
+        width: <?php echo $product_info_main*0.75."%"; ?>;
+    }
+    .page-layout-1column .column.main > .custom-block ~ .product.media, .page-layout-2columns-left .column.main > .custom-block ~ .product.media, .page-layout-2columns-right .column.main > .custom-block ~ .product.media, .page-layout-3columns .column.main > .custom-block ~ .product.media {
+        width: <?php echo $product_image_size*0.75."%"; ?>;
+    }
+}
+<?php if(isset($s['category_grid']['xs_one_column']) && $s['category_grid']['xs_one_column']): ?>
+@media (max-width: 480px){
+    .products-grid .product-item {
+        float: none;
+        width: 100%;
+        padding: 10px 0;
+    }
+}
+<?php endif; ?>
+<?php if(isset($s['general']['disable_border_radius']) && $s['general']['disable_border_radius']): ?>
+.page-header .switcher .options ul.dropdown, .page-footer .switcher .options ul.dropdown, .minicart-wrapper .block-minicart, .product-item .tocart, .bundle-options-container .block-bundle-summary .product-addto-links > .action, .product-item-actions .actions-secondary.action, .action.tocompare, .product-addto-links .action.tocompare, .product-social-links .action.tocompare, .wishlist.split.button > .action.split, .product-social-links .action.mailto.friend, .product-social-links .action.towishlist, .block-bundle-summary .action.towishlist, .product-item .action.towishlist, .table-comparison .action.towishlist, input[type="text"], input[type="password"], input[type="url"], input[type="tel"], input[type="search"], input[type="number"], input[type="datetime"], input[type="email"], .footer-middle .block.newsletter input, .footer-middle .block.newsletter .action.subscribe, .filter-options-title, .filter-options-item.active .filter-options-title, .filter-options-content, .filter-options-title:after, .toolbar select, .swatch-option, .pages .page, .pages .action, .fotorama__stage, .fotorama__nav--thumbs .fotorama__thumb, .fotorama__nav .fotorama__thumb-border, .input-text.qty, .qty.field .qty-changer > a, button, a.action.primary, textarea, .minicart-items .item-qty, .block-minicart .block-content > .actions > .secondary .action.viewcart, .cart.table-wrapper .product-image-container, .cart-summary, select, #discount-coupon-form #coupon_code, .abs-discount-block .actions-toolbar .action.primary, .abs-discount-block .actions-toolbar .action.cancel, .block-compare .action.primary, .cart-summary .block .actions-toolbar > .primary .action.primary, .cart-summary .form.giftregistry .fieldset .action.primary, .paypal-review-discount .actions-toolbar .action.primary, .paypal-review-discount .actions-toolbar .action.cancel, .cart-discount .actions-toolbar .action.primary, .cart-discount .actions-toolbar .action.cancel, .login-container, .form.password.reset, .form.send.confirmation, .form.password.forget, .form.create.account, .form.form-edit-account, .form-address-edit, .form-newsletter-manage, .message, .box .box-title, .box .box-actions, .customer-welcome .header.links, .btn, .cms-index-index blockquote.testimonial, .recent-posts .item .post-image, .prev-next-products .product-nav .product-pop, #newsletter_popup, .product-label, .page-header.type11 .navigation li.level0.active, .page-header.type11 .navigation li.level0:hover, .filter .filter-current-subtitle, .filter-actions, .products-grid .product-item .product-item-info:hover .weltpixel-quickview.weltpixel_quickview_button_v2, .block-header-customer-login, .bundle-options-container .block-bundle-summary .product-addto-links > .action, .product-item-actions .actions-secondary.action, .action.tocompare, .product-addto-links .action.tocompare, .moved-add-to-links .action.tocompare, .product-social-links .action.tocompare, .wishlist.split.button > .action.split, .product-social-links .action.mailto.friend, .moved-add-to-links .action.mailto.friend, .product-social-links .action.towishlist, .product-addto-links .action.towishlist, .block-bundle-summary .action.towishlist, .product-item .action.towishlist, .table-comparison .action.towishlist
+{
+    border-radius: 0;
+}
+.sw-megamenu.navigation li.level0.fullwidth:hover > .submenu, .sw-megamenu.navigation li.level0.staticwidth:hover > .submenu, .sw-megamenu.navigation li.level0.classic .submenu, .sw-megamenu.navigation li.level0.classic .subchildmenu .subchildmenu, .sw-megamenu.navigation span.cat-label, .category-boxed-banner .owl-item .item, .iwd-summary-cart, .iwd-one-page-checkout-sidebar .iwd-opc-block-summary {
+    border-radius: 0 !important;
+}
+@media (min-width: 768px) {
+    .block-search input, .page-header.type1 .navigation > ul, .navigation li.level0, .page-header.type1 .navigation li.level0.parent:hover, .page-header.type1 .navigation li.level0.active, .page-header.type1 .navigation li.level0:hover, .page-header .navigation .level0 .submenu, .product.data.items > .item.title > .switch, .customer-welcome .header.links, .page-header.type5 .block-search input, .page-header.type5 .navigation .level0.parent:hover > .level-top, .page-header.type6 .block-search input, .page-header.type6 .navigation .level0:hover > .level-top, .page-header.type6 .navigation .level0.parent:hover > .level-top, .product.info.detailed.vertical .product.data.items > .item.title > .switch, .page-header.type5 .navigation .level0:hover > .level-top, .page-header.type11 .navigation li.level0.parent:hover
+    {
+        border-radius: 0;
+    }
+}
+@media (min-width: 640px) {
+    .modes-mode
+    {
+        border-radius: 0;
+    }
+}
+.product-item-photo {
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+}
+.product-image-photo.hover_image {
+    padding: 0;
+    border-radius: 0;
+}
+<?php endif; ?>
+
+<?php
+if(isset($s['custom_settings']['custom_style']) && $s['custom_settings']['custom_style'])
+    echo $s['custom_settings']['custom_style'];
+if(isset($s['custom_settings']['custom_style_2']) && $s['custom_settings']['custom_style_2'])
+    echo $s['custom_settings']['custom_style_2'];
+?>

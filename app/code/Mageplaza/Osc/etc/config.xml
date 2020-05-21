@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Osc
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <osc>
+            <module>
+                <user_guide>one-step-checkout-m2</user_guide>
+            </module>
+            <general>
+                <enabled>1</enabled>
+                <title>One Step Checkout</title>
+                <description>Please enter your details below to complete your purchase.</description>
+                <allow_guest_checkout>2</allow_guest_checkout>
+                <show_billing_address>1</show_billing_address>
+                <redirect_to_one_step_checkout>0</redirect_to_one_step_checkout>
+                <auto_detect_address>google</auto_detect_address>
+                <google_api_key>AIzaSyBW4vLsNZoKFMFMPUR4C0ZuKtaaDDEajos</google_api_key>
+                <geoip>0</geoip>
+            </general>
+            <display_configuration>
+                <is_enabled_login_link>1</is_enabled_login_link>
+                <is_enabled_review_cart_section>1</is_enabled_review_cart_section>
+                <is_show_item_list_toggle>1</is_show_item_list_toggle>
+                <is_show_product_image>1</is_show_product_image>
+                <show_coupon>1</show_coupon>
+                <is_enabled_comments>1</is_enabled_comments>
+                <show_toc>2</show_toc>
+                <is_enabled_newsletter>1</is_enabled_newsletter>
+                <is_enabled_gift_wrap>0</is_enabled_gift_wrap>
+                <seal_block>
+                    <seal_image>default/seal.png</seal_image>
+                    <seal_description>This is a demonstration of trust badge. Please contact your SSL or Security provider to have trust badges embed properly</seal_description>
+                </seal_block>
+            </display_configuration>
+            <design_configuration>
+                <page_layout>3columns-colspan</page_layout>
+                <page_design>flat</page_design>
+                <heading_background>#1979c3</heading_background>
+                <heading_text>#FFFFFF</heading_text>
+                <radio_button_style>with_gap</radio_button_style>
+                <checkbox_button_style>default</checkbox_button_style>
+                <material_color>#1979c3</material_color>
+                <place_order_button>#1979c3</place_order_button>
+            </design_configuration>
+            <field>
+                <position>[{"code":"firstname","colspan":6},{"code":"lastname","colspan":6},{"code":"street","colspan":12},{"code":"country_id","colspan":6},{"code":"city","colspan":6},{"code":"postcode","colspan":6},{"code":"region_id","colspan":6},{"code":"company","colspan":6},{"code":"telephone","colspan":6}]</position>
+            </field>
+            <field_configuration>
+                <field_1_label>Custom Field 1</field_1_label>
+                <field_2_label>Custom Field 2</field_2_label>
+                <field_3_label>Custom Field 3</field_3_label>
+            </field_configuration>
+        </osc>
+    </default>
+</config>

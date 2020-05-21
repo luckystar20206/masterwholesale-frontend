@@ -1,0 +1,108 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  ---------------------------------------------
+
+@collapsible-nav-color: #777;
+@collapsible-nav-current-color: @theme-color;
+@collapsible-nav-current-font-weight: 400;
+@collapsible-nav-item-hover: @theme-color;
+
+//
+
+//
+//  Common
+//  ---------------------------------------------
+
+& when (@media-common = true) {
+
+//
+//  Collapsible navigation
+//  ---------------------------------------------
+
+.block-collapsible-nav {
+    .content {
+        
+    }
+    .item {
+        border-bottom: 1px solid #ddd;
+        
+        &:first-child {
+            border-top: 1px solid #ddd;
+        }
+        a,
+        > strong {
+            .lib-css(color, @collapsible-nav-color);
+            display: block;
+            padding: 8px 18px 8px 15px;
+            position: relative;
+            
+            &:before {
+                font-family: @icon-font-family;
+                content: @icon-right-dir;
+                position: absolute;
+                left: 0;
+            }
+        }
+        a {
+            text-decoration: none;
+            &:hover, &:active, &:focus {
+                .lib-css(color, @collapsible-nav-item-hover);
+                background-color: transparent;
+            }
+        }
+        &.current {
+            a,
+            strong {
+                .lib-css(color, @collapsible-nav-current-color);
+                .lib-css(font-weight, @collapsible-nav-current-font-weight);
+            }
+        }
+    }
+}
+
+}
+
+//
+//  Desktop
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+    .block-collapsible-nav {
+        .title {
+            &:extend(.abs-visually-hidden-desktop all);
+        }
+    }
+}
+
+//
+//  Mobile
+//  ---------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .block-collapsible-nav {
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        z-index: 5;
+        background-color: @body_background-color;
+        .title {
+            &:extend(.abs-toggling-title-mobile all);
+        }
+        .content {
+            border-bottom: @border-width__base solid @border-color__base;
+            display: none;
+            &.active {
+                display: block;
+            }
+        }
+        .item {
+            padding: 0 15px;
+        }
+    }
+}

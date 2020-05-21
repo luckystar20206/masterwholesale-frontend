@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <action name="mass_to_mr_api" class="ModernRetail\ApiOrders\Ui\Component\MassAction">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">mass_to_mr_api</item>
+                        <item name="label" xsi:type="string" translate="true">Send to MR API</item>
+                        <item name="url" xsi:type="url" path="mrapiorders/creditmemo/massSend"/>
+                        <item name="confirm" xsi:type="array">
+                            <item name="title" xsi:type="string" translate="true">Send to MR API</item>
+                            <item name="message" xsi:type="string" translate="true">Are you sure to send selected creditmemos to MR API. It could take long time to process?</item>
+                        </item>
+                        <item name="grid_type" xsi:type="string">creditmemo</item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="sales_order_creditmemo_columns">
+        <column name="sent_to_mr_api_queue" class="ModernRetail\ApiOrders\Ui\Component\Listing\Column\MrSentToApi">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">ModernRetail\ApiOrders\Ui\Component\Listing\Column\Options\MrSentToApi</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Is Sent to MR API?</item>
+                    <item name="grid_type" xsi:type="string">creditmemo</item>
+                </item>
+            </argument>
+        </column>
+        <column name="mr_api_sync_status" class="ModernRetail\ApiOrders\Ui\Component\Listing\Column\MrApiSyncStatus">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">ModernRetail\ApiOrders\Ui\Component\Listing\Column\Options\MrApiSyncStatus</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">MR API sync status</item>
+                    <item name="grid_type" xsi:type="string">creditmemo</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+
+</listing>

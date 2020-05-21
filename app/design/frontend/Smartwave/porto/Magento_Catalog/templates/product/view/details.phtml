@@ -1,0 +1,217 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+/** @var \Magento\Catalog\Block\Product\View\Details $block */
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames('detailed_info', 'getChildHtml')):?>
+<?php
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $porto_helper = $this->helper('Smartwave\Porto\Helper\Data');
+    $_helper = $this->helper('Smartwave\Porto\Helper\Customtabs');
+    $product_config = $porto_helper->getConfig('porto_settings/product');
+    $static_block_tab = $product_config['custom_block_next_tab'];
+    $custom_block = $this->getLayout()->createBlock('Magento\Cms\Block\Block');
+    $_product = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\Registry::class)->registry('product');
+    $page_type = $_product->getData('product_page_type');
+    if(!$page_type)
+        $page_type = isset($_config['product_page_type'])?$_config['product_page_type']:'';
+    if($custom_block) {
+        $custom_block->setBlockId($static_block_tab);
+    }
+    $tab_style = "";
+    if(isset($product_config['tab_style']) && $product_config['tab_style'])
+        $tab_style = $product_config['tab_style'];
+    if($page_type == 'wide_grid')
+        $tab_style = 'vertical';
+?>
+    <?php if($product_config['tab_full_background']):?>
+    <div class="move-product-tab">
+        <div class="row">
+            <div class="<?php if(!$page_type && $custom_block && $static_block_tab):?>col-md-9<?php else:?>col-md-12<?php endif;?>">
+    <?php endif;?>
+                <div class="product info detailed <?php echo $tab_style; ?> <?php if($page_type == 'sticky_right'): ?>fullwidth-row<?php endif; ?>">
+                <?php $layout = $block->getLayout(); ?>
+                <?php if(!$tab_style || $tab_style != "sticky"): ?>
+                    <div class="product data items <?php if($page_type == 'sticky_right'): ?>container<?php endif; ?>" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                        <?php foreach ($detailedInfoGroup as $name):?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            if (!trim($html)) {
+                                continue;
+                            }
+                            $alias = $layout->getElementAlias($name);
+                            $label = $block->getChildData($alias, 'title');
+                            ?>
+                            <div class="data item title"
+                                 aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title"
+                                 data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                                <a class="data switch"
+                                   tabindex="-1"
+                                   data-toggle="switch"
+                                   href="#<?php /* @escapeNotVerified */ echo $alias; ?>"
+                                   id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>-title">
+                                    <span><?php /* @escapeNotVerified */ echo $label; ?></span>
+                                </a>
+                            </div>
+                            <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>" data-role="content">
+                                <?php /* @escapeNotVerified */ echo $html; ?>
+                            </div>
+                        <?php endforeach;?>
+                        <?php
+                        if($custom_cms_tabs = $_helper->getCustomTabs($_product)) {
+                            $i = 1;
+                            foreach($custom_cms_tabs as $_item) {
+                                ?>
+                                <div class="data item title"
+                                     aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo "custom-".$i;?>-title"
+                                     data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo "custom-".$i;?>">
+                                    <a class="data switch"
+                                       tabindex="-1"
+                                       data-toggle="switch"
+                                       href="#<?php /* @escapeNotVerified */ echo "custom-".$i; ?>"
+                                       id="tab-label-<?php /* @escapeNotVerified */ echo "custom-".$i;?>-title">
+                                        <span><?php /* @escapeNotVerified */ echo $_item['tab_title']; ?></span>
+                                    </a>
+                                </div>
+                                <div class="data item content" id="<?php /* @escapeNotVerified */ echo "custom-".$i; ?>" data-role="content">
+                                    <?php /* @escapeNotVerified */ echo $_item['tab_content']; ?>
+                                </div>
+                                <?php
+                                $i++;
+                            }
+                        }
+                        ?>
+                    </div>
+                <?php elseif($tab_style && $tab_style == "sticky"): ?>
+                    <div class="product data items" data-mage-init='{"tabs":{"openedState":"active"}}'>
+                        <?php foreach ($detailedInfoGroup as $name):?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            if (!trim($html)) {
+                                continue;
+                            }
+                            $alias = $layout->getElementAlias($name);
+                            $label = $block->getChildData($alias, 'title');
+                            $alias = str_replace(".","_",$alias);
+                            ?>
+                            <div class="data item title <?php if($alias == 'reviews'):?>active<?php endif; ?>" aria-labeledby="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>"
+                            data-role="collapsible" id="tab-label-<?php /* @escapeNotVerified */ echo $alias;?>">
+                                <a class="data switch" href="#<?php /* @escapeNotVerified */ echo $alias; ?>">
+                                    <?php /* @escapeNotVerified */ echo $label; ?>
+                                </a>
+                            </div>
+                        <?php endforeach;?>
+                        <?php
+                        if($custom_cms_tabs = $_helper->getCustomTabs($_product)) {
+                            $i = 1;
+                            foreach($custom_cms_tabs as $_item) {
+                                ?>
+                                <div class="data item title active">
+                                    <a class="data switch" href="#<?php /* @escapeNotVerified */ echo "custom-".$i; ?>">
+                                        <?php /* @escapeNotVerified */ echo $_item['tab_title']; ?>
+                                    </a>
+                                </div>
+                                <?php
+                                $i++;
+                            }
+                        }
+                        ?>
+                        <?php foreach ($detailedInfoGroup as $name):?>
+                            <?php
+                            $html = $layout->renderElement($name);
+                            if (!trim($html)) {
+                                continue;
+                            }
+                            $alias = $layout->getElementAlias($name);
+                            $label = $block->getChildData($alias, 'title');
+                            $alias = str_replace(".","_",$alias);
+                            ?>
+                            <div class="data item content" id="<?php /* @escapeNotVerified */ echo $alias; ?>">
+                                <?php /* @escapeNotVerified */ echo $html; ?>
+                            </div>
+                        <?php endforeach;?>
+                        <?php
+                        if($custom_cms_tabs = $_helper->getCustomTabs($_product)) {
+                            $i = 1;
+                            foreach($custom_cms_tabs as $_item) {
+                                ?>
+                                <div class="data item content" id="<?php /* @escapeNotVerified */ echo "custom-".$i; ?>">
+                                    <?php /* @escapeNotVerified */ echo $_item['tab_content']; ?>
+                                </div>
+                                <?php
+                                $i++;
+                            }
+                        }
+                        ?>
+                    </div>
+                <?php endif; ?>
+                <script type="text/javascript">
+                    require([
+                        'jquery'
+                    ], function ($) {
+                        $(document).ready(function(){
+                            <?php if($tab_style && $tab_style == "vertical"): ?>
+                            $(".product.info.detailed.vertical .product.data.items .data.item.title").off("classadded").on("classadded",function(){
+                                $(this).parent().css("min-height",$(this).next().outerHeight()+"px");
+                            });
+                            <?php elseif($tab_style && $tab_style == "sticky"): ?>
+                            var sticky_tabs;
+                            var is_sticky = false;
+                            $(window).scroll(function(){
+                                if($(window).scrollTop() >= $(".product.info.detailed").offset().top-50){
+                                    if(!is_sticky){
+                                        $(".product.info.detailed.sticky").before('<div class="product-tabs-container"><div class="container"></div></div>');
+                                        $(".product.info.detailed.sticky .product.data.items > .item.title").each(function(){
+                                            $(".product-tabs-container > .container").append($(this).clone().detach());
+                                        });
+                                        $(".product-tabs-container .item.title > a").off("click").on("click", function(){
+                                            $($(this).attr("href")).scrollToMe();
+                                            return false;
+                                        });
+                                        <?php if ($porto_helper->getConfig('porto_settings/header/sticky_header')): ?>
+                                        $(".product-tabs-container").addClass("has-sticky-header");
+                                        <?php endif; ?>
+                                        <?php if ($porto_helper->getConfig('porto_settings/header/mobile_sticky_header')): ?>
+                                        $(".product-tabs-container").addClass("has-mobile-sticky-header");
+                                        <?php endif; ?>
+                                        is_sticky = true;
+                                    }
+                                } else {
+                                    $(".product-tabs-container").remove();
+                                    is_sticky = false;
+                                }
+                            });
+                            $(".product.info.detailed.sticky .product.data.items > .item.title > a").off("click").on("click", function(){
+                                $($(this).attr("href")).scrollToMe();
+                                return false;
+                            });
+                            $(".product-reviews-summary .reviews-actions a.action.view").off("click").on("click", function(){
+                                $("#reviews").scrollToMe();
+                                return false;
+                            });
+                            $(".product-reviews-summary .reviews-actions a.action.add").off("click").on("click", function(){
+                                $("#review-form").scrollToMe();
+                                return false;
+                            });
+                            <?php endif; ?>
+                        });
+                    });
+                </script>
+                </div>
+    <?php if($product_config['tab_full_background']):?>
+            </div>
+            <?php if(!$page_type && $custom_block && $static_block_tab):?>
+            <div class="col-md-3">
+                <div class="custom-block-tab">
+                    <?php echo $custom_block->toHtml(); ?>
+                </div>
+            </div>
+            <?php endif;?>
+        </div>
+    </div>
+    <?php endif;?>
+<?php endif; ?>

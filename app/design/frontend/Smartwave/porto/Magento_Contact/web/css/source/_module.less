@@ -1,0 +1,43 @@
+// /**
+//  * Copyright © 2015 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+& when (@media-common = true) {
+    .contact-index-index {
+        .page-title-wrapper {
+            display: none;
+        }
+        .fieldset > .legend, .contact-info .contacts-title {
+            color: @base-font-color;
+            font-size: 20px;
+            margin-bottom: 20px;
+            font-weight: 300;
+            letter-spacing: 0;
+            text-transform: none;
+        }
+        .page-main .contact-info {
+            [class^="porto-icon-"], [class*=" porto-icon-"] {
+                float: left;
+                width: 43px;
+                height: 43px;
+                background-color: @theme-color;
+                color: #fff;
+                line-height: 43px;
+                text-align: center;
+                font-size: 16px;
+                border-radius: 6px;
+                margin-bottom: 15px;
+            }
+            p {
+                margin-left: 55px;
+                margin-bottom: 0;
+                font-size: 14px;
+                line-height: 21px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    
+}

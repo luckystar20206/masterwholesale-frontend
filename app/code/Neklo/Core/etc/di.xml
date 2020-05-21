@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Controller\Adminhtml\Dashboard\Index">
+        <plugin name="NekloRSS" type="\Neklo\Core\Plugin\Backend\Controller\Adminhtml\Dashboard\Index"/>
+    </type>
+    <type name="Magento\Config\Model\Config\Structure\Element\Iterator\Tab">
+        <plugin name="SortNekloTab" type="\Neklo\Core\Plugin\Config\Model\Config\Structure\Element\Iterator\Tab"/>
+    </type>
+</config>

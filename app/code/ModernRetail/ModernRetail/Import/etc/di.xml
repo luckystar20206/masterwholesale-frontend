@@ -1,0 +1,128 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Catalog\Model\ResourceModel\Product\Indexer\LinkedProductSelectBuilderByIndexPrice" type="ModernRetail\Import\Model\ResourceModel\Product\Indexer\LinkedProductSelectBuilderByIndexPrice" />
+
+ <!-- 
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="urlreindex" xsi:type="object">ModernRetail\Import\Command\Urlreindex</item>
+            </argument>
+        </arguments>
+    </type>
+
+   
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:run" xsi:type="object">ModernRetail\Import\Command\Integrator\Run</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:store0" xsi:type="object">ModernRetail\Import\Command\Integrator\Store0</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="attachimages" xsi:type="object">ModernRetail\Import\Command\AttachImages</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:integrator:configurable_special_price" xsi:type="object">ModernRetail\Import\Command\Integrator\ConfigurableSpecialPrice</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:erase_special_prices" xsi:type="object">ModernRetail\Import\Command\Integrator\EraseSpecialPrices</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:integrator:stock_status" xsi:type="object">ModernRetail\Import\Command\Integrator\StockStatus</item>
+            </argument>
+        </arguments>
+    </type>
+	-->
+
+    <type name="Magento\Framework\App\Cache\Tag\Strategy\Factory">
+        <plugin name="importFlushCacheAvoid" type="ModernRetail\Import\Plugin\ImportFlushCacheAvoid" sortOrder="1" />
+    </type>
+
+    <type name="Magento\Framework\App\Cache\Tag\Resolver">
+        <plugin name="importFlushCacheAvoidTagsResolver" type="ModernRetail\Import\Plugin\ImportFlushCacheAvoidTagsResolver" sortOrder="1" />
+    </type>
+
+<!--
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="integrator:version" xsi:type="object">ModernRetail\Import\Command\Integrator\Version</item>
+            </argument>
+        </arguments>
+    </type>
+
+-->
+    <type name="ModernRetail\Import\Helper\Monitor\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="ModernRetail\Import\Helper\Monitor\Logger">
+        <arguments>
+            <argument name="name" xsi:type="string">mrMonitorApiLogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="info" xsi:type="object">ModernRetail\Import\Helper\Monitor\Logger\Handler</item>
+                <item name="log" xsi:type="object">ModernRetail\Import\Helper\Monitor\Logger\Handler</item>
+                <item name="debug" xsi:type="object">ModernRetail\Import\Helper\Monitor\Logger\Handler</item>
+                <item name="system" xsi:type="object">ModernRetail\Import\Helper\Monitor\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>
+
+
+
+
+    <type name="Magento\Catalog\Model\ResourceModel\Product\Collection">
+        <plugin name="toggleFlatEnabled"
+                type="ModernRetail\Import\Plugin\ProductCollection"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+    <type name="Magento\Catalog\Model\Indexer\Category\Flat\State">
+        <plugin name="toggleFlatEnabledForCategory"
+                type="ModernRetail\Import\Plugin\CategoryFlatState"
+                sortOrder="10"
+                disabled="false"/>
+    </type>
+
+
+
+
+
+
+
+</config>

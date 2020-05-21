@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+NOTICE OF LICENSE
+
+This source file is subject to the NekloEULA that is bundled with this package in the file ICENSE.txt.
+
+It is also available through the world-wide-web at this URL: http://store.neklo.com/LICENSE.txt
+
+Copyright (c)  Neklo (http://store.neklo.com/)
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="neklo" sortOrder="100" class="neklo-logo">
+            <label> </label>
+        </tab>
+        <section id="neklo_core" translate="label" type="text" sortOrder="9999" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Extensions &amp; Contact</label>
+            <tab>neklo</tab>
+            <resource>Neklo_Core::config</resource>
+            <group id="extension" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Extensions Information</label>
+                <frontend_model>Neklo\Core\Block\System\Extension</frontend_model>
+            </group>
+            <group id="contact" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="header" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Neklo\Core\Block\System\Contact\Header</frontend_model>
+                </field>
+                <label>Contact Form</label>
+                <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Contact Name</label>
+                </field>
+                <field id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Contact Email</label>
+                </field>
+                <field id="subject" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Subject</label>
+                </field>
+                <field id="reason" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Reason</label>
+                    <source_model>Neklo\Core\Model\Source\Reason</source_model>
+                </field>
+                <field id="other_reason" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Other Reason</label>
+                    <depends>
+                        <field id="reason">other</field>
+                    </depends>
+                </field>
+                <field id="message" translate="label" type="textarea" sortOrder="60" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Message</label>
+                </field>
+                <field id="button" sortOrder="70" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Neklo\Core\Block\System\Contact\Send</frontend_model>
+                </field>
+            </group>
+            <group id="newsletter" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Subscribe to Newsletter</label>
+                <field id="name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Name</label>
+                </field>
+                <field id="email" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Email</label>
+                </field>
+                <field id="subscribe_button" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Neklo\Core\Block\System\Newsletter\Subscribe</frontend_model>
+                </field>
+            </group>
+            <group id="notification" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Notifications</label>
+                <field id="type" translate="label" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Receive news about:</label>
+                    <source_model>Neklo\Core\Model\Source\Subscription\Type</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

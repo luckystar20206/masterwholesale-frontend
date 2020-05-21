@@ -1,1 +1,1 @@
-[vegandthecity.ch/shop](https://vegandthecity.ch/shop) (Magento 2) source code and issues tracking.
+The [masterwholesale.com](https://masterwholesale.com) website (Magento 2). 

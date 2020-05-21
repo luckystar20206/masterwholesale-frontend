@@ -177,8 +177,11 @@ class ProductRepository extends \Magento\Catalog\Model\ProductRepository impleme
      * @param MimeTypeExtensionMap $mimeTypeExtensionMap
      * @param ImageProcessorInterface $imageProcessor
      * @param \Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface $extensionAttributesJoinProcessor
-     * @param CollectionProcessorInterface $collectionProcessor [optional]
-     * @param \Magento\Framework\Serialize\Serializer\Json|null $serializer
+	 * 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+	 * "«ModernRetail\Import\Model\ProductRepository: Incompatible argument type: Required type: int.
+	 * Actual type: \Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
+	 * File: app/code/ModernRetail/Import/Model/ProductRepository.php»":
+	 * https://github.com/masterwholesale-com/site/issues/1
      * @param int $cacheLimit [optional]
      * @SuppressWarnings(PHPMD.ExcessiveParameterList)
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)

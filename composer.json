@@ -39,7 +39,8 @@
         "fishpig/magento2-wordpress-integration": "*",
         "livechat/module-magento-livechat": "^2.3",
         "shipperhq/module-address-autocomplete": "^20.3",
-        "fooman/printorderpdf-m2": "^3.1" 
+        "fooman/printorderpdf-m2": "^3.1",
+        "mage2pro/core": "*" 
    },
     "require-dev": {
         "allure-framework/allure-phpunit": "~1.2.0",

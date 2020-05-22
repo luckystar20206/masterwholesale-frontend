@@ -16,6 +16,10 @@
 # "How to fix the «Invalid template file» / «require_js.phtml» failure of Magento 2.3.x in Windows?"
 # https://mage2.pro/t/5774
 !/vendor/magento/framework/View/Element/Template/File/Validator.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«Please correct the country code: .» at vendor/magento/module-directory/Model/ResourceModel/Country.php:46":
+# https://github.com/masterwholesale-com/site/issues/2
+!/vendor/magento/module-directory/Model/ResourceModel/Country.php
 /dev
 /vendor/codeception
 /vendor/liquid/liquid/examples

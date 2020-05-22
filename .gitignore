@@ -30,6 +30,10 @@
 # https://github.com/masterwholesale-com/site/issues/2
 !/vendor/magento/module-directory/Model/ResourceModel/Country.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«The "…" order ID is incorrect. Verify the ID and try again» at vendor/magento/module-paypal/Model/Ipn.php:143":
+# https://github.com/masterwholesale-com/site/issues/7
+!/vendor/magento/module-paypal/Model/Ipn.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "«Invalid customer address id 28585» at vendor/magento/module-quote/Model/QuoteAddressValidator.php:79":
 # https://github.com/masterwholesale-com/site/issues/4
 !/vendor/magento/module-quote/Model/QuoteAddressValidator.php

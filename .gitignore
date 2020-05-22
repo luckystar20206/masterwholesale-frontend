@@ -38,6 +38,10 @@
 # "«Please correct the country code: .» at vendor/magento/module-directory/Model/ResourceModel/Country.php:46":
 # https://github.com/masterwholesale-com/site/issues/2
 !/vendor/magento/module-directory/Model/ResourceModel/Country.php
+# 2020-05-23 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«Template file 'header.html' is not found» at vendor/magento/module-email/Model/Template/Config.php":
+# https://github.com/masterwholesale-com/site/issues/11
+!/vendor/magento/module-email/Model/Template/Config.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "«The "…" order ID is incorrect. Verify the ID and try again» at vendor/magento/module-paypal/Model/Ipn.php:143":
 # https://github.com/masterwholesale-com/site/issues/7

@@ -17,6 +17,10 @@
 # https://github.com/masterwholesale-com/site/issues/3
 !/vendor/magento/framework/Exception/NoSuchEntityException.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«Registry key "current_product" already exists» at vendor/magento/framework/Registry.php:60":
+# https://github.com/masterwholesale-com/site/issues/8
+!/vendor/magento/framework/Registry.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "Add the `vendor/magento/framework/Serialize/Serializer/Json.php` file
 # (modified by someone at `2020-05-19 13:48:41 -07`) to the source control":
 # https://github.com/masterwholesale-com/site/issues/6

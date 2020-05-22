@@ -46,6 +46,11 @@
 # "«Invalid customer address id 28585» at vendor/magento/module-quote/Model/QuoteAddressValidator.php:79":
 # https://github.com/masterwholesale-com/site/issues/4
 !/vendor/magento/module-quote/Model/QuoteAddressValidator.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "Add the `vendor/magento/module-wishlist/Controller/Index/Plugin.php` file
+# (modified by someone at `2020-04-21 07:11:49 -07`) to the source control":
+# https://github.com/masterwholesale-com/site/issues/10
+!/vendor/magento/module-wishlist/Controller/Index/Plugin.php
 /dev
 /vendor/codeception
 /vendor/liquid/liquid/examples

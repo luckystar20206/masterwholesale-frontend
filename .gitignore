@@ -30,6 +30,11 @@
 # https://mage2.pro/t/5774
 !/vendor/magento/framework/View/Element/Template/File/Validator.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "Add the `vendor/magento/module-configurable-product/Model/Plugin/Frontend/ProductIdentitiesExtender.php` file
+# (modified by someone at `2020-04-17 14:44:22 -07`) to the source control":
+# https://github.com/masterwholesale-com/site/issues/9
+!/vendor/magento/module-configurable-product/Model/Plugin/Frontend/ProductIdentitiesExtender.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "«Please correct the country code: .» at vendor/magento/module-directory/Model/ResourceModel/Country.php:46":
 # https://github.com/masterwholesale-com/site/issues/2
 !/vendor/magento/module-directory/Model/ResourceModel/Country.php

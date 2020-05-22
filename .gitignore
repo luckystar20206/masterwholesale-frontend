@@ -24,6 +24,10 @@
 # "«Please correct the country code: .» at vendor/magento/module-directory/Model/ResourceModel/Country.php:46":
 # https://github.com/masterwholesale-com/site/issues/2
 !/vendor/magento/module-directory/Model/ResourceModel/Country.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«Invalid customer address id 28585» at vendor/magento/module-quote/Model/QuoteAddressValidator.php:79":
+# https://github.com/masterwholesale-com/site/issues/4
+!/vendor/magento/module-quote/Model/QuoteAddressValidator.php
 /dev
 /vendor/codeception
 /vendor/liquid/liquid/examples

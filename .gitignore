@@ -17,6 +17,11 @@
 # https://github.com/masterwholesale-com/site/issues/3
 !/vendor/magento/framework/Exception/NoSuchEntityException.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "Add the `vendor/magento/framework/Serialize/Serializer/Json.php` file
+# (modified by someone at `2020-05-19 13:48:41 -07`) to the source control":
+# https://github.com/masterwholesale-com/site/issues/6
+!/vendor/magento/framework/Serialize/Serializer/Json.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "How to fix the «Invalid template file» / «require_js.phtml» failure of Magento 2.3.x in Windows?"
 # https://mage2.pro/t/5774
 !/vendor/magento/framework/View/Element/Template/File/Validator.php

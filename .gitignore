@@ -11,7 +11,12 @@
 !/app/code/**/*
 !/app/design/frontend/Smartwave/**/*
 !/app/etc/config.php
-/update/
+# 2020-05-23 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "The `php update/cron.php` command is slow (it takes about 100 seconds to finish)":
+# https://github.com/masterwholesale-com/site/issues/16
+!/update/app/code/Magento/Update/CronReadinessCheck.php
+/update/dev
+/update/var
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "«No such entity with id = 0» at vendor/magento/framework/Exception/NoSuchEntityException.php:50":
 # https://github.com/masterwholesale-com/site/issues/3

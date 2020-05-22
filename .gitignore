@@ -13,6 +13,10 @@
 !/app/etc/config.php
 /update/
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# "«No such entity with id = 0» at vendor/magento/framework/Exception/NoSuchEntityException.php:50":
+# https://github.com/masterwholesale-com/site/issues/3
+!/vendor/magento/framework/Exception/NoSuchEntityException.php
+# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "How to fix the «Invalid template file» / «require_js.phtml» failure of Magento 2.3.x in Windows?"
 # https://mage2.pro/t/5774
 !/vendor/magento/framework/View/Element/Template/File/Validator.php

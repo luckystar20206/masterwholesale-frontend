@@ -66,8 +66,22 @@ class NoSuchEntityException extends LocalizedException
 		 *		}
 		 *	}
 		 * https://github.com/genecommerce/module-braintree-magento2/blob/3.4.1/Block/ApplePay/Shortcut/Button.php#L81-L90
+		 * 2020-05-25
+		 * @see \Magento\Checkout\Model\Session::loadCustomerQuote():
+		 *	try {
+		 *		$customerQuote = $this->quoteRepository->getForCustomer(
+		 * 			$this->_customerSession->getCustomerId()
+		 * 		);
+		 *	}
+		 *	catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+		 *		$customerQuote = $this->quoteFactory->create();
+		 *	}
+		 * https://github.com/magento/magento2/blob/2.3.2/app/code/Magento/Checkout/Model/Session.php#L362-L366
 		 */
-		if ('cartId' !== $fieldName || !is_null($fieldValue)) {
+		if (
+			('cartId' !== $fieldName || !is_null($fieldValue))
+			&& !df_bt_has('Magento\Checkout\Model\Session::loadCustomerQuote')
+		) {
 			df_log_l(__CLASS__, ['fieldName' => $fieldName, 'fieldValue' => $fieldValue]);
 		}
         return new self(

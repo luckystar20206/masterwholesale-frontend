@@ -47,10 +47,29 @@ class NoSuchEntityException extends LocalizedException
      */
     public static function singleField($fieldName, $fieldValue)
     {
-    	# 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
-		# "«No such entity with id = 0» at vendor/magento/framework/Exception/NoSuchEntityException.php:50":
-		# https://github.com/masterwholesale-com/site/issues/3
-    	df_log_l(__CLASS__, ['fieldName' => $fieldName, 'fieldValue' => $fieldValue]);
+		/**
+		 * 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+		 * "«No such entity with id = 0» at vendor/magento/framework/Exception/NoSuchEntityException.php:50":
+		 * https://github.com/masterwholesale-com/site/issues/3
+		 * 2020-05-24
+		 * The exception in the @see \Magento\Braintree\Block\ApplePay\Shortcut\Button::getQuoteId() method
+		 * is expected and should not be logged:
+		 *	try {
+		 *		$config = $this->defaultConfigProvider->getConfig();
+		 *		if (!empty($config['quoteData']['entity_id'])) {
+		 *			return $config['quoteData']['entity_id'];
+		 *		}
+		 *	}
+		 *	catch (NoSuchEntityException $e) {
+		 *		if ($e->getMessage() !== 'No such entity with cartId = ') {
+		 *			throw $e;
+		 *		}
+		 *	}
+		 * https://github.com/genecommerce/module-braintree-magento2/blob/3.4.1/Block/ApplePay/Shortcut/Button.php#L81-L90
+		 */
+		if ('cartId' !== $fieldName || !is_null($fieldValue)) {
+			df_log_l(__CLASS__, ['fieldName' => $fieldName, 'fieldValue' => $fieldValue]);
+		}
         return new self(
             new Phrase(
                 'No such entity with %fieldName = %fieldValue',

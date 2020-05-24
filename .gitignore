@@ -17,6 +17,10 @@
 !/update/app/code/Magento/Update/CronReadinessCheck.php
 /update/dev
 /update/var
+# 2020-05-24 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
+# «Undefined variable: result in vendor/auctane/api/Controller/Auctane/Index.php on line 129»:
+# https://github.com/masterwholesale-com/site/issues/20
+!/vendor/auctane/api/Controller/Auctane/Index.php
 # 2020-05-22 Dmitry Fedyuk https://www.upwork.com/fl/mage2pro
 # "«No such entity with id = 0» at vendor/magento/framework/Exception/NoSuchEntityException.php:50":
 # https://github.com/masterwholesale-com/site/issues/3

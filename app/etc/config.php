@@ -295,7 +295,7 @@ return [
         'Mageplaza_GeoIP' => 1,
         'Mageplaza_LayeredNavigation' => 0,
         'Mageplaza_Osc' => 1,
-        'Mirasvit_CacheWarmer' => 1,
+        'Mirasvit_CacheWarmer' => 0,
         'Mirasvit_Core' => 1,
         'Mirasvit_EmailDesigner' => 1,
         'Mirasvit_Email' => 1,
